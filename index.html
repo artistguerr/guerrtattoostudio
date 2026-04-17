@@ -108,9 +108,9 @@
             background: linear-gradient(90deg, transparent, var(--cyan) 20%, var(--magenta) 50%, var(--violet) 80%, transparent);
             opacity: 0.3;
         }
-        .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .nav-brand-text { font-family: 'Orbitron', sans-serif; font-size: 16px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--text-primary); }
-        .nav-brand-text span { color: var(--cyan); font-weight: 400; text-shadow: 0 0 12px var(--cyan-glow); }
+        /* LOGO */
+        .nav-brand { display: flex; align-items: center; text-decoration: none; }
+        .nav-logo { height: 44px; width: auto; object-fit: contain; filter: drop-shadow(0 0 8px rgba(0,240,255,0.3)); }
         .nav-links { display: flex; align-items: center; gap: 2px; }
         .nav-link {
             display: flex; align-items: center; gap: 6px; padding: 8px 14px;
@@ -202,20 +202,21 @@
         .price-card-desktop small { color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.5px; display: block; }
         .form-group { margin-bottom: 18px; }
         label { display: block; font-size: 11px; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; text-transform: uppercase; }
-        input[type="date"], input[type="text"], select, textarea { width: 100%; padding: 14px 16px; background: rgba(0, 240, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 4px; color: var(--text-primary); font-family: 'Rajdhani', sans-serif; font-size: 14px; letter-spacing: 0.5px; transition: all var(--transition-base); }
+        input[type="date"], input[type="text"], select, textarea { width: 100%; padding: 14px 16px; background: rgba(0, 240, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 4px; color: var(--text-primary); font-family: 'Rajdhani', sans-serif; font-size: 14px; letter-spacing: 0.5px; transition: all var(--transition-base); color-scheme: dark; }
         input:focus, select:focus, textarea:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.1); background: rgba(0, 240, 255, 0.05); }
         textarea { resize: vertical; }
         .desktop-footer { padding: 2.5rem 3rem; border-top: 1px solid var(--border-subtle); text-align: center; position: relative; z-index: 2; }
         .desktop-footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; }
-        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 0.75rem; }
+        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 0.75rem; align-items: center; flex-wrap: wrap; }
         .footer-links a { color: var(--text-dim); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; transition: color var(--transition-base); }
         .footer-links a:hover { color: var(--cyan); }
+        .social-btn { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 8px; border: 1px solid rgba(0, 240, 255, 0.3); color: var(--cyan); font-size: 17px; background: rgba(0, 240, 255, 0.04); transition: all 0.2s; text-decoration: none; }
+        .social-btn:hover { border-color: var(--cyan); box-shadow: 0 0 12px var(--cyan-glow); color: white; }
         .mobile-content { display: block; max-width: 480px; width: 100%; margin: 0 auto; background-color: rgba(10, 10, 18, 0.95); min-height: 100vh; position: relative; z-index: 2; border-left: 1px solid rgba(0, 240, 255, 0.05); border-right: 1px solid rgba(0, 240, 255, 0.05); padding-bottom: 70px; }
-        .mobile-header { padding: 20px 18px 14px; background: rgba(10, 10, 18, 0.98); position: relative; }
-        .mobile-header::after { display: none; }
+        .mobile-header { padding: 20px 18px 14px; background: rgba(10, 10, 18, 0.98); }
+        /* LOGO MOBILE */
+        .mobile-logo { height: 64px; width: auto; object-fit: contain; display: block; margin-bottom: 8px; filter: drop-shadow(0 0 10px rgba(0,240,255,0.35)); }
         .mobile-header-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--cyan); letter-spacing: 3px; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.4rem; }
-        .mobile-header h1 { font-family: 'Orbitron', sans-serif; font-size: 22px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-        .mobile-header h1 span { color: var(--cyan); font-weight: 400; text-shadow: 0 0 12px var(--cyan-glow); }
         .mobile-header p { color: var(--text-secondary); font-size: 12px; margin-top: 4px; display: flex; align-items: center; gap: 6px; }
         .mobile-section { padding: 22px 18px; border-bottom: 1px solid var(--border-subtle); }
         .mobile-section-title { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; letter-spacing: 2px; text-transform: uppercase; }
@@ -229,7 +230,6 @@
         .mobile-nav-item i { font-size: 17px; margin-bottom: 2px; }
         .mobile-nav-item.active { color: var(--cyan); }
         .mobile-nav-item.active i { text-shadow: 0 0 8px var(--cyan-glow); }
-        .mobile-footer-note a { text-decoration: none; }
         .mobile-footer-note { text-align: center; padding: 18px; color: var(--text-dim); font-size: 10px; font-family: 'JetBrains Mono', monospace; letter-spacing: 2px; text-transform: uppercase; }
         .toast-container { position: fixed; top: max(72px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 99999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; width: 90%; max-width: 340px; }
         .toast { background: rgba(6, 6, 18, 0.96); backdrop-filter: blur(20px); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 11px 16px; display: flex; align-items: center; gap: 10px; font-size: 0.78rem; font-weight: 500; animation: toastIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -261,9 +261,12 @@
     <button class="lightbox-nav lightbox-next" id="lbNext"><i class="fas fa-chevron-right"></i></button>
     <div class="lightbox-info" id="lbInfo"></div>
 </div>
+
 <!-- NAVEGACIÓN DESKTOP -->
 <header class="desktop-nav">
-    <a href="#hero" class="nav-brand"><div class="nav-brand-text">Guerr <span>Tattoo</span></div></a>
+    <a href="#hero" class="nav-brand">
+        <img src="https://artistguerr.github.io/guerrtattoostudio/logo%20pagina%20web.webp" alt="Guerr Tattoo" class="nav-logo">
+    </a>
     <nav class="nav-links">
         <a href="#hero" class="nav-link active" data-section="hero"><i class="fas fa-home"></i> Inicio</a>
         <a href="#gallery" class="nav-link" data-section="gallery"><i class="fas fa-images"></i> Galería</a>
@@ -273,10 +276,11 @@
     </nav>
     <a href="#booking" class="nav-cta">Reservar</a>
 </header>
+
 <!-- CONTENIDO DESKTOP -->
 <main class="desktop-content">
     <!-- Hero -->
-    <section class="hero-section" id="hero">
+    <section class="hero-section section" id="hero">
         <div class="hero-inner">
             <div class="hero-left">
                 <div class="hero-tag">v2.0 // artist portfolio & booking</div>
@@ -312,6 +316,7 @@
             </div>
         </div>
     </section>
+
     <!-- Galería Desktop -->
     <section class="section" id="gallery">
         <div class="container">
@@ -408,7 +413,7 @@
                         <i class="fas fa-location-dot" style="color:var(--cyan);font-size:24px;margin-bottom:12px;display:block;text-shadow:0 0 10px var(--cyan-glow);"></i>
                         <h4 style="font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">Dirección</h4>
                         <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">Cra. 107 #143-22, piso 2<br>Suba, Bogotá, Colombia</p>
-                        <a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z/data=!3m2!4b1!5s0x8e3f84f57c47c575:0x727e7f64b5abc4e6!4m6!3m5!1s0x8e3f85dd8f67dffd:0x42241175f1a8bc6!8m2!3d4.746891!4d-74.0979922!16s%2Fg%2F11jsmt6rtk" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:var(--cyan);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:12px;">Cómo llegar <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:var(--cyan);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:12px;">Cómo llegar <i class="fas fa-arrow-right"></i></a>
                     </address>
                     <div style="background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:1.5rem;border-radius:6px;">
                         <i class="fab fa-whatsapp" style="color:#25d366;font-size:24px;margin-bottom:12px;display:block;"></i>
@@ -420,14 +425,15 @@
             </div>
         </div>
     </section>
+
     <footer class="desktop-footer">
-        <div class="footer-links" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;">
-            <a href="#gallery" style="color:var(--text-secondary);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;">Galería</a>
-            <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank" rel="noopener" title="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,.04);transition:all .2s;" onmouseover="this.style.borderColor='var(--cyan)';this.style.boxShadow='0 0 12px var(--cyan-glow)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(0,240,255,.3)';this.style.boxShadow='none';this.style.color='var(--cyan)'"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/julian.guerrero.3914?locale=es_LA" target="_blank" rel="noopener" title="Facebook" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,.04);transition:all .2s;" onmouseover="this.style.borderColor='var(--cyan)';this.style.boxShadow='0 0 12px var(--cyan-glow)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(0,240,255,.3)';this.style.boxShadow='none';this.style.color='var(--cyan)'"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank" rel="noopener" title="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,.04);transition:all .2s;" onmouseover="this.style.borderColor='var(--cyan)';this.style.boxShadow='0 0 12px var(--cyan-glow)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(0,240,255,.3)';this.style.boxShadow='none';this.style.color='var(--cyan)'"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank" rel="noopener" title="TikTok" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,.04);transition:all .2s;" onmouseover="this.style.borderColor='var(--cyan)';this.style.boxShadow='0 0 12px var(--cyan-glow)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(0,240,255,.3)';this.style.boxShadow='none';this.style.color='var(--cyan)'"><i class="fab fa-tiktok"></i></a>
-            <a href="https://wa.me/573012802733" target="_blank" rel="noopener" title="WhatsApp" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,.04);transition:all .2s;" onmouseover="this.style.borderColor='var(--cyan)';this.style.boxShadow='0 0 12px var(--cyan-glow)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(0,240,255,.3)';this.style.boxShadow='none';this.style.color='var(--cyan)'"><i class="fab fa-whatsapp"></i></a>
+        <div class="footer-links">
+            <a href="#gallery">Galería</a>
+            <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank" rel="noopener" title="Instagram" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/julian.guerrero.3914?locale=es_LA" target="_blank" rel="noopener" title="Facebook" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank" rel="noopener" title="YouTube" class="social-btn"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank" rel="noopener" title="TikTok" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/573012802733" target="_blank" rel="noopener" title="WhatsApp" class="social-btn"><i class="fab fa-whatsapp"></i></a>
         </div>
         <p>Guerr Tattoo · Julián Guerrero · Suba, Bogotá · © <span id="year"></span></p>
     </footer>
@@ -436,8 +442,8 @@
 <!-- CONTENIDO MOBILE -->
 <div class="mobile-content">
     <header class="mobile-header">
+        <img src="https://artistguerr.github.io/guerrtattoostudio/logo%20pagina%20web.webp" alt="Guerr Tattoo" class="mobile-logo">
         <div class="mobile-header-tag">v2.0 // artist portfolio</div>
-        <h1>Guerr <span>Tattoo</span></h1>
         <p><i class="fas fa-map-pin"></i> Suba, Bogotá · Julián Guerrero</p>
     </header>
 
@@ -506,17 +512,18 @@
         <h2 class="mobile-section-title"><i class="fas fa-map-marker-alt"></i> Estudio</h2>
         <div style="width:100%;height:170px;border-radius:6px;overflow:hidden;margin-bottom:12px;border:1px solid var(--border-subtle);"><iframe title="Mapa del estudio" src="https://www.openstreetmap.org/export/embed.html?bbox=-74.1130%2C4.7600%2C-74.0930%2C4.7800&layer=mapnik&marker=4.7700%2C-74.1030" style="width:100%;height:100%;filter:grayscale(1)invert(1)hue-rotate(180deg)saturate(.5)brightness(.7)contrast(1.2);border:0;" allowfullscreen loading="lazy"></iframe></div>
         <div style="display:flex;gap:10px;margin-bottom:10px;">
-            <address style="flex:1;background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:12px;border-radius:6px;font-style:normal;"><i class="fas fa-location-dot" style="color:var(--cyan);font-size:16px;margin-bottom:8px;display:block;"></i><p style="font-size:12px;color:var(--text-secondary);"><strong style="color:var(--text-primary);">Cra. 107 #143-22</strong><br>Suba, Bogotá</p><a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z/data=!3m2!4b1!5s0x8e3f84f57c47c575:0x727e7f64b5abc4e6!4m6!3m5!1s0x8e3f85dd8f67dffd:0x42241175f1a8bc6!8m2!3d4.746891!4d-74.0979922!16s%2Fg%2F11jsmt6rtk" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;display:inline-block;margin-top:6px;">Ver en Maps →</a></address>
+            <address style="flex:1;background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:12px;border-radius:6px;font-style:normal;"><i class="fas fa-location-dot" style="color:var(--cyan);font-size:16px;margin-bottom:8px;display:block;"></i><p style="font-size:12px;color:var(--text-secondary);"><strong style="color:var(--text-primary);">Cra. 107 #143-22</strong><br>Suba, Bogotá</p><a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;display:inline-block;margin-top:6px;">Ver en Maps →</a></address>
             <div style="flex:1;background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:12px;border-radius:6px;"><i class="fab fa-whatsapp" style="color:#25d366;font-size:16px;margin-bottom:8px;display:block;"></i><p style="font-size:12px;color:var(--text-secondary);"><strong style="color:var(--text-primary);">301 280 2733</strong><br>Lun–Sáb 10am–7pm</p><a href="https://wa.me/573012802733" target="_blank" rel="noopener" style="color:#25d366;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;display:inline-block;margin-top:6px;">Escribir →</a></div>
         </div>
     </section>
+
     <footer class="mobile-footer-note">
         <div style="display:flex;justify-content:center;gap:14px;margin-bottom:10px;">
-            <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,.04);"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/julian.guerrero.3914?locale=es_LA" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,.04);"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,.04);"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,.04);"><i class="fab fa-tiktok"></i></a>
-            <a href="https://wa.me/573012802733" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,.04);"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/julian.guerrero.3914?locale=es_LA" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/573012802733" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-whatsapp"></i></a>
         </div>
         Guerr Tattoo · © <span class="year-span"></span>
     </footer>
@@ -537,6 +544,7 @@
         const year = new Date().getFullYear();
         document.getElementById('year').textContent = year;
         document.querySelectorAll('.year-span').forEach(el => el.textContent = year);
+
         function showToast(msg, type='info', ms=3000){
             const icons = {info:'fa-info-circle', success:'fa-check-circle', error:'fa-exclamation-circle'};
             const el = document.createElement('div');
@@ -545,6 +553,7 @@
             document.getElementById('toastContainer').appendChild(el);
             setTimeout(()=>{ el.style.animation='toastOut .25s ease forwards'; setTimeout(()=>el.remove(),250); }, ms);
         }
+
         const pc = document.getElementById('particles');
         for(let i=0;i<22;i++){
             const p = document.createElement('div'); p.className='particle';
@@ -554,6 +563,7 @@
             const s=1+Math.random()*2; p.style.width=s+'px'; p.style.height=s+'px';
             pc.appendChild(p);
         }
+
         const lightbox = document.getElementById('lightbox');
         const lbImg = document.getElementById('lbImg');
         const lbInfo = document.getElementById('lbInfo');
@@ -571,11 +581,13 @@
         document.getElementById('lbNext').addEventListener('click', ()=>lbNavigate(1));
         lightbox.addEventListener('click', e=>{ if(e.target===lightbox) closeLightbox(); });
         document.addEventListener('keydown', e=>{ if(!lightbox.classList.contains('open')) return; if(e.key==='ArrowLeft') lbNavigate(-1); if(e.key==='ArrowRight') lbNavigate(1); if(e.key==='Escape') closeLightbox(); });
+
         function bindGallery(selector){
             const items = []; document.querySelectorAll(selector).forEach(el=>{ items.push({ src: el.dataset.src || el.querySelector('img')?.src, label: el.dataset.label||'' }); });
             document.querySelectorAll(selector).forEach((el,i)=>{ el.style.cursor='zoom-in'; el.addEventListener('click', ()=>openLightbox(items,i)); });
         }
         bindGallery('.gallery-item-desktop');
+
         function makeScrollSpy(navSelector, sectionSelector){
             const navs = document.querySelectorAll(navSelector), sections = document.querySelectorAll(sectionSelector);
             window.addEventListener('scroll', ()=>{
@@ -586,13 +598,16 @@
         }
         makeScrollSpy('.nav-link', '.section,.hero-section');
         makeScrollSpy('.mobile-nav-item', '.mobile-section');
+
         function initFilter(btnsSelector, itemsSelector){
             const btns = document.querySelectorAll(btnsSelector), items = document.querySelectorAll(itemsSelector);
             btns.forEach(btn=>{ btn.addEventListener('click', ()=>{ btns.forEach(b=>b.classList.remove('active')); btn.classList.add('active'); const f = btn.dataset.filter; items.forEach(it=>it.style.display=(f==='all'||it.dataset.category===f)?'':'none'); }); });
         }
         initFilter('.gallery-filter-bar .category-btn', '.gallery-item-desktop');
         initFilter('#galeria .category-btn', '#mobile-gallery-grid > div');
+
         document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click', e=>{ const t=document.querySelector(a.getAttribute('href')); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }); });
+
         const WA_NUMBER = '573012802733';
         function abrirWhatsApp(msg){ window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg),'_blank'); }
 
@@ -600,16 +615,14 @@
             const f=document.getElementById('fecha-cita')?.value;
             const h=document.getElementById('hora-cita')?.value||'';
             if(!f){ showToast('Selecciona una fecha','error'); return; }
-            const msg = `Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`;
-            abrirWhatsApp(msg);
+            abrirWhatsApp(`Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`);
             showToast('Abriendo WhatsApp para confirmar tu cita...','success');
         };
         window.simularPagoDesktop = function(){
             const f=document.getElementById('fecha-cita-desktop')?.value;
             const h=document.getElementById('hora-cita-desktop')?.value||'';
             if(!f){ showToast('Selecciona una fecha','error'); return; }
-            const msg = `Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`;
-            abrirWhatsApp(msg);
+            abrirWhatsApp(`Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`);
             showToast('Abriendo WhatsApp para confirmar tu cita...','success');
         };
         window.enviarSolicitudDesktop = function(){
@@ -617,33 +630,34 @@
             const estilo = form.querySelector('select')?.value||'';
             const ubicacion = form.querySelectorAll('input,textarea')[0]?.value||'';
             const descripcion = form.querySelector('textarea')?.value||'';
-            const msg = `Hola Julián! Quiero solicitar un diseño 🖤\n🎨 Estilo: ${estilo}\n📍 Ubicación: ${ubicacion}\n💬 Idea: ${descripcion}`;
-            abrirWhatsApp(msg);
+            abrirWhatsApp(`Hola Julián! Quiero solicitar un diseño 🖤\n🎨 Estilo: ${estilo}\n📍 Ubicación: ${ubicacion}\n💬 Idea: ${descripcion}`);
             showToast('Abriendo WhatsApp con tu solicitud...','success');
             form.reset();
         };
+
         (function(){
             const STORAGE_KEY = 'guerr_booking_form';
             function saveFormState(){
                 const state = {
-                    desktop: { fecha: document.getElementById('fecha-cita-desktop')?.value || '', hora: document.getElementById('hora-cita-desktop')?.value || '' },
-                    mobile: { fecha: document.getElementById('fecha-cita')?.value || '', hora: document.getElementById('hora-cita')?.value || '' }
+                    desktop: { fecha: document.getElementById('fecha-cita-desktop')?.value||'', hora: document.getElementById('hora-cita-desktop')?.value||'' },
+                    mobile: { fecha: document.getElementById('fecha-cita')?.value||'', hora: document.getElementById('hora-cita')?.value||'' }
                 };
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
             }
             function loadFormState(){
                 try {
-                    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-                    if (saved.desktop) { const fd = document.getElementById('fecha-cita-desktop'); if(fd) fd.value = saved.desktop.fecha || ''; const hd = document.getElementById('hora-cita-desktop'); if(hd) hd.value = saved.desktop.hora || ''; }
-                    if (saved.mobile) { const fm = document.getElementById('fecha-cita'); if(fm) fm.value = saved.mobile.fecha || ''; const hm = document.getElementById('hora-cita'); if(hm) hm.value = saved.mobile.hora || ''; }
-                } catch (e) {}
+                    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+                    if(saved.desktop){ const fd=document.getElementById('fecha-cita-desktop'); if(fd)fd.value=saved.desktop.fecha||''; const hd=document.getElementById('hora-cita-desktop'); if(hd)hd.value=saved.desktop.hora||''; }
+                    if(saved.mobile){ const fm=document.getElementById('fecha-cita'); if(fm)fm.value=saved.mobile.fecha||''; const hm=document.getElementById('hora-cita'); if(hm)hm.value=saved.mobile.hora||''; }
+                } catch(e){}
             }
-            ['fecha-cita-desktop','hora-cita-desktop','fecha-cita','hora-cita'].forEach(id => { const el = document.getElementById(id); if(el) el.addEventListener('change', saveFormState); });
+            ['fecha-cita-desktop','hora-cita-desktop','fecha-cita','hora-cita'].forEach(id=>{ const el=document.getElementById(id); if(el)el.addEventListener('change',saveFormState); });
             loadFormState();
-            const orig1 = window.simularPago; window.simularPago = function() { saveFormState(); orig1(); };
-            const orig2 = window.simularPagoDesktop; window.simularPagoDesktop = function() { saveFormState(); orig2(); };
+            const orig1=window.simularPago; window.simularPago=function(){saveFormState();orig1();};
+            const orig2=window.simularPagoDesktop; window.simularPagoDesktop=function(){saveFormState();orig2();};
         })();
     })();
 </script>
 </body>
 </html>
+
