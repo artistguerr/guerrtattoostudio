@@ -583,9 +583,35 @@
         initFilter('.gallery-filter-bar .category-btn', '.gallery-item-desktop');
         initFilter('#galeria .category-btn', '#mobile-gallery-grid > div');
         document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click', e=>{ const t=document.querySelector(a.getAttribute('href')); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }); });
-        window.simularPago = function(){ const f=document.getElementById('fecha-cita')?.value; if(!f){ showToast('Selecciona una fecha','error'); return; } showToast(`Depósito simulado para el ${f}`,'success'); };
-        window.simularPagoDesktop = function(){ const f=document.getElementById('fecha-cita-desktop')?.value; if(!f){ showToast('Selecciona una fecha','error'); return; } showToast(`Depósito simulado para el ${f}`,'success'); };
-        window.enviarSolicitudDesktop = function(){ showToast('Solicitud enviada correctamente','success'); document.getElementById('tattooFormDesktop').reset(); };
+        const WA_NUMBER = '573012802733';
+        function abrirWhatsApp(msg){ window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg),'_blank'); }
+
+        window.simularPago = function(){
+            const f=document.getElementById('fecha-cita')?.value;
+            const h=document.getElementById('hora-cita')?.value||'';
+            if(!f){ showToast('Selecciona una fecha','error'); return; }
+            const msg = `Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`;
+            abrirWhatsApp(msg);
+            showToast('Abriendo WhatsApp para confirmar tu cita...','success');
+        };
+        window.simularPagoDesktop = function(){
+            const f=document.getElementById('fecha-cita-desktop')?.value;
+            const h=document.getElementById('hora-cita-desktop')?.value||'';
+            if(!f){ showToast('Selecciona una fecha','error'); return; }
+            const msg = `Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`;
+            abrirWhatsApp(msg);
+            showToast('Abriendo WhatsApp para confirmar tu cita...','success');
+        };
+        window.enviarSolicitudDesktop = function(){
+            const form = document.getElementById('tattooFormDesktop');
+            const estilo = form.querySelector('select')?.value||'';
+            const ubicacion = form.querySelectorAll('input,textarea')[0]?.value||'';
+            const descripcion = form.querySelector('textarea')?.value||'';
+            const msg = `Hola Julián! Quiero solicitar un diseño 🖤\n🎨 Estilo: ${estilo}\n📍 Ubicación: ${ubicacion}\n💬 Idea: ${descripcion}`;
+            abrirWhatsApp(msg);
+            showToast('Abriendo WhatsApp con tu solicitud...','success');
+            form.reset();
+        };
         (function(){
             const STORAGE_KEY = 'guerr_booking_form';
             function saveFormState(){
