@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Guerr Tattoo Studio · Julián Guerrero · Bogotá</title>
-  <meta name="description" content="Guerr Tattoo Studio — Especialista en blackwork, realismo y minimalismo. Julián Guerrero. Suba, Bogotá." />
+  <meta name="description" content="Estudio de tatuajes en Suba, Bogotá. Especialistas en blackwork, realismo y minimalismo. Julián Guerrero — más de 8 años de experiencia." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -15,12 +15,11 @@
     :root {
       --cyan: #00f0ff;
       --pink: #ff006e;
-      --bg: #03030a;
-      --text: rgba(220,220,235,1);
+      --bg: #050508;
+      --text: rgba(220,222,235,1);
       --muted: rgba(136,136,160,1);
       --dim: rgba(85,85,106,1);
       --border: rgba(255,255,255,0.06);
-      --card-bg: rgba(0,240,255,0.03);
     }
 
     html { scroll-behavior: smooth; }
@@ -36,8 +35,28 @@
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: rgba(0,240,255,0.3); border-radius: 2px; }
 
-    /* ── Grid BG ── */
-    .grid-bg {
+    /* ── Animations ── */
+    @keyframes gridMove {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(60px); }
+    }
+    @keyframes particleFloat {
+      0%   { opacity: 0; transform: translateY(100vh) scale(0); }
+      10%  { opacity: 0.5; }
+      90%  { opacity: 0.5; }
+      100% { opacity: 0; transform: translateY(-100px) scale(1); }
+    }
+    @keyframes lbFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Fixed BG layers ── */
+    #grid-bg {
       position: fixed; inset: 0; pointer-events: none; z-index: 0;
       background-image:
         linear-gradient(rgba(0,240,255,0.025) 1px, transparent 1px),
@@ -45,686 +64,829 @@
       background-size: 60px 60px;
       animation: gridMove 25s linear infinite;
     }
-    .scanlines {
+    #scanlines {
       position: fixed; inset: 0; pointer-events: none; z-index: 1;
-      background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
     }
-    @keyframes gridMove {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(60px); }
+    #particles-container {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
     }
-
-    /* ── Particles ── */
     .particle {
-      position: fixed; border-radius: 50%;
-      background: var(--cyan); opacity: 0;
+      position: absolute;
+      background: var(--cyan);
+      border-radius: 50%;
+      opacity: 0;
       animation: particleFloat linear infinite;
-      pointer-events: none; z-index: 0;
     }
-    @keyframes particleFloat {
-      0%   { opacity:0; transform:translateY(100vh) scale(0); }
-      10%  { opacity:0.5; }
-      90%  { opacity:0.5; }
-      100% { opacity:0; transform:translateY(-100px) scale(1); }
-    }
-
-    /* ── Animations ── */
-    @keyframes lbFadeIn { from{opacity:0} to{opacity:1} }
-    @keyframes toastIn  { from{opacity:0;transform:translateY(-8px) scale(.94)} to{opacity:1;transform:translateY(0) scale(1)} }
-    @keyframes toastOut { to{opacity:0;transform:translateY(-8px) scale(.94)} }
-
-    /* ── Toast ── */
-    #toast-container {
-      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-      z-index: 99999; display:flex; flex-direction:column; gap:8px; pointer-events:none;
-    }
-    .toast {
-      padding: 12px 20px; border-radius: 6px; font-family:'JetBrains Mono',monospace;
-      font-size: 12px; letter-spacing: 1px; pointer-events: all;
-      animation: toastIn .2s ease;
-      border: 1px solid rgba(0,240,255,0.2);
-      background: rgba(5,5,10,0.96); color: var(--cyan);
-      backdrop-filter: blur(20px);
-    }
-    .toast.error { color: var(--pink); border-color: rgba(255,0,110,0.3); }
 
     /* ── Desktop Nav ── */
     #desktop-nav {
-      display: none; position: fixed; top:0; left:0; right:0; height:64px;
-      align-items:center; justify-content:space-between; z-index:1000; padding:0 40px;
-      background: rgba(5,5,10,0.95); backdrop-filter: blur(24px);
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      align-items: center;
+      z-index: 1000;
+      padding: 0 40px;
+      background: rgba(5,5,10,0.95);
+      backdrop-filter: blur(24px);
       border-bottom: 1px solid rgba(0,240,255,0.08);
     }
-    #desktop-nav .grad-line {
-      position:absolute; bottom:0; left:0; right:0; height:1px;
+    #desktop-nav .nav-gradient-line {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
       background: linear-gradient(90deg,transparent,rgba(0,240,255,0.3) 20%,rgba(255,0,110,0.3) 50%,rgba(139,92,246,0.3) 80%,transparent);
     }
-    #desktop-nav img { height: 48px; width:auto; object-fit:contain; filter:drop-shadow(0 0 8px rgba(0,240,255,0.4)); }
-    #desktop-nav nav { display:flex; align-items:center; gap:2px; }
-    #desktop-nav nav a {
-      display:flex; align-items:center; gap:6px; padding:8px 14px; border-radius:4px;
-      text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10px;
-      letter-spacing:3px; text-transform:uppercase; color:var(--muted);
-      border:1px solid transparent; transition:all .2s;
+    #desktop-nav .nav-logo img {
+      height: 40px; width: auto; object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(0,240,255,0.6));
+      text-decoration: none;
     }
-    #desktop-nav nav a.active { color:var(--cyan); background:rgba(0,240,255,0.08); border-color:rgba(0,240,255,0.2); }
+    #desktop-nav .nav-links {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 4px;
+    }
+    #desktop-nav .nav-links a {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 4px;
+      text-decoration: none; font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      border: 1px solid transparent;
+      color: var(--muted);
+      transition: color .2s, background .2s, border-color .2s;
+    }
+    #desktop-nav .nav-links a.active,
+    #desktop-nav .nav-links a:hover {
+      color: var(--cyan);
+      background: rgba(0,240,255,0.08);
+      border-color: rgba(0,240,255,0.2);
+    }
     #desktop-nav .btn-reservar {
-      padding:8px 20px; border-radius:4px; font-size:10px; font-weight:700;
-      letter-spacing:3px; text-transform:uppercase; cursor:pointer;
-      background:linear-gradient(135deg,var(--cyan),#00b8d4); color:var(--bg);
-      font-family:'Orbitron',sans-serif; border:none; transition:transform .15s;
+      position: absolute; right: 40px;
+      padding: 8px 20px; border-radius: 4px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      background: linear-gradient(135deg,#00f0ff,#00b8d4);
+      color: #050508; border: none; cursor: pointer;
+      transition: transform .2s;
     }
-    #desktop-nav .btn-reservar:hover { transform:translateY(-1px); }
+    #desktop-nav .btn-reservar:hover { transform: translateY(-1px); }
+
+    @media (min-width: 1024px) {
+      #desktop-nav { display: flex; }
+      #mobile-header, #mobile-nav { display: none !important; }
+    }
 
     /* ── Mobile Header ── */
     #mobile-header {
-      display:flex; align-items:center; gap:12px; padding:16px 20px 12px;
-      background:rgba(10,10,18,0.98); position:relative; z-index:10;
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 20px 12px;
+      background: rgba(10,10,18,0.98);
     }
-    #mobile-header img { height:56px; width:auto; object-fit:contain; filter:drop-shadow(0 0 10px rgba(0,240,255,0.4)); }
-    #mobile-header .sub { display:flex; flex-direction:column; }
-    #mobile-header .sub span { font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(180,180,200,1); }
-    #mobile-header .sub small { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); opacity:.6; }
+    #mobile-header img {
+      height: 56px; width: auto; object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(0,240,255,0.6));
+    }
+    #mobile-header .studio-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(180,180,200,1);
+    }
+    #mobile-header .studio-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--cyan); opacity: .6;
+    }
 
     /* ── Mobile Nav ── */
     #mobile-nav {
-      display:flex; position:fixed; bottom:0; left:0; right:0;
-      justify-content:space-around; z-index:1000;
-      background:rgba(10,10,18,0.97); backdrop-filter:blur(20px);
-      border-top:1px solid rgba(0,240,255,0.08);
-      padding:6px 0 max(10px, env(safe-area-inset-bottom));
-    }
-    #mobile-nav::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:1px;
-      background:linear-gradient(90deg,transparent,rgba(0,240,255,0.15),transparent);
+      display: flex; justify-content: space-around;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(10,10,18,0.97);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(0,240,255,0.08);
+      padding: 6px 0 max(10px, env(safe-area-inset-bottom));
     }
     #mobile-nav button {
-      display:flex; flex-direction:column; align-items:center; gap:2px;
-      font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px;
-      background:none; border:none; color:var(--dim); cursor:pointer; padding:4px 6px;
-      transition:color .2s;
+      display: flex; flex-direction: column; align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 1px;
+      background: transparent; border: none;
+      color: var(--dim); cursor: pointer; padding: 4px 6px;
+      transition: color .2s;
     }
-    #mobile-nav button.active { color:var(--cyan); }
-    #mobile-nav button i { font-size:18px; margin-bottom:2px; }
-    #mobile-nav button.active i { text-shadow:0 0 8px rgba(0,240,255,0.5); }
+    #mobile-nav button.active { color: var(--cyan); }
+    #mobile-nav button i { font-size: 18px; margin-bottom: 2px; }
+    #mobile-nav button.active i { text-shadow: 0 0 8px rgba(0,240,255,0.5); }
 
-    /* ── Responsive ── */
-    @media (min-width:1024px) {
-      #desktop-nav { display:flex; }
-      #mobile-header, #mobile-nav { display:none; }
-      main { padding-top:64px; padding-bottom:0; }
+    /* ── Sections shared ── */
+    section { position: relative; z-index: 10; }
+    .section-label {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-bottom: 8px;
     }
-    @media (max-width:1023px) {
-      main { padding-bottom:64px; }
+    .section-label img {
+      height: 20px; width: auto; object-fit: contain; opacity: .7;
+      filter: drop-shadow(0 0 4px rgba(0,240,255,0.5));
     }
+    .section-label span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--cyan); opacity: .6;
+    }
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(22px,3vw,32px); font-weight: 900;
+      letter-spacing: 4px; text-transform: uppercase;
+      text-align: center;
+    }
+    .section-header { text-align: center; margin-bottom: 40px; }
 
     /* ── Hero ── */
     #hero {
-      min-height:100vh; display:flex; align-items:center; justify-content:center;
-      padding:80px 16px 64px; position:relative;
-      background:radial-gradient(ellipse at 20% 50%,rgba(0,240,255,0.07) 0%,transparent 50%),
-                 radial-gradient(ellipse at 80% 50%,rgba(255,0,110,0.05) 0%,transparent 50%);
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 80px 16px 64px;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(0,240,255,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(255,0,110,0.05) 0%, transparent 50%);
     }
     .hero-inner {
-      max-width:1152px; width:100%; display:grid; gap:40px;
-      align-items:center; position:relative; z-index:10;
+      max-width: 1152px; width: 100%;
+      display: grid; gap: 40px; align-items: center;
+      animation: heroIn .8s ease both;
     }
-    @media(min-width:1024px){ .hero-inner{grid-template-columns:1fr 1fr; gap:64px; padding-top:80px;} }
-    .hero-tag { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--cyan); opacity:.8; }
+    .hero-badge {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
+    }
+    .hero-badge img {
+      height: 40px; width: auto; object-fit: contain; flex-shrink: 0;
+      filter: drop-shadow(0 0 8px rgba(0,240,255,0.6));
+    }
+    .hero-badge span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--cyan); opacity: .8;
+    }
     .hero-title {
-      font-family:'Orbitron',sans-serif; font-size:clamp(2.8rem,6vw,4rem);
-      font-weight:900; letter-spacing:.12em; text-transform:uppercase; line-height:1;
-      background:linear-gradient(135deg,#e0e8ff 0%,var(--cyan) 60%,var(--pink) 100%);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(42px,6vw,64px); font-weight: 900;
+      letter-spacing: 4px; text-transform: uppercase; line-height: 1;
+      background: linear-gradient(135deg, rgba(220,222,235,1) 0%, var(--cyan) 60%, var(--pink) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
     }
-    .hero-desc { font-size:16px; line-height:1.7; letter-spacing:.03em; color:var(--muted); max-width:440px; }
-    .hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+    .hero-desc { color: var(--muted); line-height: 1.7; max-width: 440px; margin-bottom: 20px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
     .btn-primary {
-      display:inline-flex; align-items:center; gap:8px; padding:14px 20px;
-      border-radius:4px; font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase;
-      cursor:pointer; background:linear-gradient(135deg,var(--cyan),#00b8d4);
-      color:var(--bg); font-family:'Orbitron',sans-serif; border:none;
-      box-shadow:0 0 20px rgba(0,240,255,0.2); transition:transform .15s; text-decoration:none;
+      display: flex; align-items: center; gap: 8px;
+      padding: 14px 20px; border-radius: 4px;
+      font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: linear-gradient(135deg,#00f0ff,#00b8d4);
+      color: #050508; border: none; cursor: pointer;
+      box-shadow: 0 0 20px rgba(0,240,255,0.2);
+      transition: transform .2s; text-decoration: none;
     }
-    .btn-primary:hover { transform:translateY(-2px); }
-    .btn-ghost {
-      display:inline-flex; align-items:center; gap:8px; padding:14px 20px;
-      border-radius:4px; font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase;
-      cursor:pointer; background:transparent; color:var(--cyan);
-      font-family:'Orbitron',sans-serif; border:1px solid rgba(0,240,255,0.3);
-      transition:transform .15s; text-decoration:none;
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-outline {
+      display: flex; align-items: center; gap: 8px;
+      padding: 14px 20px; border-radius: 4px;
+      font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: transparent; border: 1px solid rgba(0,240,255,0.3);
+      color: var(--cyan); cursor: pointer; text-decoration: none;
+      transition: transform .2s;
     }
-    .btn-ghost:hover { transform:translateY(-2px); }
-    .hero-stats { display:flex; gap:32px; margin-top:8px; }
-    .stat-num { font-family:'Orbitron',sans-serif; font-size:28px; font-weight:900; color:var(--cyan); text-shadow:0 0 10px rgba(0,240,255,0.3); }
-    .stat-lbl { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--dim); margin-top:2px; }
-
-    /* Hero image grid desktop */
-    .hero-images {
-      display:none; grid-template-columns:1fr 1fr; gap:12px;
+    .btn-outline:hover { transform: translateY(-2px); }
+    .hero-stats { display: flex; gap: 32px; }
+    .hero-stat-num {
+      font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 900;
+      color: var(--cyan); text-shadow: 0 0 10px rgba(0,240,255,0.3);
+      display: block;
     }
-    @media(min-width:1024px){ .hero-images{display:grid;} }
+    .hero-stat-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--dim);
+    }
+    /* Hero image grid */
+    .hero-imgs { display: none; }
     .hero-img-card {
-      border-radius:6px; overflow:hidden; position:relative;
-      aspect-ratio:3/4; border:1px solid rgba(0,240,255,0.08);
-      transition:transform .3s; cursor:default;
+      border-radius: 6px; overflow: hidden; position: relative;
+      aspect-ratio: 3/4; border: 1px solid rgba(0,240,255,0.08);
+      transition: transform .3s;
     }
-    .hero-img-card:hover { transform:translateY(-4px); }
-    .hero-img-card img { width:100%; height:100%; object-fit:cover; transition:transform .5s; display:block; }
-    .hero-img-card:hover img { transform:scale(1.05); }
-    .hero-img-card .overlay { position:absolute; inset:0; background:linear-gradient(180deg,transparent 50%,rgba(5,5,8,0.9)); z-index:1; }
-    .hero-img-card .caption { position:absolute; bottom:12px; left:12px; z-index:2; }
-    .hero-img-card .caption h4 { font-family:'Orbitron',sans-serif; font-size:11px; font-weight:700; color:#fff; }
-    .hero-img-card .caption p  { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--cyan); margin-top:2px; }
-
-    /* Hero mobile scroll */
-    .hero-scroll {
-      display:flex; gap:12px; overflow-x:auto; padding-bottom:8px; margin:0 -16px; padding-left:16px; padding-right:16px;
-      scrollbar-width:none;
+    .hero-img-card:hover { transform: translateY(-4px); }
+    .hero-img-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
+    .hero-img-card:hover img { transform: scale(1.05); }
+    .hero-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg,transparent 50%,rgba(5,5,8,0.9));
+      z-index: 1;
     }
-    .hero-scroll::-webkit-scrollbar{display:none;}
-    @media(min-width:1024px){.hero-scroll{display:none;}}
+    .hero-img-info { position: absolute; bottom: 12px; left: 12px; z-index: 2; }
+    .hero-img-style { font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 700; color: #fff; }
+    .hero-img-name { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--cyan); margin-top: 2px; }
+    /* Mobile scroll strip */
+    .hero-scroll-strip {
+      display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .hero-scroll-strip::-webkit-scrollbar { display: none; }
     .hero-scroll-card {
-      border-radius:6px; overflow:hidden; flex-shrink:0; display:flex; flex-direction:column;
-      justify-content:flex-end; padding:10px;
-      min-width:140px; height:185px; border:1px solid rgba(0,240,255,0.1);
-      background-size:cover; background-position:center;
+      border-radius: 6px; overflow: hidden; flex-shrink: 0;
+      min-width: 140px; height: 185px;
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 10px;
+      border: 1px solid rgba(0,240,255,0.1);
     }
-    .hero-scroll-card h3 { font-family:'Orbitron',sans-serif; font-size:11px; font-weight:700; color:#fff; }
-    .hero-scroll-card p  { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--cyan); margin-top:2px; }
 
-    /* ── Section base ── */
-    section { padding:80px 16px; position:relative; z-index:10; border-top:1px solid var(--border); }
-    @media(min-width:1024px){ section{padding:80px 48px;} }
-    .section-tag { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--cyan); opacity:.6; margin-bottom:8px; }
-    .section-title { font-family:'Orbitron',sans-serif; font-size:clamp(1.4rem,3vw,2rem); font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
-    .section-sub { font-size:14px; color:var(--muted); margin-top:12px; }
-    .section-header { text-align:center; margin-bottom:40px; }
+    @media (min-width: 1024px) {
+      #hero { padding: 144px 48px 96px; }
+      .hero-inner { grid-template-columns: 1fr 1fr; gap: 64px; }
+      .hero-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .hero-mobile-strip { display: none; }
+    }
 
     /* ── Gallery ── */
-    #gallery { }
-    .gallery-filters { display:flex; gap:8px; margin-bottom:24px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; }
-    @media(min-width:1024px){ .gallery-filters{justify-content:center;} }
-    .gallery-filters button {
-      border-radius:4px; padding:8px 16px; font-family:'JetBrains Mono',monospace;
-      font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer;
-      background:rgba(0,240,255,0.04); border:1px solid rgba(0,240,255,0.1); color:var(--muted);
-      flex-shrink:0; transition:all .2s;
+    #gallery {
+      padding: 80px 16px;
+      border-top: 1px solid var(--border);
     }
-    .gallery-filters button.active { background:rgba(0,240,255,0.1); border-color:var(--cyan); color:var(--cyan); }
-    .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
-    @media(min-width:1024px){ .gallery-grid{grid-template-columns:repeat(4,1fr); gap:10px;} }
+    .gallery-inner { max-width: 1152px; margin: 0 auto; }
+    .gallery-filters {
+      display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto;
+      scrollbar-width: none; padding-bottom: 4px;
+    }
+    @media (min-width: 1024px) { .gallery-filters { justify-content: center; } }
+    .filter-btn {
+      padding: 8px 16px; border-radius: 4px; flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+      background: rgba(0,240,255,0.04); border: 1px solid rgba(0,240,255,0.1);
+      color: var(--muted); transition: all .2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: rgba(0,240,255,0.1); border-color: var(--cyan); color: var(--cyan);
+    }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 6px;
+    }
+    @media (min-width: 1024px) { .gallery-grid { grid-template-columns: repeat(4,1fr); gap: 10px; } }
     .gallery-item {
-      aspect-ratio:1; border-radius:4px; overflow:hidden; position:relative; cursor:zoom-in;
-      border:1px solid var(--border); transition:transform .3s;
+      position: relative; border-radius: 4px; overflow: hidden;
+      aspect-ratio: 1; border: 1px solid var(--border);
+      cursor: zoom-in; transition: transform .3s;
     }
-    .gallery-item:hover { transform:translateY(-4px); }
-    .gallery-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s; }
-    .gallery-item:hover img { transform:scale(1.05); }
-    .gallery-item .hover-label {
-      position:absolute; bottom:0; left:0; right:0; padding:10px; opacity:0; transition:opacity .2s;
-      background:linear-gradient(transparent,rgba(5,5,8,0.75));
+    .gallery-item:hover { transform: translateY(-4px); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg,transparent 50%,rgba(5,5,8,0.75));
+      opacity: 0; transition: opacity .2s;
     }
-    .gallery-item:hover .hover-label { opacity:1; }
-    .gallery-item .hover-label span { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-label {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 10px;
+      z-index: 2; font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--cyan); opacity: 0; transition: opacity .2s;
+    }
+    .gallery-item:hover .gallery-item-label { opacity: 1; }
+    .gallery-item.hidden { display: none; }
 
     /* ── Lightbox ── */
     #lightbox {
-      display:none; position:fixed; inset:0; z-index:9000;
-      align-items:center; justify-content:center;
-      background:rgba(3,3,10,0.96); backdrop-filter:blur(20px);
-      animation:lbFadeIn .2s ease;
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      align-items: center; justify-content: center;
+      background: rgba(3,3,10,0.96); backdrop-filter: blur(20px);
+      animation: lbFadeIn .2s ease;
     }
-    #lightbox.open { display:flex; }
-    #lightbox img { max-width:90vw; max-height:88vh; border-radius:6px; display:block; border:1px solid rgba(0,240,255,0.15); }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 6px; border: 1px solid rgba(0,240,255,0.15); display: block; }
     .lb-btn {
-      position:absolute; width:44px; height:44px; border-radius:50%; display:flex;
-      align-items:center; justify-content:center; cursor:pointer;
-      background:rgba(0,240,255,0.1); border:1px solid rgba(0,240,255,0.2); color:var(--cyan); font-size:14px;
+      position: absolute; width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,240,255,0.1); border: 1px solid rgba(0,240,255,0.2);
+      color: var(--cyan); cursor: pointer; font-size: 14px; transition: background .2s;
     }
-    #lb-close { top:20px; right:20px; }
-    #lb-prev  { left:20px; top:50%; transform:translateY(-50%); }
-    #lb-next  { right:20px; top:50%; transform:translateY(-50%); }
-    #lb-caption { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:3px; color:var(--muted); white-space:nowrap; }
+    .lb-btn:hover { background: rgba(0,240,255,0.2); }
+    #lb-close { top: 20px; right: 20px; }
+    #lb-prev  { left: 20px; top: 50%; transform: translateY(-50%); }
+    #lb-next  { right: 20px; top: 50%; transform: translateY(-50%); }
+    #lb-caption {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px;
+      color: var(--muted); white-space: nowrap;
+    }
 
     /* ── Pricing ── */
-    .price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
-    @media(min-width:1024px){ .price-grid{gap:24px;} }
+    #pricing { padding: 80px 16px; border-top: 1px solid var(--border); }
+    .pricing-inner { max-width: 768px; margin: 0 auto; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    @media (min-width: 1024px) { .pricing-grid { gap: 24px; } }
     .price-card {
-      border-radius:8px; padding:16px; text-align:center; position:relative; overflow:hidden;
-      background:var(--card-bg); border:1px solid var(--border); transition:transform .3s;
+      border-radius: 8px; padding: 16px; text-align: center;
+      background: rgba(0,240,255,0.03); border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: transform .3s;
     }
-    @media(min-width:1024px){ .price-card{padding:32px;} }
-    .price-card:hover { transform:translateY(-4px); }
-    .price-card .top-line {
-      position:absolute; top:0; left:0; right:0; height:2px; opacity:0; transition:opacity .2s;
-      background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+    .price-card:hover { transform: translateY(-4px); }
+    .price-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg,transparent,var(--cyan),transparent);
+      opacity: 0; transition: opacity .2s;
     }
-    .price-card:hover .top-line { opacity:1; }
-    .price-card h3 { font-family:'Orbitron',sans-serif; font-size:clamp(9px,2vw,14px); font-weight:600; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; }
-    .price-card .amount { font-family:'Orbitron',sans-serif; font-size:clamp(18px,4vw,36px); font-weight:900; color:var(--cyan); text-shadow:0 0 15px rgba(0,240,255,0.3); margin-bottom:4px; }
-    .price-card small { font-family:'JetBrains Mono',monospace; font-size:clamp(8px,1.5vw,11px); letter-spacing:1px; color:var(--dim); }
-    .price-note { text-align:center; margin-top:20px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); }
+    .price-card:hover::before { opacity: 1; }
+    @media (min-width: 1024px) { .price-card { padding: 32px; } }
+    .price-name {
+      font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    @media (min-width: 1024px) { .price-name { font-size: 14px; margin-bottom: 12px; } }
+    .price-amount {
+      font-family: 'Orbitron', sans-serif; font-size: 20px; font-weight: 900;
+      color: var(--cyan); text-shadow: 0 0 15px rgba(0,240,255,0.3); margin-bottom: 4px;
+    }
+    @media (min-width: 1024px) { .price-amount { font-size: 36px; } }
+    .price-sub {
+      font-family: 'JetBrains Mono', monospace; font-size: 9px;
+      letter-spacing: 1px; color: var(--dim);
+    }
+    @media (min-width: 1024px) { .price-sub { font-size: 11px; } }
+    .price-note {
+      text-align: center; margin-top: 20px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 1px; color: var(--dim);
+    }
 
     /* ── Booking ── */
-    .booking-grid { display:grid; gap:20px; }
-    @media(min-width:1024px){ .booking-grid{grid-template-columns:1fr 1fr;} }
-    .booking-card { background:rgba(0,240,255,0.02); border:1px solid var(--border); border-radius:8px; padding:24px; }
-    .booking-card h3 { font-family:'Orbitron',sans-serif; font-size:clamp(10px,2vw,14px); font-weight:600; letter-spacing:3px; text-transform:uppercase; display:flex; align-items:center; gap:8px; margin-bottom:20px; }
-    .booking-card h3 i { color:var(--cyan); }
-    label.lbl { display:block; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
-    .inp {
-      width:100%; padding:12px 14px; background:rgba(0,240,255,0.03); border:1px solid var(--border);
-      border-radius:4px; color:var(--text); font-family:'Rajdhani',sans-serif; font-size:14px;
-      letter-spacing:.5px; outline:none; color-scheme:dark; transition:border-color .2s;
+    #booking { padding: 80px 16px; border-top: 1px solid var(--border); }
+    .booking-inner { max-width: 896px; margin: 0 auto; }
+    .booking-grid { display: grid; gap: 20px; }
+    @media (min-width: 1024px) { .booking-grid { grid-template-columns: 1fr 1fr; } }
+    .booking-card {
+      background: rgba(0,240,255,0.02); border: 1px solid var(--border);
+      border-radius: 8px; padding: 24px;
     }
-    .inp:focus { border-color:rgba(0,240,255,0.3); }
-    .field { margin-bottom:16px; }
+    .booking-card-title {
+      font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+    }
+    @media (min-width: 1024px) { .booking-card-title { font-size: 14px; } }
+    .booking-card-title i { color: var(--cyan); }
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block; font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; font-weight: 500; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 12px 14px;
+      background: rgba(0,240,255,0.03); border: 1px solid var(--border);
+      border-radius: 4px; color: var(--text);
+      font-family: 'Rajdhani', sans-serif; font-size: 14px; letter-spacing: .5px;
+      color-scheme: dark; outline: none; transition: border-color .2s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: rgba(0,240,255,0.3);
+    }
+    .form-textarea { resize: vertical; }
     .btn-submit {
-      width:100%; display:flex; align-items:center; justify-content:center; gap:8px;
-      padding:14px; border-radius:4px; font-weight:700; font-size:11px; letter-spacing:1.5px;
-      text-transform:uppercase; border:none; cursor:pointer;
-      background:linear-gradient(135deg,var(--cyan),#00b8d4); color:var(--bg);
-      font-family:'Orbitron',sans-serif; transition:transform .15s;
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px; border-radius: 4px; border: none; cursor: pointer;
+      font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: linear-gradient(135deg,#00f0ff,#00b8d4); color: #050508;
+      transition: transform .2s;
     }
-    .btn-submit:hover { transform:translateY(-1px); }
-    .booking-note { margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); }
+    .btn-submit:hover { transform: translateY(-1px); }
+    .booking-note { margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim); }
 
     /* ── Location ── */
-    .location-grid { display:grid; gap:24px; align-items:center; }
-    @media(min-width:1024px){ .location-grid{grid-template-columns:1.5fr 1fr;} }
-    .map-wrap { border-radius:8px; overflow:hidden; border:1px solid var(--border); height:300px; width:100%; }
-    .map-wrap iframe { width:100%; height:100%; border:0; filter:grayscale(1) invert(1) hue-rotate(180deg) saturate(.5) brightness(.7) contrast(1.2); }
-    .contact-block { border-radius:8px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--border); }
-    .contact-cell { padding:20px; background:var(--card-bg); }
-    .contact-cell:first-child { border-right:1px solid var(--border); }
-    .contact-cell i { font-size:22px; display:block; margin-bottom:12px; }
-    .contact-cell h4 { font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; }
-    .contact-cell p { font-size:14px; line-height:1.7; color:var(--muted); }
-    .contact-cell a { display:inline-flex; align-items:center; gap:6px; margin-top:12px; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; }
+    #location { padding: 80px 16px; border-top: 1px solid var(--border); }
+    .location-inner { max-width: 1152px; margin: 0 auto; }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px; align-items: stretch;
+    }
+    @media (max-width: 767px) { .location-grid { grid-template-columns: 1fr; } }
+    .map-wrap {
+      border-radius: 8px; overflow: hidden; position: relative;
+      min-height: 300px; border: 1px solid var(--border);
+    }
+    .map-wrap iframe {
+      width: 100%; height: calc(100% + 30px); min-height: 330px;
+      border: 0; display: block;
+      filter: grayscale(1) invert(1) hue-rotate(180deg) saturate(.5) brightness(.7) contrast(1.2);
+    }
+    .map-cover {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 32px;
+      background: #05050a;
+    }
+    .location-info { border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--border); }
+    .location-card { padding: 20px; flex: 1; background: rgba(0,240,255,0.03); }
+    .location-card:first-child { border-bottom: 1px solid var(--border); }
+    .location-card i { font-size: 22px; display: block; margin-bottom: 12px; }
+    .location-card h4 {
+      font-family: 'Orbitron', sans-serif; font-size: 10px;
+      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .location-card p { font-size: 14px; line-height: 1.7; color: var(--muted); }
+    .location-card a {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px; text-decoration: none;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    }
 
     /* ── Footer ── */
-    footer { padding:32px 16px; text-align:center; border-top:1px solid var(--border); position:relative; z-index:10; }
-    .socials { display:flex; justify-content:center; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
-    .socials a {
-      display:inline-flex; align-items:center; justify-content:center;
-      width:36px; height:36px; border-radius:8px; text-decoration:none; font-size:17px;
-      border:1px solid rgba(0,240,255,0.3); color:var(--cyan);
-      background:rgba(0,240,255,0.04); transition:transform .15s;
+    footer { padding: 32px 16px; text-align: center; border-top: 1px solid var(--border); position: relative; z-index: 10; }
+    .footer-socials { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+    .footer-socials a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 8px;
+      border: 1px solid rgba(0,240,255,0.3); color: var(--cyan);
+      background: rgba(0,240,255,0.04); font-size: 17px;
+      text-decoration: none; transition: transform .2s;
     }
-    .socials a:hover { transform:scale(1.1); }
-    .footer-copy { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--dim); }
-
-    /* ── Max width wrapper ── */
-    .wrap { max-width:1152px; margin:0 auto; }
-    .wrap-md { max-width:768px; margin:0 auto; }
-    .wrap-lg { max-width:896px; margin:0 auto; }
+    .footer-socials a:hover { transform: scale(1.1); }
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--dim);
+    }
   </style>
 </head>
 <body>
 
-<!-- Toast container -->
-<div id="toast-container"></div>
+<!-- BG Layers -->
+<div id="grid-bg"></div>
+<div id="scanlines"></div>
+<div id="particles-container"></div>
 
-<!-- Grid & scanlines -->
-<div class="grid-bg"></div>
-<div class="scanlines"></div>
-<div id="particles"></div>
-
-<!-- ── Desktop Nav ── -->
-<header id="desktop-nav">
-  <div class="grad-line"></div>
-  <a href="#hero" onclick="goTo('hero');return false;">
-    <img src="https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20logo.png?raw=true" alt="Guerr Tattoo Studio" />
+<!-- Desktop Nav -->
+<nav id="desktop-nav">
+  <div class="nav-gradient-line"></div>
+  <a class="nav-logo" href="#hero">
+    <img src="https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20tattoo%20logo.png?raw=true" alt="Guerr Tattoo Studio" />
   </a>
-  <nav>
-    <a href="#hero"     onclick="goTo('hero');return false;"     id="nav-hero"     class="active"><i class="fas fa-home"></i> Inicio</a>
-    <a href="#gallery"  onclick="goTo('gallery');return false;"  id="nav-gallery"         ><i class="fas fa-images"></i> Galería</a>
-    <a href="#pricing"  onclick="goTo('pricing');return false;"  id="nav-pricing"         ><i class="fas fa-tag"></i> Precios</a>
-    <a href="#booking"  onclick="goTo('booking');return false;"  id="nav-booking"         ><i class="fas fa-calendar"></i> Reservas</a>
-    <a href="#location" onclick="goTo('location');return false;" id="nav-location"        ><i class="fas fa-map"></i> Ubicación</a>
-  </nav>
-  <button class="btn-reservar" onclick="goTo('booking')">Reservar</button>
+  <div class="nav-links">
+    <a href="#hero"     class="active" data-section="hero">    <i class="fas fa-home"></i>   Inicio</a>
+    <a href="#gallery"  data-section="gallery">                <i class="fas fa-images"></i> Galería</a>
+    <a href="#pricing"  data-section="pricing">                <i class="fas fa-tag"></i>    Precios</a>
+    <a href="#booking"  data-section="booking">                <i class="fas fa-calendar"></i> Reservas</a>
+    <a href="#location" data-section="location">               <i class="fas fa-map"></i>    Ubicación</a>
+  </div>
+  <button class="btn-reservar" onclick="scrollTo('booking')">Reservar</button>
+</nav>
+
+<!-- Mobile Header -->
+<header id="mobile-header">
+  <img src="https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20tattoo%20logo.png?raw=true" alt="Guerr Tattoo Studio" />
+  <div>
+    <div class="studio-name">Tattoo Studio</div>
+    <div class="studio-sub">Julián Guerrero · Bogotá</div>
+  </div>
 </header>
 
-<!-- ── Mobile Header ── -->
-<div id="mobile-header">
-  <img src="https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20logo.png?raw=true" alt="Guerr Tattoo Studio" />
-  <div class="sub">
-    <span>Tattoo Studio</span>
-    <small>Julián Guerrero · Bogotá</small>
-  </div>
-</div>
+<!-- Main -->
+<main style="padding-bottom:64px;">
 
-<main>
-
-<!-- ── Hero ── -->
-<section id="hero" style="border-top:none;">
-  <div class="hero-inner">
-    <!-- Text -->
-    <div style="display:flex;flex-direction:column;gap:20px;">
-      <div class="hero-tag">v2.0 // artist portfolio &amp; booking</div>
-      <h1 class="hero-title">Guerr<br>Tattoo<br>Studio</h1>
-      <p class="hero-desc">Especialista en blackwork, realismo y minimalismo. Más de 8 años creando arte sobre la piel en Suba, Bogotá. Cada diseño es una pieza única e irrepetible.</p>
-      <div class="hero-btns">
-        <button class="btn-primary" onclick="goTo('booking')"><i class="fas fa-calendar-check"></i> Reservar cita</button>
-        <a href="https://wa.me/573012802733" target="_blank" class="btn-ghost"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      </div>
-      <div class="hero-stats">
-        <div><div class="stat-num">8+</div><div class="stat-lbl">Años exp.</div></div>
-        <div><div class="stat-num">500+</div><div class="stat-lbl">Tatuajes</div></div>
-        <div><div class="stat-num">4.9★</div><div class="stat-lbl">Rating</div></div>
-      </div>
-    </div>
-    <!-- Desktop images -->
-    <div class="hero-images" id="hero-desktop-imgs"></div>
-    <!-- Mobile scroll -->
-    <div class="hero-scroll" id="hero-mobile-scroll"></div>
-  </div>
-</section>
-
-<!-- ── Gallery ── -->
-<section id="gallery">
-  <div class="wrap">
-    <div class="section-header">
-      <div class="section-tag">// portfolio</div>
-      <h2 class="section-title">Galería</h2>
-      <p class="section-sub">Explora los trabajos realizados en diferentes estilos</p>
-    </div>
-    <div class="gallery-filters">
-      <button class="active" onclick="filterGallery('all',this)">Todos</button>
-      <button onclick="filterGallery('blackwork',this)">Blackwork</button>
-      <button onclick="filterGallery('realismo',this)">Realismo</button>
-      <button onclick="filterGallery('sombras',this)">Sombras</button>
-    </div>
-    <div class="gallery-grid" id="gallery-grid"></div>
-  </div>
-</section>
-
-<!-- ── Lightbox ── -->
-<div id="lightbox">
-  <button class="lb-btn" id="lb-close" onclick="closeLb()"><i class="fas fa-times"></i></button>
-  <button class="lb-btn" id="lb-prev"  onclick="navigateLb(-1)"><i class="fas fa-chevron-left"></i></button>
-  <img id="lb-img" src="" alt="" />
-  <button class="lb-btn" id="lb-next"  onclick="navigateLb(1)"><i class="fas fa-chevron-right"></i></button>
-  <div id="lb-caption"></div>
-</div>
-
-<!-- ── Pricing ── -->
-<section id="pricing">
-  <div class="wrap-md">
-    <div class="section-header">
-      <div class="section-tag">// pricing guide</div>
-      <h2 class="section-title">Guía de Precios</h2>
-      <p class="section-sub">Referencia orientativa en pesos colombianos</p>
-    </div>
-    <div class="price-grid">
-      <div class="price-card"><div class="top-line"></div><h3>Pequeño</h3><div class="amount">$200k</div><small>hasta 10cm · 1-2h</small></div>
-      <div class="price-card"><div class="top-line"></div><h3>Mediano</h3><div class="amount">$400k</div><small>10-20cm · 2-4h</small></div>
-      <div class="price-card"><div class="top-line"></div><h3>Grande</h3><div class="amount">$800k+</div><small>+20cm · sesiones múltiples</small></div>
-    </div>
-    <p class="price-note">*Precios incluyen asesoría. El precio final se confirma en consulta.</p>
-  </div>
-</section>
-
-<!-- ── Booking ── -->
-<section id="booking">
-  <div class="wrap-lg">
-    <div class="section-header">
-      <div class="section-tag">// book &amp; request</div>
-      <h2 class="section-title">Reservas &amp; Diseños</h2>
-    </div>
-    <div class="booking-grid">
-      <div class="booking-card">
-        <h3><i class="fas fa-calendar-alt"></i> Reserva tu cita</h3>
-        <div class="field"><label class="lbl">Fecha</label><input type="date" id="fecha" class="inp" min="2025-04-01" /></div>
-        <div class="field"><label class="lbl">Hora</label>
-          <select id="hora" class="inp">
-            <option>10:00 AM (2h)</option><option>12:00 PM (2h)</option><option>2:00 PM (3h)</option><option>4:00 PM (2h)</option>
-          </select>
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <img src="https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20tattoo%20logo.png?raw=true" alt="" />
+          <span>artist portfolio &amp; booking</span>
         </div>
-        <button class="btn-submit" onclick="handleReserva()"><i class="fas fa-lock"></i> Pagar depósito · $40.000</button>
-        <p class="booking-note">Depósito no reembolsable. Confirma vía WhatsApp.</p>
+        <h1 class="hero-title">Guerr<br>Tattoo<br>Studio</h1>
+        <p class="hero-desc">Especialista en blackwork, realismo y minimalismo. Más de 8 años creando arte sobre la piel en Suba, Bogotá. Cada diseño es una pieza única e irrepetible.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="scrollTo('booking')"><i class="fas fa-calendar-check"></i> Reservar cita</button>
+          <a class="btn-outline" href="https://wa.me/573012802733" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+        <div class="hero-stats">
+          <div><span class="hero-stat-num">8+</span><span class="hero-stat-lbl">Años exp.</span></div>
+          <div><span class="hero-stat-num">500+</span><span class="hero-stat-lbl">Tatuajes</span></div>
+          <div><span class="hero-stat-num">4.9★</span><span class="hero-stat-lbl">Rating</span></div>
+        </div>
       </div>
-      <div class="booking-card">
-        <h3><i class="fas fa-pencil-alt"></i> Solicitar diseño</h3>
-        <form onsubmit="handleSolicitud(event)">
-          <div class="field"><label class="lbl">Estilo</label>
-            <select id="estilo" class="inp"><option>Blackwork</option><option>Realismo</option><option>Minimal</option><option>Geométrico</option></select>
+      <!-- Desktop grid -->
+      <div class="hero-imgs" id="hero-imgs"></div>
+      <!-- Mobile strip -->
+      <div class="hero-mobile-strip">
+        <div class="hero-scroll-strip" id="hero-strip"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="gallery-inner">
+      <div class="section-header">
+        <div class="section-label">
+          <img src="https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20tattoo%20logo.png?raw=true" alt="" />
+          <span>portfolio</span>
+        </div>
+        <h2 class="section-title">Galería</h2>
+        <p style="margin-top:12px;font-size:14px;color:var(--muted);">Explora los trabajos realizados en diferentes estilos</p>
+      </div>
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="blackwork">Blackwork</button>
+        <button class="filter-btn" data-filter="realismo">Realismo</button>
+        <button class="filter-btn" data-filter="sombras">Sombras</button>
+      </div>
+      <div class="gallery-grid" id="gallery-grid"></div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <button class="lb-btn" id="lb-close"><i class="fas fa-times"></i></button>
+    <button class="lb-btn" id="lb-prev"><i class="fas fa-chevron-left"></i></button>
+    <img id="lb-img" src="" alt="" />
+    <button class="lb-btn" id="lb-next"><i class="fas fa-chevron-right"></i></button>
+    <div id="lb-caption"></div>
+  </div>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="pricing-inner">
+      <div class="section-header">
+        <div class="section-label">
+          <img src="https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20tattoo%20logo.png?raw=true" alt="" />
+          <span>pricing guide</span>
+        </div>
+        <h2 class="section-title">Guía de Precios</h2>
+        <p style="margin-top:12px;font-size:14px;color:var(--muted);">Referencia orientativa en pesos colombianos</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card"><div class="price-name">Pequeño</div><div class="price-amount">$200k</div><div class="price-sub">hasta 10cm · 1-2h</div></div>
+        <div class="price-card"><div class="price-name">Mediano</div><div class="price-amount">$400k</div><div class="price-sub">10-20cm · 2-4h</div></div>
+        <div class="price-card"><div class="price-name">Grande</div><div class="price-amount">$800k+</div><div class="price-sub">+20cm · sesiones múltiples</div></div>
+      </div>
+      <p class="price-note">*Precios incluyen asesoría. El precio final se confirma en consulta.</p>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section id="booking">
+    <div class="booking-inner">
+      <div class="section-header">
+        <div class="section-label">
+          <img src="https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20tattoo%20logo.png?raw=true" alt="" />
+          <span>book &amp; request</span>
+        </div>
+        <h2 class="section-title">Reservas &amp; Diseños</h2>
+      </div>
+      <div class="booking-grid">
+        <div class="booking-card">
+          <div class="booking-card-title"><i class="fas fa-calendar-alt"></i> Reserva tu cita</div>
+          <div class="form-group">
+            <label class="form-label">Fecha</label>
+            <input type="date" id="fecha" class="form-input" min="2025-04-01" />
           </div>
-          <div class="field"><label class="lbl">Ubicación</label><input type="text" id="ubicacion" class="inp" placeholder="ej. antebrazo derecho..." required /></div>
-          <div class="field"><label class="lbl">Descripción</label><textarea id="descripcion" class="inp" rows="3" placeholder="Cuéntame tu idea..." required style="resize:vertical"></textarea></div>
-          <button type="submit" class="btn-submit">Enviar solicitud</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Location ── -->
-<section id="location">
-  <div class="wrap">
-    <div class="section-header">
-      <div class="section-tag">// studio location</div>
-      <h2 class="section-title">Estudio en Suba</h2>
-    </div>
-    <div class="location-grid">
-      <div class="map-wrap">
-        <iframe title="Mapa del estudio"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-74.1130%2C4.7600%2C-74.0930%2C4.7800&layer=mapnik&marker=4.7700%2C-74.1030"
-          allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="contact-block">
-        <div class="contact-cell">
-          <i class="fas fa-location-dot" style="color:var(--cyan);text-shadow:0 0 10px rgba(0,240,255,0.3)"></i>
-          <h4>Dirección</h4>
-          <p>Cra. 107 #143-22, piso 2<br>Suba, Bogotá, Colombia</p>
-          <a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z" target="_blank" style="color:var(--cyan)">
-            Cómo llegar <i class="fas fa-arrow-right"></i>
-          </a>
+          <div class="form-group">
+            <label class="form-label">Hora</label>
+            <select id="hora" class="form-select">
+              <option>10:00 AM (2h)</option>
+              <option>12:00 PM (2h)</option>
+              <option>2:00 PM (3h)</option>
+              <option>4:00 PM (2h)</option>
+            </select>
+          </div>
+          <button class="btn-submit" onclick="reservar()"><i class="fas fa-lock"></i> Pagar depósito · $40.000</button>
+          <p class="booking-note">Depósito no reembolsable. Confirma vía WhatsApp.</p>
         </div>
-        <div class="contact-cell">
-          <i class="fab fa-whatsapp" style="color:#25d366"></i>
-          <h4>Contacto</h4>
-          <p>301 280 2733<br>Lun–Sáb: 10am–7pm</p>
-          <a href="https://wa.me/573012802733" target="_blank" style="color:#25d366">
-            Escribir por WhatsApp <i class="fas fa-arrow-right"></i>
-          </a>
+        <div class="booking-card">
+          <div class="booking-card-title"><i class="fas fa-pencil-alt"></i> Solicitar diseño</div>
+          <form onsubmit="solicitar(event)">
+            <div class="form-group">
+              <label class="form-label">Estilo</label>
+              <select id="estilo" class="form-select">
+                <option>Blackwork</option><option>Realismo</option><option>Minimal</option><option>Geométrico</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ubicación</label>
+              <input type="text" id="ubicacion" class="form-input" placeholder="ej. antebrazo derecho..." required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Descripción</label>
+              <textarea id="descripcion" class="form-input form-textarea" rows="3" placeholder="Cuéntame tu idea..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Enviar solicitud</button>
+          </form>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── Footer ── -->
-<footer>
-  <div class="socials">
-    <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/julian.guerrero.3914" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="https://wa.me/573012802733" target="_blank"><i class="fab fa-whatsapp"></i></a>
-  </div>
-  <p class="footer-copy">Guerr Tattoo Studio · Julián Guerrero · Suba, Bogotá · © <span id="year"></span></p>
-</footer>
+  <!-- Location -->
+  <section id="location">
+    <div class="location-inner">
+      <div class="section-header">
+        <div class="section-label">
+          <img src="https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20tattoo%20logo.png?raw=true" alt="" />
+          <span>studio location</span>
+        </div>
+        <h2 class="section-title">Estudio en Suba</h2>
+      </div>
+      <div class="location-grid">
+        <div class="map-wrap">
+          <iframe title="Mapa del estudio" loading="lazy" allowfullscreen
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-74.1130%2C4.7600%2C-74.0930%2C4.7800&layer=mapnik&marker=4.7700%2C-74.1030"></iframe>
+          <div class="map-cover"></div>
+        </div>
+        <div class="location-info">
+          <div class="location-card">
+            <i class="fas fa-location-dot" style="color:var(--cyan);text-shadow:0 0 10px rgba(0,240,255,0.3)"></i>
+            <h4>Dirección</h4>
+            <p>Cra. 107 #143-22, piso 2<br>Suba, Bogotá, Colombia</p>
+            <a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z" target="_blank" rel="noopener" style="color:var(--cyan)">
+              Cómo llegar <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="location-card">
+            <i class="fab fa-whatsapp" style="color:#25d366"></i>
+            <h4>Contacto</h4>
+            <p>301 280 2733<br>Lun–Sáb: 10am–7pm</p>
+            <a href="https://wa.me/573012802733" target="_blank" rel="noopener" style="color:#25d366">
+              Escribir por WhatsApp <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/julian.guerrero.3914" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+      <a href="https://wa.me/573012802733" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p class="footer-copy">Guerr Tattoo · Julián Guerrero · Suba, Bogotá · © <span id="year"></span></p>
+  </footer>
 
 </main>
 
-<!-- ── Mobile Nav ── -->
+<!-- Mobile Nav -->
 <nav id="mobile-nav">
-  <button onclick="goTo('hero')"     id="mnav-hero"     class="active"><i class="fas fa-home"></i><span>Inicio</span></button>
-  <button onclick="goTo('gallery')"  id="mnav-gallery"         ><i class="fas fa-images"></i><span>Galería</span></button>
-  <button onclick="goTo('pricing')"  id="mnav-pricing"         ><i class="fas fa-tag"></i><span>Precios</span></button>
-  <button onclick="goTo('booking')"  id="mnav-booking"         ><i class="fas fa-calendar"></i><span>Reservas</span></button>
-  <button onclick="goTo('location')" id="mnav-location"        ><i class="fas fa-map-marker-alt"></i><span>Estudio</span></button>
+  <button class="active" data-section="hero"    onclick="scrollTo('hero')">    <i class="fas fa-home"></i>          <span>Inicio</span></button>
+  <button data-section="gallery"                onclick="scrollTo('gallery')"> <i class="fas fa-images"></i>        <span>Galería</span></button>
+  <button data-section="pricing"                onclick="scrollTo('pricing')"> <i class="fas fa-tag"></i>           <span>Precios</span></button>
+  <button data-section="booking"                onclick="scrollTo('booking')"> <i class="fas fa-calendar"></i>      <span>Reservas</span></button>
+  <button data-section="location"               onclick="scrollTo('location')"><i class="fas fa-map-marker-alt"></i><span>Estudio</span></button>
 </nav>
 
 <script>
-  // ── Data ──────────────────────────────────────────────────────────────────
+  const WA = "573012802733";
   const RAW = "https://raw.githubusercontent.com/artistguerr/guerrtattoostudio/main/img";
-  const WA  = "573012802733";
+  const LOGO = "https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20tattoo%20logo.png?raw=true";
 
   const GALLERY = [
-    { src:`${RAW}/DARK%20GAS%20MASK-blackwork.webp`,                          label:"Blackwork · Dark Gas Mask",      cat:"blackwork" },
-    { src:`${RAW}/HADES-realismo%20sombras.webp`,                             label:"Realismo · Hades",               cat:"realismo"  },
-    { src:`${RAW}/ANGEL%20GUARDIAN-sombras.webp`,                             label:"Blackwork · Ángel Guardián",     cat:"blackwork" },
-    { src:`${RAW}/DARK%20QUEEN-darkwork.webp`,                                label:"Darkwork · Dark Queen",          cat:"blackwork" },
-    { src:`${RAW}/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp`,             label:"Realismo · Rock Lee",            cat:"realismo"  },
-    { src:`${RAW}/DRAG%C3%93N%20PROTECTO-Neo%20oriental%20sombras.webp`,      label:"Neo Oriental · Dragón Protector",cat:"realismo"  },
-    { src:`${RAW}/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp`,            label:"Color · Tiger and Flowers",      cat:"realismo"  },
-    { src:`${RAW}/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp`,  label:"Sombras · No Veo No Escucho",    cat:"sombras"   },
-    { src:`${RAW}/SUPREME%20EYE-sombras.webp`,                                label:"Sombras · Supreme Eye",          cat:"sombras"   },
-    { src:`${RAW}/HADES-realismo%20sombras.webp`,                             label:"Realismo · Hades · 2",           cat:"realismo"  },
-    { src:`${RAW}/DARK%20GAS%20MASK-blackwork.webp`,                          label:"Blackwork · Gas Mask · 2",       cat:"blackwork" },
-    { src:`${RAW}/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp`,  label:"Sombras · Monos · 2",            cat:"sombras"   },
-    { src:`${RAW}/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp`,             label:"Realismo · Rock Lee · 2",        cat:"realismo"  },
-    { src:`${RAW}/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp`,            label:"Color · Tiger · 2",              cat:"realismo"  },
-    { src:`${RAW}/ANGEL%20GUARDIAN-sombras.webp`,                             label:"Blackwork · Ángel · 2",          cat:"blackwork" },
+    { src: RAW+"/DARK%20GAS%20MASK-blackwork.webp",                         label:"Blackwork · Dark Gas Mask",       cat:"blackwork" },
+    { src: RAW+"/HADES-realismo%20sombras.webp",                             label:"Realismo · Hades",                cat:"realismo"  },
+    { src: RAW+"/ANGEL%20GUARDIAN-sombras.webp",                             label:"Blackwork · Ángel Guardián",      cat:"blackwork" },
+    { src: RAW+"/DARK%20QUEEN-darkwork.webp",                                label:"Darkwork · Dark Queen",           cat:"blackwork" },
+    { src: RAW+"/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp",             label:"Realismo · Rock Lee",             cat:"realismo"  },
+    { src: RAW+"/DRAG%C3%93N%20PROTECTO-Neo%20oriental%20sombras.webp",      label:"Neo Oriental · Dragón Protector", cat:"realismo"  },
+    { src: RAW+"/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp",            label:"Color · Tiger and Flowers",       cat:"realismo"  },
+    { src: RAW+"/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp",  label:"Sombras · No Veo No Escucho",     cat:"sombras"   },
+    { src: RAW+"/SUPREME%20EYE-sombras.webp",                                label:"Sombras · Supreme Eye",           cat:"sombras"   },
+    { src: RAW+"/HADES-realismo%20sombras.webp",                             label:"Realismo · Hades · 2",            cat:"realismo"  },
+    { src: RAW+"/DARK%20GAS%20MASK-blackwork.webp",                         label:"Blackwork · Gas Mask · 2",        cat:"blackwork" },
+    { src: RAW+"/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp",  label:"Sombras · Monos · 2",             cat:"sombras"   },
   ];
 
   const HERO_IMGS = [
-    { src:`${RAW}/DARK%20GAS%20MASK-blackwork.webp`,  style:"Blackwork",  title:"Dark Gas Mask" },
-    { src:`${RAW}/HADES-realismo%20sombras.webp`,      style:"Realismo",   title:"Hades · Sombras" },
-    { src:`${RAW}/ANGEL%20GUARDIAN-sombras.webp`,      style:"Blackwork",  title:"Ángel Guardián" },
-    { src:`${RAW}/DARK%20QUEEN-darkwork.webp`,         style:"Darkwork",   title:"Dark Queen" },
+    { src: RAW+"/DARK%20GAS%20MASK-blackwork.webp",  style:"Blackwork", title:"Dark Gas Mask"   },
+    { src: RAW+"/HADES-realismo%20sombras.webp",      style:"Realismo",  title:"Hades · Sombras" },
+    { src: RAW+"/ANGEL%20GUARDIAN-sombras.webp",      style:"Blackwork", title:"Ángel Guardián"  },
+    { src: RAW+"/DARK%20QUEEN-darkwork.webp",         style:"Darkwork",  title:"Dark Queen"      },
   ];
 
-  // ── Year ──
+  // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ── Particles ──
-  const pc = document.getElementById('particles');
-  for(let i=0;i<22;i++){
-    const p=document.createElement('div'); p.className='particle';
-    p.style.left = Math.random()*100+'%';
-    const s=1+Math.random()*2; p.style.width=s+'px'; p.style.height=s+'px';
-    p.style.animationDuration=(10+Math.random()*15)+'s';
-    p.style.animationDelay=(Math.random()*12)+'s';
+  // Particles
+  const pc = document.getElementById('particles-container');
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `left:${Math.random()*100}%;animation-duration:${10+Math.random()*15}s;animation-delay:${Math.random()*12}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px`;
     pc.appendChild(p);
   }
 
-  // ── Hero images ──
-  const offsets = ["0","2rem","-1rem","2rem"];
-  const hd = document.getElementById('hero-desktop-imgs');
-  HERO_IMGS.forEach((img,i)=>{
-    hd.innerHTML += `<div class="hero-img-card" style="margin-top:${offsets[i]}">
-      <div class="overlay"></div>
-      <img src="${img.src}" alt="${img.title}" loading="lazy">
-      <div class="caption"><h4>${img.style}</h4><p>${img.title}</p></div>
+  // Hero images
+  const heroGrid = document.getElementById('hero-imgs');
+  const heroStrip = document.getElementById('hero-strip');
+  HERO_IMGS.forEach((img, i) => {
+    const mt = [0,32,-16,32][i] || 0;
+    heroGrid.innerHTML += `<div class="hero-img-card" style="margin-top:${mt}px">
+      <div class="hero-img-overlay"></div>
+      <img src="${img.src}" alt="${img.title}" loading="lazy" />
+      <div class="hero-img-info"><div class="hero-img-style">${img.style}</div><div class="hero-img-name">${img.title}</div></div>
+    </div>`;
+    heroStrip.innerHTML += `<div class="hero-scroll-card" style="background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('${img.src}') center/cover">
+      <div class="hero-img-style">${img.style}</div><div class="hero-img-name">${img.title}</div>
     </div>`;
   });
-  const hm = document.getElementById('hero-mobile-scroll');
-  HERO_IMGS.forEach(img=>{
-    hm.innerHTML += `<div class="hero-scroll-card" style="background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('${img.src}') center/cover">
-      <h3>${img.style}</h3><p>${img.title}</p>
-    </div>`;
+
+  // Gallery
+  let lbIndex = 0;
+  const grid = document.getElementById('gallery-grid');
+  GALLERY.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.className = 'gallery-item';
+    d.dataset.cat = item.cat;
+    d.innerHTML = `<div class="gallery-item-overlay"></div><img src="${item.src}" alt="${item.label}" loading="lazy" /><div class="gallery-item-label">${item.cat}</div>`;
+    d.addEventListener('click', () => openLb(i));
+    grid.appendChild(d);
   });
 
-  // ── Gallery ──
-  let currentFilter = 'all';
-  let lbIdx = 0;
-  let lbFiltered = [];
-
-  function renderGallery(filter){
-    const grid = document.getElementById('gallery-grid');
-    const items = filter==='all' ? GALLERY : GALLERY.filter(g=>g.cat===filter);
-    lbFiltered = items;
-    grid.innerHTML = items.map((item,i)=>`
-      <div class="gallery-item" onclick="openLb(${i})">
-        <img src="${item.src}" alt="${item.label}" loading="lazy">
-        <div class="hover-label"><span>${item.cat}</span></div>
-      </div>`).join('');
-  }
-  renderGallery('all');
-
-  function filterGallery(cat, btn){
-    currentFilter = cat;
-    document.querySelectorAll('.gallery-filters button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    renderGallery(cat);
-  }
-
-  // ── Lightbox ──
-  function openLb(i){
-    lbIdx = i;
-    updateLb();
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-  function closeLb(){
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow='';
-  }
-  function navigateLb(dir){
-    lbIdx = (lbIdx+dir+lbFiltered.length)%lbFiltered.length;
-    updateLb();
-  }
-  function updateLb(){
-    const item = lbFiltered[lbIdx];
-    document.getElementById('lb-img').src = item.src;
-    document.getElementById('lb-img').alt = item.label;
-    document.getElementById('lb-caption').textContent = item.label+' · '+(lbIdx+1)+'/'+lbFiltered.length;
-  }
-  document.getElementById('lightbox').addEventListener('click',function(e){
-    if(e.target===this) closeLb();
-  });
-  document.addEventListener('keydown',function(e){
-    if(!document.getElementById('lightbox').classList.contains('open')) return;
-    if(e.key==='ArrowLeft') navigateLb(-1);
-    if(e.key==='ArrowRight') navigateLb(1);
-    if(e.key==='Escape') closeLb();
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        item.classList.toggle('hidden', f !== 'all' && item.dataset.cat !== f);
+      });
+    });
   });
 
-  // ── WhatsApp helper ──
-  function wa(msg){ window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank'); }
-
-  // ── Booking ──
-  function handleReserva(){
-    const fecha = document.getElementById('fecha').value;
-    const hora  = document.getElementById('hora').value;
-    if(!fecha){ showToast('Selecciona una fecha','error'); return; }
-    wa(`Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${fecha}\n🕐 Hora: ${hora}\nQuedo pendiente para confirmar el depósito de $40.000.`);
-    showToast('Abriendo WhatsApp para confirmar tu cita...');
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbCap = document.getElementById('lb-caption');
+  function openLb(i) {
+    lbIndex = i; lbImg.src = GALLERY[i].src;
+    lbCap.textContent = `${GALLERY[i].label} · ${i+1}/${GALLERY.length}`;
+    lb.classList.add('open'); document.body.style.overflow = 'hidden';
   }
-  function handleSolicitud(e){
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function navLb(d) { lbIndex = (lbIndex + d + GALLERY.length) % GALLERY.length; openLb(lbIndex); }
+  document.getElementById('lb-close').onclick = closeLb;
+  document.getElementById('lb-prev').onclick  = () => navLb(-1);
+  document.getElementById('lb-next').onclick  = () => navLb(1);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') navLb(-1);
+    if (e.key === 'ArrowRight') navLb(1);
+    if (e.key === 'Escape') closeLb();
+  });
+
+  // Smooth scroll
+  function scrollTo(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      scrollTo(a.getAttribute('href').slice(1));
+    });
+  });
+
+  // Active section
+  const sections = ['hero','gallery','pricing','booking','location'];
+  window.addEventListener('scroll', () => {
+    let current = sections[0];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY + 120 >= el.offsetTop) current = id;
+    });
+    document.querySelectorAll('[data-section]').forEach(el => {
+      el.classList.toggle('active', el.dataset.section === current);
+    });
+  }, { passive: true });
+
+  // Booking
+  function reservar() {
+    const f = document.getElementById('fecha').value;
+    const h = document.getElementById('hora').value;
+    if (!f) { alert('Selecciona una fecha'); return; }
+    const msg = `Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`;
+    window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
+  }
+  function solicitar(e) {
     e.preventDefault();
-    const estilo      = document.getElementById('estilo').value;
-    const ubicacion   = document.getElementById('ubicacion').value;
-    const descripcion = document.getElementById('descripcion').value;
-    wa(`Hola Julián! Quiero solicitar un diseño 🖤\n🎨 Estilo: ${estilo}\n📍 Ubicación: ${ubicacion}\n💬 Idea: ${descripcion}`);
-    showToast('Abriendo WhatsApp con tu solicitud...');
-    document.getElementById('ubicacion').value='';
-    document.getElementById('descripcion').value='';
+    const est = document.getElementById('estilo').value;
+    const ub  = document.getElementById('ubicacion').value;
+    const des = document.getElementById('descripcion').value;
+    const msg = `Hola Julián! Quiero solicitar un diseño 🖤\n🎨 Estilo: ${est}\n📍 Ubicación: ${ub}\n💬 Idea: ${des}`;
+    window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
+    document.getElementById('ubicacion').value = '';
+    document.getElementById('descripcion').value = '';
   }
-
-  // ── Toast ──
-  function showToast(msg, type='success'){
-    const t = document.createElement('div');
-    t.className = 'toast'+(type==='error'?' error':'');
-    t.textContent = msg;
-    document.getElementById('toast-container').appendChild(t);
-    setTimeout(()=>{ t.style.animation='toastOut .2s ease forwards'; setTimeout(()=>t.remove(),200); },3000);
-  }
-
-  // ── Scroll spy ──
-  const SECTIONS = ['hero','gallery','pricing','booking','location'];
-  function updateActive(){
-    let cur = SECTIONS[0];
-    SECTIONS.forEach(id=>{
-      const el=document.getElementById(id);
-      if(el && window.scrollY+120>=el.offsetTop) cur=id;
-    });
-    SECTIONS.forEach(id=>{
-      const dn=document.getElementById('nav-'+id);
-      const mn=document.getElementById('mnav-'+id);
-      if(dn) dn.classList.toggle('active',id===cur);
-      if(mn) mn.classList.toggle('active',id===cur);
-    });
-  }
-  window.addEventListener('scroll',updateActive,{passive:true});
-
-  // ── Smooth scroll ──
-  function goTo(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
 </script>
 </body>
 </html>
