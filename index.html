@@ -1,810 +1,730 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-    <title>Guerr Tattoo Studio · Julián Guerrero · Bogotá</title>
-    <meta name="description" content="Guerr Tattoo Studio - Especialista en blackwork, realismo y minimalismo. Más de 8 años creando arte sobre la piel en Suba, Bogotá.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-deep: #050508;
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #0f0f18;
-            --bg-card: rgba(15,15,25,0.7);
-            --cyan: #00f0ff;
-            --cyan-dim: #00a8b3;
-            --magenta: #ff006e;
-            --violet: #8b5cf6;
-            --gold: #c6a43f;
-            --cyan-glow: rgba(0,240,255,0.3);
-            --magenta-glow: rgba(255,0,110,0.3);
-            --violet-glow: rgba(139,92,246,0.3);
-            --text-primary: #e8e8f0;
-            --text-secondary: #8888a0;
-            --text-dim: #55556a;
-            --border-subtle: rgba(255,255,255,0.06);
-            --transition-fast: 150ms ease;
-            --transition-base: 200ms cubic-bezier(0.4,0,0.2,1);
-            --shadow-cyan: 0 0 20px rgba(0,240,255,0.2);
-            --shadow-magenta: 0 0 20px rgba(255,0,110,0.2);
-            --shadow-violet: 0 0 20px rgba(139,92,246,0.2);
-        }
-        *{margin:0;padding:0;box-sizing:border-box;}
-        html{scroll-behavior:smooth;}
-        body{
-            font-family:'Rajdhani',sans-serif;
-            background-color:var(--bg-deep);
-            color:var(--text-primary);
-            line-height:1.5;
-            overflow-x:hidden;
-            position:relative;
-        }
-        body::before{
-            content:'';
-            position:fixed;inset:0;
-            background-image:
-                linear-gradient(rgba(0,240,255,0.025) 1px,transparent 1px),
-                linear-gradient(90deg,rgba(0,240,255,0.025) 1px,transparent 1px);
-            background-size:60px 60px;
-            pointer-events:none;z-index:0;
-            animation:gridMove 25s linear infinite;
-            will-change:transform;
-        }
-        body::after{
-            content:'';position:fixed;inset:0;
-            background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);
-            pointer-events:none;z-index:1;
-        }
-        @keyframes gridMove{0%{transform:translateY(0);}100%{transform:translateY(60px);}}
-        ::-webkit-scrollbar{width:4px;}
-        ::-webkit-scrollbar-track{background:var(--bg-primary);}
-        ::-webkit-scrollbar-thumb{background:rgba(0,240,255,0.3);border-radius:2px;}
-        .particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
-        .particle{
-            position:absolute;width:2px;height:2px;background:var(--cyan);
-            border-radius:50%;opacity:0;animation:particleFloat linear infinite;
-            will-change:transform,opacity;
-        }
-        @keyframes particleFloat{
-            0%{opacity:0;transform:translateY(100vh) scale(0);}
-            10%{opacity:0.5;}90%{opacity:0.5;}
-            100%{opacity:0;transform:translateY(-100px) scale(1);}
-        }
-        .btn{
-            background:linear-gradient(135deg,var(--cyan),#00b8d4);
-            color:var(--bg-deep);border:none;padding:14px 24px;border-radius:4px;
-            font-weight:700;font-size:13px;font-family:'Orbitron',sans-serif;
-            letter-spacing:1.5px;text-transform:uppercase;display:inline-flex;
-            align-items:center;justify-content:center;gap:8px;cursor:pointer;
-            transition:all var(--transition-base);position:relative;overflow:hidden;
-            -webkit-tap-highlight-color:transparent;text-decoration:none;
-        }
-        .btn::before{
-            content:'';position:absolute;inset:0;
-            background:linear-gradient(135deg,transparent,rgba(255,255,255,0.2),transparent);
-            transform:translateX(-100%);transition:transform 0.4s ease;
-        }
-        .btn:hover::before{transform:translateX(100%);}
-        .btn:hover{box-shadow:var(--shadow-cyan),0 4px 20px rgba(0,240,255,0.3);transform:translateY(-1px);}
-        .btn:disabled{opacity:0.4;cursor:not-allowed;transform:none!important;box-shadow:none;}
-        .btn-outline{background:transparent;border:1px solid rgba(0,240,255,0.3);color:var(--cyan);}
-        .btn-outline:hover{background:rgba(0,240,255,0.08);border-color:var(--cyan);}
-        /* ── DESKTOP NAV ── */
-        .desktop-nav{
-            display:none;position:fixed;top:0;left:0;right:0;height:64px;
-            background:rgba(5,5,10,0.95);backdrop-filter:blur(24px);
-            -webkit-backdrop-filter:blur(24px);
-            border-bottom:1px solid rgba(0,240,255,0.08);
-            z-index:1000;align-items:center;justify-content:space-between;padding:0 2.5rem;
-        }
-        .desktop-nav::after{
-            content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
-            background:linear-gradient(90deg,transparent,var(--cyan) 20%,var(--magenta) 50%,var(--violet) 80%,transparent);
-            opacity:0.3;
-        }
-        .nav-brand{display:flex;align-items:center;text-decoration:none;}
-        .nav-logo{height:44px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(0,240,255,0.3));}
-        .nav-links{display:flex;align-items:center;gap:2px;}
-        .nav-link{
-            display:flex;align-items:center;gap:6px;padding:8px 14px;
-            color:var(--text-secondary);text-decoration:none;
-            font-family:'JetBrains Mono',monospace;font-size:10px;
-            letter-spacing:1px;text-transform:uppercase;border-radius:4px;
-            transition:all var(--transition-base);border:1px solid transparent;white-space:nowrap;
-        }
-        .nav-link:hover{color:var(--text-primary);background:rgba(0,240,255,0.05);border-color:rgba(0,240,255,0.1);}
-        .nav-link.active{color:var(--cyan);background:rgba(0,240,255,0.08);border-color:rgba(0,240,255,0.2);}
-        .nav-cta{
-            padding:8px 22px;background:linear-gradient(135deg,var(--cyan),#00b8d4);
-            color:var(--bg-deep);border:none;border-radius:4px;
-            font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;
-            letter-spacing:2px;text-transform:uppercase;cursor:pointer;
-            transition:all var(--transition-base);text-decoration:none;margin-left:12px;
-        }
-        .nav-cta:hover{box-shadow:var(--shadow-cyan);transform:translateY(-1px);}
-        /* ── DESKTOP CONTENT ── */
-        .desktop-content{display:none;}
-        .section{padding:80px 3rem;position:relative;z-index:2;}
-        .section::before{
-            content:'';position:absolute;top:0;left:5%;right:5%;height:1px;
-            background:linear-gradient(90deg,transparent,rgba(0,240,255,0.08),transparent);
-        }
-        .container{max-width:1200px;margin:0 auto;}
-        .section-header{text-align:center;margin-bottom:3rem;}
-        .section-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:4px;text-transform:uppercase;opacity:0.6;margin-bottom:0.5rem;}
-        .section-header h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--text-primary);position:relative;display:inline-block;}
-        .section-header h2::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:50px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--magenta));}
-        .section-header p{color:var(--text-secondary);font-size:1rem;margin-top:1.25rem;letter-spacing:0.5px;max-width:600px;margin-left:auto;margin-right:auto;}
-        /* ── HERO ── */
-        .hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:120px 3rem 80px;}
-        .hero-section::before{
-            content:'';position:absolute;inset:0;
-            background:radial-gradient(ellipse at 20% 50%,rgba(0,240,255,0.07) 0%,transparent 50%),
-                        radial-gradient(ellipse at 80% 50%,rgba(255,0,110,0.05) 0%,transparent 50%),
-                        radial-gradient(ellipse at 50% 90%,rgba(139,92,246,0.04) 0%,transparent 50%);
-        }
-        .hero-inner{max-width:1200px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1;}
-        .hero-left{display:flex;flex-direction:column;gap:1.5rem;}
-        .hero-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:4px;text-transform:uppercase;opacity:0.8;}
-        .hero-title{
-            font-family:'Orbitron',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;
-            letter-spacing:4px;text-transform:uppercase;line-height:1.1;
-            background:linear-gradient(135deg,var(--text-primary) 0%,var(--cyan) 60%,var(--magenta) 100%);
-            -webkit-background-clip:text;background-clip:text;color:transparent;position:relative;
-        }
-        .hero-title::after{content:'';position:absolute;bottom:-8px;left:0;width:80px;height:2px;background:linear-gradient(90deg,var(--cyan),transparent);}
-        .hero-desc{color:var(--text-secondary);font-size:1.1rem;line-height:1.8;letter-spacing:0.5px;max-width:480px;}
-        .hero-buttons{display:flex;gap:12px;flex-wrap:wrap;}
-        .hero-stats{display:flex;gap:2rem;margin-top:1rem;}
-        .hero-stat{text-align:center;}
-        .hero-stat-num{font-family:'Orbitron',sans-serif;font-size:1.8rem;font-weight:800;color:var(--cyan);text-shadow:0 0 10px var(--cyan-glow);}
-        .hero-stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
-        .hero-right{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-        .hero-card{border-radius:6px;overflow:hidden;border:1px solid rgba(0,240,255,0.08);position:relative;aspect-ratio:3/4;transition:all var(--transition-base);background:var(--bg-secondary);}
-        .hero-card:nth-child(2){margin-top:2rem;}
-        .hero-card:nth-child(3){margin-top:-1rem;}
-        .hero-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(5,5,8,0.9));z-index:1;}
-        .hero-card:hover{border-color:var(--cyan);box-shadow:0 0 24px rgba(0,240,255,0.15);transform:translateY(-4px);}
-        .hero-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
-        .hero-card:hover img{transform:scale(1.06);}
-        .hero-card-overlay{position:absolute;bottom:12px;left:12px;z-index:2;}
-        .hero-card-overlay h4{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;color:white;}
-        .hero-card-overlay p{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:0.5px;}
-        /* ── GALLERY ── */
-        .gallery-filter-bar{display:flex;justify-content:center;gap:10px;margin-bottom:2rem;flex-wrap:wrap;}
-        .category-btn{
-            background:rgba(0,240,255,0.04);border:1px solid rgba(0,240,255,0.1);
-            color:var(--text-secondary);padding:8px 18px;border-radius:4px;font-weight:500;
-            cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;
-            letter-spacing:1px;text-transform:uppercase;transition:all var(--transition-base);
-        }
-        .category-btn:hover{border-color:rgba(0,240,255,0.3);color:var(--text-primary);}
-        .category-btn.active{background:rgba(0,240,255,0.1);color:var(--cyan);border-color:var(--cyan);box-shadow:0 0 10px rgba(0,240,255,0.1);}
-        .gallery-grid-desktop{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-        .gallery-item-desktop{
-            position:relative;aspect-ratio:1;border-radius:6px;overflow:hidden;
-            border:1px solid var(--border-subtle);transition:all var(--transition-base);cursor:zoom-in;
-        }
-        .gallery-item-desktop::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(5,5,8,0.75));opacity:0;transition:opacity var(--transition-base);}
-        .gallery-item-desktop:hover{border-color:rgba(0,240,255,0.35);box-shadow:0 0 20px rgba(0,240,255,0.1);transform:translateY(-3px);}
-        .gallery-item-desktop:hover::after{opacity:1;}
-        .gallery-item-desktop img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;display:block;}
-        .gallery-item-desktop:hover img{transform:scale(1.07);}
-        .gallery-item-label{position:absolute;bottom:0;left:0;right:0;padding:10px 12px;z-index:2;opacity:0;transition:opacity var(--transition-base);}
-        .gallery-item-desktop:hover .gallery-item-label{opacity:1;}
-        .gallery-item-label span{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;}
-        /* ── LIGHTBOX ── */
-        .lightbox{position:fixed;inset:0;z-index:9000;background:rgba(3,3,10,0.96);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s ease;}
-        .lightbox.open{opacity:1;pointer-events:auto;}
-        .lightbox-img{max-width:90vw;max-height:88vh;border-radius:6px;border:1px solid rgba(0,240,255,0.15);display:block;}
-        .lightbox-close{position:absolute;top:20px;right:20px;width:42px;height:42px;background:rgba(0,240,255,0.1);border:1px solid rgba(0,240,255,0.2);border-radius:50%;color:var(--cyan);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--transition-base);}
-        .lightbox-close:hover{background:var(--cyan);color:var(--bg-deep);}
-        .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;background:rgba(0,240,255,0.1);border:1px solid rgba(0,240,255,0.2);border-radius:50%;color:var(--cyan);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--transition-base);}
-        .lightbox-nav:hover{background:rgba(0,240,255,0.2);}
-        .lightbox-prev{left:20px;}
-        .lightbox-next{right:20px;}
-        .lightbox-info{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-secondary);letter-spacing:1px;}
-        /* ── PRICING ── */
-        .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:900px;margin:0 auto;}
-        .price-card-desktop{
-            background:rgba(0,240,255,0.03);border-radius:8px;padding:2.5rem 1.5rem;
-            text-align:center;border:1px solid var(--border-subtle);
-            transition:all var(--transition-base);position:relative;overflow:hidden;
-        }
-        .price-card-desktop::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity var(--transition-base);}
-        .price-card-desktop:hover{border-color:rgba(0,240,255,0.2);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.3);}
-        .price-card-desktop:hover::before{opacity:1;}
-        .price-card-desktop h3{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:600;margin-bottom:1rem;letter-spacing:2px;text-transform:uppercase;}
-        .price-card-desktop .price{font-family:'Orbitron',sans-serif;font-size:2.2rem;font-weight:800;color:var(--cyan);text-shadow:0 0 15px var(--cyan-glow);margin-bottom:0.5rem;}
-        .price-card-desktop small{color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.5px;display:block;}
-        /* ── FORMS ── */
-        .form-group{margin-bottom:18px;}
-        label{display:block;font-size:11px;font-weight:500;margin-bottom:6px;color:var(--text-secondary);font-family:'JetBrains Mono',monospace;letter-spacing:1px;text-transform:uppercase;}
-        input[type="date"],input[type="text"],select,textarea{
-            width:100%;padding:14px 16px;
-            background:rgba(0,240,255,0.03);border:1px solid var(--border-subtle);
-            border-radius:4px;color:var(--text-primary);font-family:'Rajdhani',sans-serif;
-            font-size:14px;letter-spacing:0.5px;transition:all var(--transition-base);color-scheme:dark;
-        }
-        input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 1px rgba(0,240,255,0.1);background:rgba(0,240,255,0.05);}
-        textarea{resize:vertical;}
-        /* ── FOOTER ── */
-        .desktop-footer{padding:2.5rem 3rem;border-top:1px solid var(--border-subtle);text-align:center;position:relative;z-index:2;}
-        .desktop-footer p{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;}
-        .footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:0.75rem;align-items:center;flex-wrap:wrap;}
-        .footer-links a{color:var(--text-dim);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;transition:color var(--transition-base);}
-        .footer-links a:hover{color:var(--cyan);}
-        .social-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,0.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,0.04);transition:all 0.2s;text-decoration:none;}
-        .social-btn:hover{border-color:var(--cyan);box-shadow:0 0 12px var(--cyan-glow);color:white;}
-        /* ── MOBILE ── */
-        .mobile-content{
-            display:block;max-width:480px;width:100%;margin:0 auto;
-            background-color:rgba(10,10,18,0.95);min-height:100vh;
-            position:relative;z-index:2;
-            border-left:1px solid rgba(0,240,255,0.05);
-            border-right:1px solid rgba(0,240,255,0.05);
-            padding-bottom:70px;
-        }
-        .mobile-header{padding:20px 18px 14px;background:rgba(10,10,18,0.98);}
-        .mobile-logo{height:64px;width:auto;object-fit:contain;display:block;margin-bottom:8px;filter:drop-shadow(0 0 10px rgba(0,240,255,0.35));}
-        .mobile-header-tag{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;opacity:0.5;margin-bottom:0.4rem;}
-        .mobile-header p{color:var(--text-secondary);font-size:12px;margin-top:4px;display:flex;align-items:center;gap:6px;}
-        .mobile-section{padding:22px 18px;border-bottom:1px solid var(--border-subtle);}
-        .mobile-section-title{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px;letter-spacing:2px;text-transform:uppercase;}
-        .mobile-section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,240,255,0.15),transparent);}
-        .mobile-section-title i{color:var(--cyan);font-size:14px;}
-        .mobile-gallery-scroll{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
-        .mobile-gallery-scroll::-webkit-scrollbar{display:none;}
-        .mobile-bottom-nav{
-            position:fixed;bottom:0;left:0;right:0;
-            background:rgba(10,10,18,0.97);backdrop-filter:blur(20px);
-            -webkit-backdrop-filter:blur(20px);
-            border-top:1px solid rgba(0,240,255,0.08);
-            display:flex;justify-content:space-around;
-            padding:6px 0 max(10px,env(safe-area-inset-bottom));z-index:1000;
-        }
-        .mobile-bottom-nav::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,0.15),transparent);}
-        .mobile-nav-item{display:flex;flex-direction:column;align-items:center;color:var(--text-dim);font-size:10px;font-family:'JetBrains Mono',monospace;letter-spacing:0.5px;transition:color var(--transition-base);cursor:pointer;text-decoration:none;background:transparent;border:none;padding:4px 6px;}
-        .mobile-nav-item i{font-size:17px;margin-bottom:2px;}
-        .mobile-nav-item.active{color:var(--cyan);}
-        .mobile-nav-item.active i{text-shadow:0 0 8px var(--cyan-glow);}
-        .mobile-footer-note{text-align:center;padding:18px;color:var(--text-dim);font-size:10px;font-family:'JetBrains Mono',monospace;letter-spacing:2px;text-transform:uppercase;}
-        /* ── TOAST ── */
-        .toast-container{position:fixed;top:max(72px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:99999;display:flex;flex-direction:column;gap:8px;pointer-events:none;width:90%;max-width:340px;}
-        .toast{background:rgba(6,6,18,0.96);backdrop-filter:blur(20px);border:1px solid var(--border-subtle);border-radius:10px;padding:11px 16px;display:flex;align-items:center;gap:10px;font-size:0.78rem;font-weight:500;animation:toastIn 0.28s cubic-bezier(0.34,1.56,0.64,1);}
-        .toast.success{border-color:rgba(34,211,160,0.35);}
-        .toast.error{border-color:rgba(255,71,87,0.35);}
-        .toast.info{border-color:rgba(0,240,255,0.25);}
-        .toast-icon{font-size:0.95rem;flex-shrink:0;}
-        .toast.success .toast-icon{color:#22d3a0;}
-        .toast.error .toast-icon{color:#ff4757;}
-        .toast.info .toast-icon{color:var(--cyan);}
-        @keyframes toastIn{from{opacity:0;transform:translateY(-8px) scale(0.94);}to{opacity:1;transform:translateY(0) scale(1);}}
-        @keyframes toastOut{to{opacity:0;transform:translateY(-8px) scale(0.94);}}
-        .note-text{margin-top:14px;font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;letter-spacing:0.5px;}
-        .text-center{text-align:center;}
-        .mt-4{margin-top:1rem;}
-        .mt-6{margin-top:1.5rem;}
-        /* ── RESPONSIVE ── */
-        @media(min-width:1024px){
-            .desktop-nav{display:flex;}
-            .desktop-content{display:block;}
-            .mobile-content,.mobile-bottom-nav{display:none;}
-        }
-        @media(max-width:1023px){
-            .desktop-nav,.desktop-content{display:none;}
-            .mobile-content{display:block;}
-            .mobile-bottom-nav{display:flex;}
-        }
-        @media(max-width:500px){
-            .mobile-content{max-width:100%;}
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guerr Tattoo Studio · Julián Guerrero · Bogotá</title>
+  <meta name="description" content="Guerr Tattoo Studio — Especialista en blackwork, realismo y minimalismo. Julián Guerrero. Suba, Bogotá." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cyan: #00f0ff;
+      --pink: #ff006e;
+      --bg: #03030a;
+      --text: rgba(220,220,235,1);
+      --muted: rgba(136,136,160,1);
+      --dim: rgba(85,85,106,1);
+      --border: rgba(255,255,255,0.06);
+      --card-bg: rgba(0,240,255,0.03);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(0,240,255,0.3); border-radius: 2px; }
+
+    /* ── Grid BG ── */
+    .grid-bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,240,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,240,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 25s linear infinite;
+    }
+    .scanlines {
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);
+    }
+    @keyframes gridMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(60px); }
+    }
+
+    /* ── Particles ── */
+    .particle {
+      position: fixed; border-radius: 50%;
+      background: var(--cyan); opacity: 0;
+      animation: particleFloat linear infinite;
+      pointer-events: none; z-index: 0;
+    }
+    @keyframes particleFloat {
+      0%   { opacity:0; transform:translateY(100vh) scale(0); }
+      10%  { opacity:0.5; }
+      90%  { opacity:0.5; }
+      100% { opacity:0; transform:translateY(-100px) scale(1); }
+    }
+
+    /* ── Animations ── */
+    @keyframes lbFadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes toastIn  { from{opacity:0;transform:translateY(-8px) scale(.94)} to{opacity:1;transform:translateY(0) scale(1)} }
+    @keyframes toastOut { to{opacity:0;transform:translateY(-8px) scale(.94)} }
+
+    /* ── Toast ── */
+    #toast-container {
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      z-index: 99999; display:flex; flex-direction:column; gap:8px; pointer-events:none;
+    }
+    .toast {
+      padding: 12px 20px; border-radius: 6px; font-family:'JetBrains Mono',monospace;
+      font-size: 12px; letter-spacing: 1px; pointer-events: all;
+      animation: toastIn .2s ease;
+      border: 1px solid rgba(0,240,255,0.2);
+      background: rgba(5,5,10,0.96); color: var(--cyan);
+      backdrop-filter: blur(20px);
+    }
+    .toast.error { color: var(--pink); border-color: rgba(255,0,110,0.3); }
+
+    /* ── Desktop Nav ── */
+    #desktop-nav {
+      display: none; position: fixed; top:0; left:0; right:0; height:64px;
+      align-items:center; justify-content:space-between; z-index:1000; padding:0 40px;
+      background: rgba(5,5,10,0.95); backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(0,240,255,0.08);
+    }
+    #desktop-nav .grad-line {
+      position:absolute; bottom:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg,transparent,rgba(0,240,255,0.3) 20%,rgba(255,0,110,0.3) 50%,rgba(139,92,246,0.3) 80%,transparent);
+    }
+    #desktop-nav img { height: 48px; width:auto; object-fit:contain; filter:drop-shadow(0 0 8px rgba(0,240,255,0.4)); }
+    #desktop-nav nav { display:flex; align-items:center; gap:2px; }
+    #desktop-nav nav a {
+      display:flex; align-items:center; gap:6px; padding:8px 14px; border-radius:4px;
+      text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10px;
+      letter-spacing:3px; text-transform:uppercase; color:var(--muted);
+      border:1px solid transparent; transition:all .2s;
+    }
+    #desktop-nav nav a.active { color:var(--cyan); background:rgba(0,240,255,0.08); border-color:rgba(0,240,255,0.2); }
+    #desktop-nav .btn-reservar {
+      padding:8px 20px; border-radius:4px; font-size:10px; font-weight:700;
+      letter-spacing:3px; text-transform:uppercase; cursor:pointer;
+      background:linear-gradient(135deg,var(--cyan),#00b8d4); color:var(--bg);
+      font-family:'Orbitron',sans-serif; border:none; transition:transform .15s;
+    }
+    #desktop-nav .btn-reservar:hover { transform:translateY(-1px); }
+
+    /* ── Mobile Header ── */
+    #mobile-header {
+      display:flex; align-items:center; gap:12px; padding:16px 20px 12px;
+      background:rgba(10,10,18,0.98); position:relative; z-index:10;
+    }
+    #mobile-header img { height:56px; width:auto; object-fit:contain; filter:drop-shadow(0 0 10px rgba(0,240,255,0.4)); }
+    #mobile-header .sub { display:flex; flex-direction:column; }
+    #mobile-header .sub span { font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(180,180,200,1); }
+    #mobile-header .sub small { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); opacity:.6; }
+
+    /* ── Mobile Nav ── */
+    #mobile-nav {
+      display:flex; position:fixed; bottom:0; left:0; right:0;
+      justify-content:space-around; z-index:1000;
+      background:rgba(10,10,18,0.97); backdrop-filter:blur(20px);
+      border-top:1px solid rgba(0,240,255,0.08);
+      padding:6px 0 max(10px, env(safe-area-inset-bottom));
+    }
+    #mobile-nav::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg,transparent,rgba(0,240,255,0.15),transparent);
+    }
+    #mobile-nav button {
+      display:flex; flex-direction:column; align-items:center; gap:2px;
+      font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px;
+      background:none; border:none; color:var(--dim); cursor:pointer; padding:4px 6px;
+      transition:color .2s;
+    }
+    #mobile-nav button.active { color:var(--cyan); }
+    #mobile-nav button i { font-size:18px; margin-bottom:2px; }
+    #mobile-nav button.active i { text-shadow:0 0 8px rgba(0,240,255,0.5); }
+
+    /* ── Responsive ── */
+    @media (min-width:1024px) {
+      #desktop-nav { display:flex; }
+      #mobile-header, #mobile-nav { display:none; }
+      main { padding-top:64px; padding-bottom:0; }
+    }
+    @media (max-width:1023px) {
+      main { padding-bottom:64px; }
+    }
+
+    /* ── Hero ── */
+    #hero {
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      padding:80px 16px 64px; position:relative;
+      background:radial-gradient(ellipse at 20% 50%,rgba(0,240,255,0.07) 0%,transparent 50%),
+                 radial-gradient(ellipse at 80% 50%,rgba(255,0,110,0.05) 0%,transparent 50%);
+    }
+    .hero-inner {
+      max-width:1152px; width:100%; display:grid; gap:40px;
+      align-items:center; position:relative; z-index:10;
+    }
+    @media(min-width:1024px){ .hero-inner{grid-template-columns:1fr 1fr; gap:64px; padding-top:80px;} }
+    .hero-tag { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--cyan); opacity:.8; }
+    .hero-title {
+      font-family:'Orbitron',sans-serif; font-size:clamp(2.8rem,6vw,4rem);
+      font-weight:900; letter-spacing:.12em; text-transform:uppercase; line-height:1;
+      background:linear-gradient(135deg,#e0e8ff 0%,var(--cyan) 60%,var(--pink) 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .hero-desc { font-size:16px; line-height:1.7; letter-spacing:.03em; color:var(--muted); max-width:440px; }
+    .hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:8px; padding:14px 20px;
+      border-radius:4px; font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase;
+      cursor:pointer; background:linear-gradient(135deg,var(--cyan),#00b8d4);
+      color:var(--bg); font-family:'Orbitron',sans-serif; border:none;
+      box-shadow:0 0 20px rgba(0,240,255,0.2); transition:transform .15s; text-decoration:none;
+    }
+    .btn-primary:hover { transform:translateY(-2px); }
+    .btn-ghost {
+      display:inline-flex; align-items:center; gap:8px; padding:14px 20px;
+      border-radius:4px; font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase;
+      cursor:pointer; background:transparent; color:var(--cyan);
+      font-family:'Orbitron',sans-serif; border:1px solid rgba(0,240,255,0.3);
+      transition:transform .15s; text-decoration:none;
+    }
+    .btn-ghost:hover { transform:translateY(-2px); }
+    .hero-stats { display:flex; gap:32px; margin-top:8px; }
+    .stat-num { font-family:'Orbitron',sans-serif; font-size:28px; font-weight:900; color:var(--cyan); text-shadow:0 0 10px rgba(0,240,255,0.3); }
+    .stat-lbl { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--dim); margin-top:2px; }
+
+    /* Hero image grid desktop */
+    .hero-images {
+      display:none; grid-template-columns:1fr 1fr; gap:12px;
+    }
+    @media(min-width:1024px){ .hero-images{display:grid;} }
+    .hero-img-card {
+      border-radius:6px; overflow:hidden; position:relative;
+      aspect-ratio:3/4; border:1px solid rgba(0,240,255,0.08);
+      transition:transform .3s; cursor:default;
+    }
+    .hero-img-card:hover { transform:translateY(-4px); }
+    .hero-img-card img { width:100%; height:100%; object-fit:cover; transition:transform .5s; display:block; }
+    .hero-img-card:hover img { transform:scale(1.05); }
+    .hero-img-card .overlay { position:absolute; inset:0; background:linear-gradient(180deg,transparent 50%,rgba(5,5,8,0.9)); z-index:1; }
+    .hero-img-card .caption { position:absolute; bottom:12px; left:12px; z-index:2; }
+    .hero-img-card .caption h4 { font-family:'Orbitron',sans-serif; font-size:11px; font-weight:700; color:#fff; }
+    .hero-img-card .caption p  { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--cyan); margin-top:2px; }
+
+    /* Hero mobile scroll */
+    .hero-scroll {
+      display:flex; gap:12px; overflow-x:auto; padding-bottom:8px; margin:0 -16px; padding-left:16px; padding-right:16px;
+      scrollbar-width:none;
+    }
+    .hero-scroll::-webkit-scrollbar{display:none;}
+    @media(min-width:1024px){.hero-scroll{display:none;}}
+    .hero-scroll-card {
+      border-radius:6px; overflow:hidden; flex-shrink:0; display:flex; flex-direction:column;
+      justify-content:flex-end; padding:10px;
+      min-width:140px; height:185px; border:1px solid rgba(0,240,255,0.1);
+      background-size:cover; background-position:center;
+    }
+    .hero-scroll-card h3 { font-family:'Orbitron',sans-serif; font-size:11px; font-weight:700; color:#fff; }
+    .hero-scroll-card p  { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--cyan); margin-top:2px; }
+
+    /* ── Section base ── */
+    section { padding:80px 16px; position:relative; z-index:10; border-top:1px solid var(--border); }
+    @media(min-width:1024px){ section{padding:80px 48px;} }
+    .section-tag { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--cyan); opacity:.6; margin-bottom:8px; }
+    .section-title { font-family:'Orbitron',sans-serif; font-size:clamp(1.4rem,3vw,2rem); font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    .section-sub { font-size:14px; color:var(--muted); margin-top:12px; }
+    .section-header { text-align:center; margin-bottom:40px; }
+
+    /* ── Gallery ── */
+    #gallery { }
+    .gallery-filters { display:flex; gap:8px; margin-bottom:24px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; }
+    @media(min-width:1024px){ .gallery-filters{justify-content:center;} }
+    .gallery-filters button {
+      border-radius:4px; padding:8px 16px; font-family:'JetBrains Mono',monospace;
+      font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer;
+      background:rgba(0,240,255,0.04); border:1px solid rgba(0,240,255,0.1); color:var(--muted);
+      flex-shrink:0; transition:all .2s;
+    }
+    .gallery-filters button.active { background:rgba(0,240,255,0.1); border-color:var(--cyan); color:var(--cyan); }
+    .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+    @media(min-width:1024px){ .gallery-grid{grid-template-columns:repeat(4,1fr); gap:10px;} }
+    .gallery-item {
+      aspect-ratio:1; border-radius:4px; overflow:hidden; position:relative; cursor:zoom-in;
+      border:1px solid var(--border); transition:transform .3s;
+    }
+    .gallery-item:hover { transform:translateY(-4px); }
+    .gallery-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s; }
+    .gallery-item:hover img { transform:scale(1.05); }
+    .gallery-item .hover-label {
+      position:absolute; bottom:0; left:0; right:0; padding:10px; opacity:0; transition:opacity .2s;
+      background:linear-gradient(transparent,rgba(5,5,8,0.75));
+    }
+    .gallery-item:hover .hover-label { opacity:1; }
+    .gallery-item .hover-label span { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); }
+
+    /* ── Lightbox ── */
+    #lightbox {
+      display:none; position:fixed; inset:0; z-index:9000;
+      align-items:center; justify-content:center;
+      background:rgba(3,3,10,0.96); backdrop-filter:blur(20px);
+      animation:lbFadeIn .2s ease;
+    }
+    #lightbox.open { display:flex; }
+    #lightbox img { max-width:90vw; max-height:88vh; border-radius:6px; display:block; border:1px solid rgba(0,240,255,0.15); }
+    .lb-btn {
+      position:absolute; width:44px; height:44px; border-radius:50%; display:flex;
+      align-items:center; justify-content:center; cursor:pointer;
+      background:rgba(0,240,255,0.1); border:1px solid rgba(0,240,255,0.2); color:var(--cyan); font-size:14px;
+    }
+    #lb-close { top:20px; right:20px; }
+    #lb-prev  { left:20px; top:50%; transform:translateY(-50%); }
+    #lb-next  { right:20px; top:50%; transform:translateY(-50%); }
+    #lb-caption { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:3px; color:var(--muted); white-space:nowrap; }
+
+    /* ── Pricing ── */
+    .price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    @media(min-width:1024px){ .price-grid{gap:24px;} }
+    .price-card {
+      border-radius:8px; padding:16px; text-align:center; position:relative; overflow:hidden;
+      background:var(--card-bg); border:1px solid var(--border); transition:transform .3s;
+    }
+    @media(min-width:1024px){ .price-card{padding:32px;} }
+    .price-card:hover { transform:translateY(-4px); }
+    .price-card .top-line {
+      position:absolute; top:0; left:0; right:0; height:2px; opacity:0; transition:opacity .2s;
+      background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+    }
+    .price-card:hover .top-line { opacity:1; }
+    .price-card h3 { font-family:'Orbitron',sans-serif; font-size:clamp(9px,2vw,14px); font-weight:600; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; }
+    .price-card .amount { font-family:'Orbitron',sans-serif; font-size:clamp(18px,4vw,36px); font-weight:900; color:var(--cyan); text-shadow:0 0 15px rgba(0,240,255,0.3); margin-bottom:4px; }
+    .price-card small { font-family:'JetBrains Mono',monospace; font-size:clamp(8px,1.5vw,11px); letter-spacing:1px; color:var(--dim); }
+    .price-note { text-align:center; margin-top:20px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); }
+
+    /* ── Booking ── */
+    .booking-grid { display:grid; gap:20px; }
+    @media(min-width:1024px){ .booking-grid{grid-template-columns:1fr 1fr;} }
+    .booking-card { background:rgba(0,240,255,0.02); border:1px solid var(--border); border-radius:8px; padding:24px; }
+    .booking-card h3 { font-family:'Orbitron',sans-serif; font-size:clamp(10px,2vw,14px); font-weight:600; letter-spacing:3px; text-transform:uppercase; display:flex; align-items:center; gap:8px; margin-bottom:20px; }
+    .booking-card h3 i { color:var(--cyan); }
+    label.lbl { display:block; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    .inp {
+      width:100%; padding:12px 14px; background:rgba(0,240,255,0.03); border:1px solid var(--border);
+      border-radius:4px; color:var(--text); font-family:'Rajdhani',sans-serif; font-size:14px;
+      letter-spacing:.5px; outline:none; color-scheme:dark; transition:border-color .2s;
+    }
+    .inp:focus { border-color:rgba(0,240,255,0.3); }
+    .field { margin-bottom:16px; }
+    .btn-submit {
+      width:100%; display:flex; align-items:center; justify-content:center; gap:8px;
+      padding:14px; border-radius:4px; font-weight:700; font-size:11px; letter-spacing:1.5px;
+      text-transform:uppercase; border:none; cursor:pointer;
+      background:linear-gradient(135deg,var(--cyan),#00b8d4); color:var(--bg);
+      font-family:'Orbitron',sans-serif; transition:transform .15s;
+    }
+    .btn-submit:hover { transform:translateY(-1px); }
+    .booking-note { margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); }
+
+    /* ── Location ── */
+    .location-grid { display:grid; gap:24px; align-items:center; }
+    @media(min-width:1024px){ .location-grid{grid-template-columns:1.5fr 1fr;} }
+    .map-wrap { border-radius:8px; overflow:hidden; border:1px solid var(--border); height:300px; width:100%; }
+    .map-wrap iframe { width:100%; height:100%; border:0; filter:grayscale(1) invert(1) hue-rotate(180deg) saturate(.5) brightness(.7) contrast(1.2); }
+    .contact-block { border-radius:8px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--border); }
+    .contact-cell { padding:20px; background:var(--card-bg); }
+    .contact-cell:first-child { border-right:1px solid var(--border); }
+    .contact-cell i { font-size:22px; display:block; margin-bottom:12px; }
+    .contact-cell h4 { font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; }
+    .contact-cell p { font-size:14px; line-height:1.7; color:var(--muted); }
+    .contact-cell a { display:inline-flex; align-items:center; gap:6px; margin-top:12px; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; }
+
+    /* ── Footer ── */
+    footer { padding:32px 16px; text-align:center; border-top:1px solid var(--border); position:relative; z-index:10; }
+    .socials { display:flex; justify-content:center; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
+    .socials a {
+      display:inline-flex; align-items:center; justify-content:center;
+      width:36px; height:36px; border-radius:8px; text-decoration:none; font-size:17px;
+      border:1px solid rgba(0,240,255,0.3); color:var(--cyan);
+      background:rgba(0,240,255,0.04); transition:transform .15s;
+    }
+    .socials a:hover { transform:scale(1.1); }
+    .footer-copy { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--dim); }
+
+    /* ── Max width wrapper ── */
+    .wrap { max-width:1152px; margin:0 auto; }
+    .wrap-md { max-width:768px; margin:0 auto; }
+    .wrap-lg { max-width:896px; margin:0 auto; }
+  </style>
 </head>
 <body>
 
-<div class="toast-container" id="toastContainer"></div>
-<div class="particles" id="particles"></div>
+<!-- Toast container -->
+<div id="toast-container"></div>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-    <div class="lightbox-close" id="lbClose"><i class="fas fa-times"></i></div>
-    <button class="lightbox-nav lightbox-prev" id="lbPrev"><i class="fas fa-chevron-left"></i></button>
-    <img class="lightbox-img" id="lbImg" src="" alt="">
-    <button class="lightbox-nav lightbox-next" id="lbNext"><i class="fas fa-chevron-right"></i></button>
-    <div class="lightbox-info" id="lbInfo"></div>
-</div>
+<!-- Grid & scanlines -->
+<div class="grid-bg"></div>
+<div class="scanlines"></div>
+<div id="particles"></div>
 
-<!-- ══ DESKTOP NAV ══════════════════════════════════════════════════════════ -->
-<header class="desktop-nav">
-    <a href="#hero" class="nav-brand">
-        <img src="https://artistguerr.github.io/guerrtattoostudio/logo%20pagina%20web.webp" alt="Guerr Tattoo Studio" class="nav-logo">
-    </a>
-    <nav class="nav-links">
-        <a href="#hero"     class="nav-link active" data-section="hero">    <i class="fas fa-home"></i>     Inicio</a>
-        <a href="#gallery"  class="nav-link"         data-section="gallery"> <i class="fas fa-images"></i>   Galería</a>
-        <a href="#pricing"  class="nav-link"         data-section="pricing"> <i class="fas fa-tag"></i>      Precios</a>
-        <a href="#booking"  class="nav-link"         data-section="booking"> <i class="fas fa-calendar"></i> Reservas</a>
-        <a href="#location" class="nav-link"         data-section="location"><i class="fas fa-map"></i>      Ubicación</a>
-    </nav>
-    <a href="#booking" class="nav-cta">Reservar</a>
+<!-- ── Desktop Nav ── -->
+<header id="desktop-nav">
+  <div class="grad-line"></div>
+  <a href="#hero" onclick="goTo('hero');return false;">
+    <img src="https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20logo.png?raw=true" alt="Guerr Tattoo Studio" />
+  </a>
+  <nav>
+    <a href="#hero"     onclick="goTo('hero');return false;"     id="nav-hero"     class="active"><i class="fas fa-home"></i> Inicio</a>
+    <a href="#gallery"  onclick="goTo('gallery');return false;"  id="nav-gallery"         ><i class="fas fa-images"></i> Galería</a>
+    <a href="#pricing"  onclick="goTo('pricing');return false;"  id="nav-pricing"         ><i class="fas fa-tag"></i> Precios</a>
+    <a href="#booking"  onclick="goTo('booking');return false;"  id="nav-booking"         ><i class="fas fa-calendar"></i> Reservas</a>
+    <a href="#location" onclick="goTo('location');return false;" id="nav-location"        ><i class="fas fa-map"></i> Ubicación</a>
+  </nav>
+  <button class="btn-reservar" onclick="goTo('booking')">Reservar</button>
 </header>
 
-<!-- ══ DESKTOP CONTENT ═════════════════════════════════════════════════════ -->
-<main class="desktop-content">
-
-    <!-- HERO -->
-    <section class="hero-section section" id="hero">
-        <div class="hero-inner">
-            <div class="hero-left">
-                <div class="hero-tag">v2.0 // artist portfolio &amp; booking</div>
-                <h1 class="hero-title">Guerr<br>Tattoo<br>Studio</h1>
-                <p class="hero-desc">Especialista en blackwork, realismo y minimalismo. Más de 8 años creando arte sobre la piel en Suba, Bogotá. Cada diseño es una pieza única e irrepetible.</p>
-                <div class="hero-buttons">
-                    <button class="btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})"><i class="fas fa-calendar-check"></i> Reservar cita</button>
-                    <a href="https://wa.me/573012802733" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="hero-stat"><div class="hero-stat-num">8+</div><div class="hero-stat-label">Años exp.</div></div>
-                    <div class="hero-stat"><div class="hero-stat-num">500+</div><div class="hero-stat-label">Tatuajes</div></div>
-                    <div class="hero-stat"><div class="hero-stat-num">4.9★</div><div class="hero-stat-label">Rating</div></div>
-                </div>
-            </div>
-            <div class="hero-right">
-                <article class="hero-card">
-                    <img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp" alt="Dark Gas Mask Blackwork" loading="lazy">
-                    <div class="hero-card-overlay"><h4>Blackwork</h4><p>Dark Gas Mask</p></div>
-                </article>
-                <article class="hero-card">
-                    <img src="https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp" alt="Hades Realismo" loading="lazy">
-                    <div class="hero-card-overlay"><h4>Realismo</h4><p>Hades · Sombras</p></div>
-                </article>
-                <article class="hero-card">
-                    <img src="https://artistguerr.github.io/guerrtattoostudio/img/ANGEL%20GUARDIAN-sombras.webp" alt="Ángel Guardián" loading="lazy">
-                    <div class="hero-card-overlay"><h4>Blackwork</h4><p>Ángel Guardián</p></div>
-                </article>
-                <article class="hero-card">
-                    <img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20QUEEN-darkwork.webp" alt="Dark Queen" loading="lazy">
-                    <div class="hero-card-overlay"><h4>Darkwork</h4><p>Dark Queen</p></div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- GALERÍA DESKTOP -->
-    <section class="section" id="gallery">
-        <div class="container">
-            <header class="section-header">
-                <div class="section-tag">// portfolio</div>
-                <h2>Galería</h2>
-                <p>Explora los trabajos realizados en diferentes estilos</p>
-            </header>
-            <div class="gallery-filter-bar">
-                <button class="category-btn active" data-filter="all">Todos</button>
-                <button class="category-btn" data-filter="blackwork">Blackwork</button>
-                <button class="category-btn" data-filter="realismo">Realismo</button>
-                <button class="category-btn" data-filter="sombras">Sombras</button>
-            </div>
-            <div class="gallery-grid-desktop" id="gallery-grid-desktop">
-                <div class="gallery-item-desktop" data-category="blackwork" data-src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp" data-label="Blackwork · Dark Gas Mask"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp" alt="Dark Gas Mask" loading="lazy"><div class="gallery-item-label"><span>Blackwork</span></div></div>
-                <div class="gallery-item-desktop" data-category="realismo" data-src="https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp" data-label="Realismo · Hades"><img src="https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp" alt="Hades Realismo" loading="lazy"><div class="gallery-item-label"><span>Realismo</span></div></div>
-                <div class="gallery-item-desktop" data-category="blackwork" data-src="https://artistguerr.github.io/guerrtattoostudio/img/ANGEL%20GUARDIAN-sombras.webp" data-label="Blackwork · Ángel Guardián"><img src="https://artistguerr.github.io/guerrtattoostudio/img/ANGEL%20GUARDIAN-sombras.webp" alt="Ángel Guardián" loading="lazy"><div class="gallery-item-label"><span>Blackwork</span></div></div>
-                <div class="gallery-item-desktop" data-category="blackwork" data-src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20QUEEN-darkwork.webp" data-label="Darkwork · Dark Queen"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20QUEEN-darkwork.webp" alt="Dark Queen" loading="lazy"><div class="gallery-item-label"><span>Darkwork</span></div></div>
-                <div class="gallery-item-desktop" data-category="realismo" data-src="https://artistguerr.github.io/guerrtattoostudio/img/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp" data-label="Realismo · Rock Lee"><img src="https://artistguerr.github.io/guerrtattoostudio/img/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp" alt="Rock Lee Anime" loading="lazy"><div class="gallery-item-label"><span>Realismo</span></div></div>
-                <div class="gallery-item-desktop" data-category="realismo" data-src="https://artistguerr.github.io/guerrtattoostudio/img/DRAG%C3%93N%20PROTECTO-Neo%20oriental%20sombras.webp" data-label="Realismo · Dragón Protector"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DRAG%C3%93N%20PROTECTO-Neo%20oriental%20sombras.webp" alt="Dragón Protector" loading="lazy"><div class="gallery-item-label"><span>Neo Oriental</span></div></div>
-                <div class="gallery-item-desktop" data-category="realismo" data-src="https://artistguerr.github.io/guerrtattoostudio/img/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp" data-label="Color · Tiger and Flowers"><img src="https://artistguerr.github.io/guerrtattoostudio/img/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp" alt="Tiger and Flowers" loading="lazy"><div class="gallery-item-label"><span>Color</span></div></div>
-                <div class="gallery-item-desktop" data-category="sombras" data-src="https://artistguerr.github.io/guerrtattoostudio/img/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp" data-label="Sombras · No Veo No Escucho"><img src="https://artistguerr.github.io/guerrtattoostudio/img/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp" alt="No Veo No Escucho No Hablo" loading="lazy"><div class="gallery-item-label"><span>Sombras</span></div></div>
-                <div class="gallery-item-desktop" data-category="sombras" data-src="https://artistguerr.github.io/guerrtattoostudio/img/SUPREME%20EYE-sombras.webp" data-label="Sombras · Supreme Eye"><img src="https://artistguerr.github.io/guerrtattoostudio/img/SUPREME%20EYE-sombras.webp" alt="Supreme Eye" loading="lazy"><div class="gallery-item-label"><span>Sombras</span></div></div>
-                <div class="gallery-item-desktop" data-category="blackwork" data-src="https://artistguerr.github.io/guerrtattoostudio/img/WAR-PIG-sombras.webp" data-label="Blackwork · War Pig"><img src="https://artistguerr.github.io/guerrtattoostudio/img/WAR-PIG-sombras.webp" alt="War Pig" loading="lazy"><div class="gallery-item-label"><span>Blackwork</span></div></div>
-                <div class="gallery-item-desktop" data-category="realismo" data-src="https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp" data-label="Realismo · Hades · 2"><img src="https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp" alt="Hades 2" loading="lazy"><div class="gallery-item-label"><span>Realismo</span></div></div>
-                <div class="gallery-item-desktop" data-category="blackwork" data-src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp" data-label="Blackwork · Gas Mask · 2"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp" alt="Gas Mask 2" loading="lazy"><div class="gallery-item-label"><span>Blackwork</span></div></div>
-                <div class="gallery-item-desktop" data-category="sombras" data-src="https://artistguerr.github.io/guerrtattoostudio/img/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp" data-label="Sombras · Monos · 2"><img src="https://artistguerr.github.io/guerrtattoostudio/img/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp" alt="No Veo 2" loading="lazy"><div class="gallery-item-label"><span>Sombras</span></div></div>
-                <div class="gallery-item-desktop" data-category="realismo" data-src="https://artistguerr.github.io/guerrtattoostudio/img/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp" data-label="Realismo · Rock Lee · 2"><img src="https://artistguerr.github.io/guerrtattoostudio/img/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp" alt="Rock Lee 2" loading="lazy"><div class="gallery-item-label"><span>Anime</span></div></div>
-                <div class="gallery-item-desktop" data-category="realismo" data-src="https://artistguerr.github.io/guerrtattoostudio/img/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp" data-label="Color · Tiger · 2"><img src="https://artistguerr.github.io/guerrtattoostudio/img/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp" alt="Tiger 2" loading="lazy"><div class="gallery-item-label"><span>Color</span></div></div>
-                <div class="gallery-item-desktop" data-category="blackwork" data-src="https://artistguerr.github.io/guerrtattoostudio/img/ANGEL%20GUARDIAN-sombras.webp" data-label="Blackwork · Ángel · 2"><img src="https://artistguerr.github.io/guerrtattoostudio/img/ANGEL%20GUARDIAN-sombras.webp" alt="Ángel 2" loading="lazy"><div class="gallery-item-label"><span>Blackwork</span></div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRECIOS DESKTOP -->
-    <section class="section" id="pricing">
-        <div class="container">
-            <header class="section-header">
-                <div class="section-tag">// pricing guide</div>
-                <h2>Guía de Precios</h2>
-                <p>Referencia orientativa en pesos colombianos</p>
-            </header>
-            <div class="pricing-grid">
-                <article class="price-card-desktop"><h3>Pequeño</h3><div class="price">$200k</div><small>hasta 10cm · 1-2h</small></article>
-                <article class="price-card-desktop"><h3>Mediano</h3><div class="price">$400k</div><small>10-20cm · 2-4h</small></article>
-                <article class="price-card-desktop"><h3>Grande</h3><div class="price">$800k+</div><small>+20cm · sesiones múltiples</small></article>
-            </div>
-            <p class="note-text text-center mt-6">*Precios incluyen asesoría. El precio final se confirma en consulta.</p>
-        </div>
-    </section>
-
-    <!-- RESERVAS DESKTOP -->
-    <section class="section" id="booking">
-        <div class="container">
-            <header class="section-header">
-                <div class="section-tag">// book &amp; request</div>
-                <h2>Reservas &amp; Diseños</h2>
-            </header>
-            <div style="max-width:760px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
-                <div style="background:rgba(0,240,255,.02);border:1px solid var(--border-subtle);border-radius:8px;padding:2rem;">
-                    <h3 style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;color:var(--text-primary);display:flex;align-items:center;gap:8px;"><i class="fas fa-calendar-alt" style="color:var(--cyan);"></i> Reserva tu cita</h3>
-                    <div class="form-group"><label>Fecha</label><input type="date" id="fecha-cita-desktop" min="2025-04-01"></div>
-                    <div class="form-group"><label>Hora</label>
-                        <select id="hora-cita-desktop">
-                            <option>10:00 AM (2h)</option><option>12:00 PM (2h)</option>
-                            <option>2:00 PM (3h)</option><option>4:00 PM (2h)</option>
-                        </select>
-                    </div>
-                    <button class="btn" style="width:100%;" onclick="simularPagoDesktop()"><i class="fas fa-lock"></i> Pagar depósito · $40.000</button>
-                    <p class="note-text">Depósito no reembolsable. Confirma vía WhatsApp.</p>
-                </div>
-                <div style="background:rgba(0,240,255,.02);border:1px solid var(--border-subtle);border-radius:8px;padding:2rem;">
-                    <h3 style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;color:var(--text-primary);display:flex;align-items:center;gap:8px;"><i class="fas fa-pencil-alt" style="color:var(--cyan);"></i> Solicitar diseño</h3>
-                    <form id="tattooFormDesktop" onsubmit="event.preventDefault();enviarSolicitudDesktop()">
-                        <div class="form-group"><label>Estilo</label>
-                            <select><option>Blackwork</option><option>Realismo</option><option>Minimal</option><option>Geométrico</option></select>
-                        </div>
-                        <div class="form-group"><label>Ubicación</label><input type="text" placeholder="ej. antebrazo derecho..." required></div>
-                        <div class="form-group"><label>Descripción</label><textarea rows="3" placeholder="Cuéntame tu idea..." required></textarea></div>
-                        <button type="submit" class="btn" style="width:100%;">Enviar solicitud</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- UBICACIÓN DESKTOP -->
-    <section class="section" id="location">
-        <div class="container">
-            <header class="section-header">
-                <div class="section-tag">// studio location</div>
-                <h2>Estudio en Suba</h2>
-            </header>
-            <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;align-items:center;">
-                <div style="width:100%;height:350px;border-radius:8px;overflow:hidden;border:1px solid var(--border-subtle);">
-                    <iframe title="Mapa del estudio"
-                        src="https://www.openstreetmap.org/export/embed.html?bbox=-74.1130%2C4.7600%2C-74.0930%2C4.7800&layer=mapnik&marker=4.7700%2C-74.1030"
-                        style="width:100%;height:100%;filter:grayscale(1)invert(1)hue-rotate(180deg)saturate(.5)brightness(.7)contrast(1.2);border:0;"
-                        allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:1.5rem;">
-                    <address style="background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:1.5rem;border-radius:6px;font-style:normal;">
-                        <i class="fas fa-location-dot" style="color:var(--cyan);font-size:24px;margin-bottom:12px;display:block;text-shadow:0 0 10px var(--cyan-glow);"></i>
-                        <h4 style="font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">Dirección</h4>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">Cra. 107 #143-22, piso 2<br>Suba, Bogotá, Colombia</p>
-                        <a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z" target="_blank" rel="noopener"
-                            style="display:inline-flex;align-items:center;gap:6px;color:var(--cyan);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:12px;">
-                            Cómo llegar <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </address>
-                    <div style="background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:1.5rem;border-radius:6px;">
-                        <i class="fab fa-whatsapp" style="color:#25d366;font-size:24px;margin-bottom:12px;display:block;"></i>
-                        <h4 style="font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">Contacto</h4>
-                        <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">301 280 2733<br>Lun–Sáb: 10am–7pm</p>
-                        <a href="https://wa.me/573012802733" target="_blank" rel="noopener"
-                            style="display:inline-flex;align-items:center;gap:6px;color:#25d366;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:12px;">
-                            Escribir por WhatsApp <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="desktop-footer">
-        <div class="footer-links">
-            <a href="#gallery">Galería</a>
-            <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/julian.guerrero.3914" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-tiktok"></i></a>
-            <a href="https://wa.me/573012802733" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <p>Guerr Tattoo Studio · Julián Guerrero · Suba, Bogotá · © <span id="year"></span></p>
-    </footer>
-</main>
-
-<!-- ══ MOBILE CONTENT ═══════════════════════════════════════════════════════ -->
-<div class="mobile-content">
-    <header class="mobile-header">
-        <img src="https://artistguerr.github.io/guerrtattoostudio/logo%20pagina%20web.webp" alt="Guerr Tattoo Studio" class="mobile-logo">
-        <div class="mobile-header-tag">v2.0 // artist portfolio</div>
-        <p><i class="fas fa-map-pin" style="color:var(--cyan);"></i> Suba, Bogotá · Julián Guerrero</p>
-    </header>
-
-    <!-- Inicio mobile -->
-    <section class="mobile-section" id="inicio">
-        <h2 class="mobile-section-title"><i class="fas fa-home"></i> Inicio</h2>
-        <div class="mobile-gallery-scroll" style="margin-bottom:14px;">
-            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;">
-                <h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Blackwork</h3>
-                <p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Dark Gas Mask</p>
-            </article>
-            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;">
-                <h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Realismo</h3>
-                <p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Detalle · Sombras</p>
-            </article>
-            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/ANGEL%20GUARDIAN-sombras.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;">
-                <h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Darkwork</h3>
-                <p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Ángel Guardián</p>
-            </article>
-            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/DARK%20QUEEN-darkwork.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;">
-                <h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Blackwork</h3>
-                <p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Dark Queen</p>
-            </article>
-        </div>
-        <div style="display:flex;gap:8px;">
-            <button class="btn" style="flex:1;" onclick="document.getElementById('reservas').scrollIntoView({behavior:'smooth'})"><i class="fas fa-calendar-check"></i> Reservar</button>
-            <a href="https://wa.me/573012802733" target="_blank" class="btn btn-outline" style="flex:1;text-decoration:none;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </div>
-        <div style="display:flex;gap:1.5rem;margin-top:1rem;">
-            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:800;color:var(--cyan);">8+</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">Años</div></div>
-            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:800;color:var(--cyan);">500+</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">Tatuajes</div></div>
-            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:800;color:var(--cyan);">4.9★</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">Rating</div></div>
-        </div>
-    </section>
-
-    <!-- Galería mobile -->
-    <section class="mobile-section" id="galeria">
-        <h2 class="mobile-section-title"><i class="fas fa-images"></i> Galería</h2>
-        <div style="display:flex;gap:6px;overflow-x:auto;margin-bottom:12px;scrollbar-width:none;">
-            <button class="category-btn active" data-filter="all"       style="font-size:10px;padding:6px 12px;flex-shrink:0;">Todos</button>
-            <button class="category-btn"        data-filter="blackwork" style="font-size:10px;padding:6px 12px;flex-shrink:0;">Blackwork</button>
-            <button class="category-btn"        data-filter="realismo"  style="font-size:10px;padding:6px 12px;flex-shrink:0;">Realismo</button>
-            <button class="category-btn"        data-filter="sombras"   style="font-size:10px;padding:6px 12px;flex-shrink:0;">Sombras</button>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;" id="mobile-gallery-grid">
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="blackwork"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="realismo"><img src="https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="blackwork"><img src="https://artistguerr.github.io/guerrtattoostudio/img/ANGEL%20GUARDIAN-sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="blackwork"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20QUEEN-darkwork.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="realismo"><img src="https://artistguerr.github.io/guerrtattoostudio/img/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="realismo"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DRAG%C3%93N%20PROTECTO-Neo%20oriental%20sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="realismo"><img src="https://artistguerr.github.io/guerrtattoostudio/img/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="sombras"><img src="https://artistguerr.github.io/guerrtattoostudio/img/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="sombras"><img src="https://artistguerr.github.io/guerrtattoostudio/img/SUPREME%20EYE-sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="blackwork"><img src="https://artistguerr.github.io/guerrtattoostudio/img/WAR-PIG-sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="realismo"><img src="https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="blackwork"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-        </div>
-    </section>
-
-    <!-- Precios mobile -->
-    <section class="mobile-section" id="precios">
-        <h2 class="mobile-section-title"><i class="fas fa-tag"></i> Precios</h2>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <article style="flex:1 1 100px;background:rgba(0,240,255,.03);border-radius:6px;padding:16px 10px;text-align:center;border:1px solid var(--border-subtle);">
-                <h3 style="font-family:'Orbitron',sans-serif;font-size:11px;font-weight:600;margin-bottom:6px;letter-spacing:1.5px;text-transform:uppercase;">Pequeño</h3>
-                <div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:800;color:var(--cyan);">$200k</div>
-                <small style="color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:9px;display:block;margin-top:4px;">hasta 10cm</small>
-            </article>
-            <article style="flex:1 1 100px;background:rgba(0,240,255,.03);border-radius:6px;padding:16px 10px;text-align:center;border:1px solid var(--border-subtle);">
-                <h3 style="font-family:'Orbitron',sans-serif;font-size:11px;font-weight:600;margin-bottom:6px;letter-spacing:1.5px;text-transform:uppercase;">Mediano</h3>
-                <div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:800;color:var(--cyan);">$400k</div>
-                <small style="color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:9px;display:block;margin-top:4px;">10-20cm</small>
-            </article>
-            <article style="flex:1 1 100px;background:rgba(0,240,255,.03);border-radius:6px;padding:16px 10px;text-align:center;border:1px solid var(--border-subtle);">
-                <h3 style="font-family:'Orbitron',sans-serif;font-size:11px;font-weight:600;margin-bottom:6px;letter-spacing:1.5px;text-transform:uppercase;">Grande</h3>
-                <div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:800;color:var(--cyan);">$800k+</div>
-                <small style="color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:9px;display:block;margin-top:4px;">+20cm</small>
-            </article>
-        </div>
-        <p style="margin-top:14px;font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;">*Precios en COP, incluye asesoría.</p>
-    </section>
-
-    <!-- Reservas mobile -->
-    <section class="mobile-section" id="reservas">
-        <h2 class="mobile-section-title"><i class="fas fa-calendar-alt"></i> Reserva</h2>
-        <div class="form-group"><label>Fecha</label><input type="date" id="fecha-cita" min="2025-04-01"></div>
-        <div class="form-group"><label>Hora</label>
-            <select id="hora-cita">
-                <option>10:00 AM (2h)</option><option>12:00 PM (2h)</option>
-                <option>2:00 PM (3h)</option><option>4:00 PM (2h)</option>
-            </select>
-        </div>
-        <button class="btn" style="width:100%;" onclick="simularPago()"><i class="fas fa-lock"></i> Pagar depósito · $40.000</button>
-        <p style="margin-top:12px;font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;">Depósito no reembolsable.</p>
-    </section>
-
-    <!-- Ubicación mobile -->
-    <section class="mobile-section" id="ubicacion">
-        <h2 class="mobile-section-title"><i class="fas fa-map-marker-alt"></i> Estudio</h2>
-        <div style="width:100%;height:170px;border-radius:6px;overflow:hidden;margin-bottom:12px;border:1px solid var(--border-subtle);">
-            <iframe title="Mapa del estudio"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=-74.1130%2C4.7600%2C-74.0930%2C4.7800&layer=mapnik&marker=4.7700%2C-74.1030"
-                style="width:100%;height:100%;filter:grayscale(1)invert(1)hue-rotate(180deg)saturate(.5)brightness(.7)contrast(1.2);border:0;"
-                allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div style="display:flex;gap:10px;margin-bottom:10px;">
-            <address style="flex:1;background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:12px;border-radius:6px;font-style:normal;">
-                <i class="fas fa-location-dot" style="color:var(--cyan);font-size:16px;margin-bottom:8px;display:block;"></i>
-                <p style="font-size:12px;color:var(--text-secondary);"><strong style="color:var(--text-primary);">Cra. 107 #143-22</strong><br>Suba, Bogotá</p>
-                <a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;display:inline-block;margin-top:6px;">Ver en Maps →</a>
-            </address>
-            <div style="flex:1;background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:12px;border-radius:6px;">
-                <i class="fab fa-whatsapp" style="color:#25d366;font-size:16px;margin-bottom:8px;display:block;"></i>
-                <p style="font-size:12px;color:var(--text-secondary);"><strong style="color:var(--text-primary);">301 280 2733</strong><br>Lun–Sáb 10am–7pm</p>
-                <a href="https://wa.me/573012802733" target="_blank" rel="noopener" style="color:#25d366;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;display:inline-block;margin-top:6px;">Escribir →</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="mobile-footer-note">
-        <div style="display:flex;justify-content:center;gap:14px;margin-bottom:10px;">
-            <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/julian.guerrero.3914" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-tiktok"></i></a>
-            <a href="https://wa.me/573012802733" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        Guerr Tattoo Studio · © <span class="year-span"></span>
-    </footer>
+<!-- ── Mobile Header ── -->
+<div id="mobile-header">
+  <img src="https://github.com/artistguerr/guerrtattoostudio/blob/main/img/guerr%20logo.png?raw=true" alt="Guerr Tattoo Studio" />
+  <div class="sub">
+    <span>Tattoo Studio</span>
+    <small>Julián Guerrero · Bogotá</small>
+  </div>
 </div>
 
-<!-- ══ MOBILE BOTTOM NAV ════════════════════════════════════════════════════ -->
-<nav class="mobile-bottom-nav">
-    <a href="#inicio"    class="mobile-nav-item active"><i class="fas fa-home"></i><span>Inicio</span></a>
-    <a href="#galeria"   class="mobile-nav-item"><i class="fas fa-images"></i><span>Galería</span></a>
-    <a href="#precios"   class="mobile-nav-item"><i class="fas fa-tag"></i><span>Precios</span></a>
-    <a href="#reservas"  class="mobile-nav-item"><i class="fas fa-calendar"></i><span>Reservas</span></a>
-    <a href="#ubicacion" class="mobile-nav-item"><i class="fas fa-map-marker-alt"></i><span>Estudio</span></a>
+<main>
+
+<!-- ── Hero ── -->
+<section id="hero" style="border-top:none;">
+  <div class="hero-inner">
+    <!-- Text -->
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div class="hero-tag">v2.0 // artist portfolio &amp; booking</div>
+      <h1 class="hero-title">Guerr<br>Tattoo<br>Studio</h1>
+      <p class="hero-desc">Especialista en blackwork, realismo y minimalismo. Más de 8 años creando arte sobre la piel en Suba, Bogotá. Cada diseño es una pieza única e irrepetible.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="goTo('booking')"><i class="fas fa-calendar-check"></i> Reservar cita</button>
+        <a href="https://wa.me/573012802733" target="_blank" class="btn-ghost"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">8+</div><div class="stat-lbl">Años exp.</div></div>
+        <div><div class="stat-num">500+</div><div class="stat-lbl">Tatuajes</div></div>
+        <div><div class="stat-num">4.9★</div><div class="stat-lbl">Rating</div></div>
+      </div>
+    </div>
+    <!-- Desktop images -->
+    <div class="hero-images" id="hero-desktop-imgs"></div>
+    <!-- Mobile scroll -->
+    <div class="hero-scroll" id="hero-mobile-scroll"></div>
+  </div>
+</section>
+
+<!-- ── Gallery ── -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="section-tag">// portfolio</div>
+      <h2 class="section-title">Galería</h2>
+      <p class="section-sub">Explora los trabajos realizados en diferentes estilos</p>
+    </div>
+    <div class="gallery-filters">
+      <button class="active" onclick="filterGallery('all',this)">Todos</button>
+      <button onclick="filterGallery('blackwork',this)">Blackwork</button>
+      <button onclick="filterGallery('realismo',this)">Realismo</button>
+      <button onclick="filterGallery('sombras',this)">Sombras</button>
+    </div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+</section>
+
+<!-- ── Lightbox ── -->
+<div id="lightbox">
+  <button class="lb-btn" id="lb-close" onclick="closeLb()"><i class="fas fa-times"></i></button>
+  <button class="lb-btn" id="lb-prev"  onclick="navigateLb(-1)"><i class="fas fa-chevron-left"></i></button>
+  <img id="lb-img" src="" alt="" />
+  <button class="lb-btn" id="lb-next"  onclick="navigateLb(1)"><i class="fas fa-chevron-right"></i></button>
+  <div id="lb-caption"></div>
+</div>
+
+<!-- ── Pricing ── -->
+<section id="pricing">
+  <div class="wrap-md">
+    <div class="section-header">
+      <div class="section-tag">// pricing guide</div>
+      <h2 class="section-title">Guía de Precios</h2>
+      <p class="section-sub">Referencia orientativa en pesos colombianos</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card"><div class="top-line"></div><h3>Pequeño</h3><div class="amount">$200k</div><small>hasta 10cm · 1-2h</small></div>
+      <div class="price-card"><div class="top-line"></div><h3>Mediano</h3><div class="amount">$400k</div><small>10-20cm · 2-4h</small></div>
+      <div class="price-card"><div class="top-line"></div><h3>Grande</h3><div class="amount">$800k+</div><small>+20cm · sesiones múltiples</small></div>
+    </div>
+    <p class="price-note">*Precios incluyen asesoría. El precio final se confirma en consulta.</p>
+  </div>
+</section>
+
+<!-- ── Booking ── -->
+<section id="booking">
+  <div class="wrap-lg">
+    <div class="section-header">
+      <div class="section-tag">// book &amp; request</div>
+      <h2 class="section-title">Reservas &amp; Diseños</h2>
+    </div>
+    <div class="booking-grid">
+      <div class="booking-card">
+        <h3><i class="fas fa-calendar-alt"></i> Reserva tu cita</h3>
+        <div class="field"><label class="lbl">Fecha</label><input type="date" id="fecha" class="inp" min="2025-04-01" /></div>
+        <div class="field"><label class="lbl">Hora</label>
+          <select id="hora" class="inp">
+            <option>10:00 AM (2h)</option><option>12:00 PM (2h)</option><option>2:00 PM (3h)</option><option>4:00 PM (2h)</option>
+          </select>
+        </div>
+        <button class="btn-submit" onclick="handleReserva()"><i class="fas fa-lock"></i> Pagar depósito · $40.000</button>
+        <p class="booking-note">Depósito no reembolsable. Confirma vía WhatsApp.</p>
+      </div>
+      <div class="booking-card">
+        <h3><i class="fas fa-pencil-alt"></i> Solicitar diseño</h3>
+        <form onsubmit="handleSolicitud(event)">
+          <div class="field"><label class="lbl">Estilo</label>
+            <select id="estilo" class="inp"><option>Blackwork</option><option>Realismo</option><option>Minimal</option><option>Geométrico</option></select>
+          </div>
+          <div class="field"><label class="lbl">Ubicación</label><input type="text" id="ubicacion" class="inp" placeholder="ej. antebrazo derecho..." required /></div>
+          <div class="field"><label class="lbl">Descripción</label><textarea id="descripcion" class="inp" rows="3" placeholder="Cuéntame tu idea..." required style="resize:vertical"></textarea></div>
+          <button type="submit" class="btn-submit">Enviar solicitud</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Location ── -->
+<section id="location">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="section-tag">// studio location</div>
+      <h2 class="section-title">Estudio en Suba</h2>
+    </div>
+    <div class="location-grid">
+      <div class="map-wrap">
+        <iframe title="Mapa del estudio"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-74.1130%2C4.7600%2C-74.0930%2C4.7800&layer=mapnik&marker=4.7700%2C-74.1030"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="contact-block">
+        <div class="contact-cell">
+          <i class="fas fa-location-dot" style="color:var(--cyan);text-shadow:0 0 10px rgba(0,240,255,0.3)"></i>
+          <h4>Dirección</h4>
+          <p>Cra. 107 #143-22, piso 2<br>Suba, Bogotá, Colombia</p>
+          <a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z" target="_blank" style="color:var(--cyan)">
+            Cómo llegar <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="contact-cell">
+          <i class="fab fa-whatsapp" style="color:#25d366"></i>
+          <h4>Contacto</h4>
+          <p>301 280 2733<br>Lun–Sáb: 10am–7pm</p>
+          <a href="https://wa.me/573012802733" target="_blank" style="color:#25d366">
+            Escribir por WhatsApp <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="socials">
+    <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/julian.guerrero.3914" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://wa.me/573012802733" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <p class="footer-copy">Guerr Tattoo Studio · Julián Guerrero · Suba, Bogotá · © <span id="year"></span></p>
+</footer>
+
+</main>
+
+<!-- ── Mobile Nav ── -->
+<nav id="mobile-nav">
+  <button onclick="goTo('hero')"     id="mnav-hero"     class="active"><i class="fas fa-home"></i><span>Inicio</span></button>
+  <button onclick="goTo('gallery')"  id="mnav-gallery"         ><i class="fas fa-images"></i><span>Galería</span></button>
+  <button onclick="goTo('pricing')"  id="mnav-pricing"         ><i class="fas fa-tag"></i><span>Precios</span></button>
+  <button onclick="goTo('booking')"  id="mnav-booking"         ><i class="fas fa-calendar"></i><span>Reservas</span></button>
+  <button onclick="goTo('location')" id="mnav-location"        ><i class="fas fa-map-marker-alt"></i><span>Estudio</span></button>
 </nav>
 
 <script>
-(function(){
-    'use strict';
-    const WA = '573012802733';
-    // Año
-    const yr = new Date().getFullYear();
-    document.getElementById('year').textContent = yr;
-    document.querySelectorAll('.year-span').forEach(el => el.textContent = yr);
-    // Toast
-    function showToast(msg, type='info', ms=3000){
-        const icons={info:'fa-info-circle',success:'fa-check-circle',error:'fa-exclamation-circle'};
-        const el=document.createElement('div');
-        el.className=`toast ${type}`;
-        el.innerHTML=`<i class="fas ${icons[type]||icons.info} toast-icon"></i><span>${msg}</span>`;
-        document.getElementById('toastContainer').appendChild(el);
-        setTimeout(()=>{el.style.animation='toastOut .25s ease forwards';setTimeout(()=>el.remove(),250);},ms);
-    }
-    // Partículas
-    const pc=document.getElementById('particles');
-    for(let i=0;i<22;i++){
-        const p=document.createElement('div');p.className='particle';
-        p.style.left=Math.random()*100+'%';
-        p.style.animationDuration=(10+Math.random()*15)+'s';
-        p.style.animationDelay=Math.random()*12+'s';
-        const s=1+Math.random()*2;p.style.width=s+'px';p.style.height=s+'px';
-        pc.appendChild(p);
-    }
-    // Lightbox
-    const lb=document.getElementById('lightbox');
-    const lbImg=document.getElementById('lbImg');
-    const lbInfo=document.getElementById('lbInfo');
-    let lbItems=[],lbIdx=0;
-    function openLB(items,idx){
-        lbItems=items;lbIdx=idx;
-        lbImg.src=items[idx].src;
-        lbInfo.textContent=(items[idx].label||'')+` · ${idx+1}/${items.length}`;
-        lb.classList.add('open');document.body.style.overflow='hidden';
-    }
-    function closeLB(){lb.classList.remove('open');document.body.style.overflow='';}
-    function lbNav(d){lbIdx=(lbIdx+d+lbItems.length)%lbItems.length;lbImg.src=lbItems[lbIdx].src;lbInfo.textContent=(lbItems[lbIdx].label||'')+` · ${lbIdx+1}/${lbItems.length}`;}
-    document.getElementById('lbClose').addEventListener('click',closeLB);
-    document.getElementById('lbPrev').addEventListener('click',()=>lbNav(-1));
-    document.getElementById('lbNext').addEventListener('click',()=>lbNav(1));
-    lb.addEventListener('click',e=>{if(e.target===lb)closeLB();});
-    document.addEventListener('keydown',e=>{
-        if(!lb.classList.contains('open'))return;
-        if(e.key==='ArrowLeft')lbNav(-1);
-        if(e.key==='ArrowRight')lbNav(1);
-        if(e.key==='Escape')closeLB();
+  // ── Data ──────────────────────────────────────────────────────────────────
+  const RAW = "https://raw.githubusercontent.com/artistguerr/guerrtattoostudio/main/img";
+  const WA  = "573012802733";
+
+  const GALLERY = [
+    { src:`${RAW}/DARK%20GAS%20MASK-blackwork.webp`,                          label:"Blackwork · Dark Gas Mask",      cat:"blackwork" },
+    { src:`${RAW}/HADES-realismo%20sombras.webp`,                             label:"Realismo · Hades",               cat:"realismo"  },
+    { src:`${RAW}/ANGEL%20GUARDIAN-sombras.webp`,                             label:"Blackwork · Ángel Guardián",     cat:"blackwork" },
+    { src:`${RAW}/DARK%20QUEEN-darkwork.webp`,                                label:"Darkwork · Dark Queen",          cat:"blackwork" },
+    { src:`${RAW}/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp`,             label:"Realismo · Rock Lee",            cat:"realismo"  },
+    { src:`${RAW}/DRAG%C3%93N%20PROTECTO-Neo%20oriental%20sombras.webp`,      label:"Neo Oriental · Dragón Protector",cat:"realismo"  },
+    { src:`${RAW}/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp`,            label:"Color · Tiger and Flowers",      cat:"realismo"  },
+    { src:`${RAW}/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp`,  label:"Sombras · No Veo No Escucho",    cat:"sombras"   },
+    { src:`${RAW}/SUPREME%20EYE-sombras.webp`,                                label:"Sombras · Supreme Eye",          cat:"sombras"   },
+    { src:`${RAW}/HADES-realismo%20sombras.webp`,                             label:"Realismo · Hades · 2",           cat:"realismo"  },
+    { src:`${RAW}/DARK%20GAS%20MASK-blackwork.webp`,                          label:"Blackwork · Gas Mask · 2",       cat:"blackwork" },
+    { src:`${RAW}/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp`,  label:"Sombras · Monos · 2",            cat:"sombras"   },
+    { src:`${RAW}/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp`,             label:"Realismo · Rock Lee · 2",        cat:"realismo"  },
+    { src:`${RAW}/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp`,            label:"Color · Tiger · 2",              cat:"realismo"  },
+    { src:`${RAW}/ANGEL%20GUARDIAN-sombras.webp`,                             label:"Blackwork · Ángel · 2",          cat:"blackwork" },
+  ];
+
+  const HERO_IMGS = [
+    { src:`${RAW}/DARK%20GAS%20MASK-blackwork.webp`,  style:"Blackwork",  title:"Dark Gas Mask" },
+    { src:`${RAW}/HADES-realismo%20sombras.webp`,      style:"Realismo",   title:"Hades · Sombras" },
+    { src:`${RAW}/ANGEL%20GUARDIAN-sombras.webp`,      style:"Blackwork",  title:"Ángel Guardián" },
+    { src:`${RAW}/DARK%20QUEEN-darkwork.webp`,         style:"Darkwork",   title:"Dark Queen" },
+  ];
+
+  // ── Year ──
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ── Particles ──
+  const pc = document.getElementById('particles');
+  for(let i=0;i<22;i++){
+    const p=document.createElement('div'); p.className='particle';
+    p.style.left = Math.random()*100+'%';
+    const s=1+Math.random()*2; p.style.width=s+'px'; p.style.height=s+'px';
+    p.style.animationDuration=(10+Math.random()*15)+'s';
+    p.style.animationDelay=(Math.random()*12)+'s';
+    pc.appendChild(p);
+  }
+
+  // ── Hero images ──
+  const offsets = ["0","2rem","-1rem","2rem"];
+  const hd = document.getElementById('hero-desktop-imgs');
+  HERO_IMGS.forEach((img,i)=>{
+    hd.innerHTML += `<div class="hero-img-card" style="margin-top:${offsets[i]}">
+      <div class="overlay"></div>
+      <img src="${img.src}" alt="${img.title}" loading="lazy">
+      <div class="caption"><h4>${img.style}</h4><p>${img.title}</p></div>
+    </div>`;
+  });
+  const hm = document.getElementById('hero-mobile-scroll');
+  HERO_IMGS.forEach(img=>{
+    hm.innerHTML += `<div class="hero-scroll-card" style="background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('${img.src}') center/cover">
+      <h3>${img.style}</h3><p>${img.title}</p>
+    </div>`;
+  });
+
+  // ── Gallery ──
+  let currentFilter = 'all';
+  let lbIdx = 0;
+  let lbFiltered = [];
+
+  function renderGallery(filter){
+    const grid = document.getElementById('gallery-grid');
+    const items = filter==='all' ? GALLERY : GALLERY.filter(g=>g.cat===filter);
+    lbFiltered = items;
+    grid.innerHTML = items.map((item,i)=>`
+      <div class="gallery-item" onclick="openLb(${i})">
+        <img src="${item.src}" alt="${item.label}" loading="lazy">
+        <div class="hover-label"><span>${item.cat}</span></div>
+      </div>`).join('');
+  }
+  renderGallery('all');
+
+  function filterGallery(cat, btn){
+    currentFilter = cat;
+    document.querySelectorAll('.gallery-filters button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGallery(cat);
+  }
+
+  // ── Lightbox ──
+  function openLb(i){
+    lbIdx = i;
+    updateLb();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeLb(){
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  function navigateLb(dir){
+    lbIdx = (lbIdx+dir+lbFiltered.length)%lbFiltered.length;
+    updateLb();
+  }
+  function updateLb(){
+    const item = lbFiltered[lbIdx];
+    document.getElementById('lb-img').src = item.src;
+    document.getElementById('lb-img').alt = item.label;
+    document.getElementById('lb-caption').textContent = item.label+' · '+(lbIdx+1)+'/'+lbFiltered.length;
+  }
+  document.getElementById('lightbox').addEventListener('click',function(e){
+    if(e.target===this) closeLb();
+  });
+  document.addEventListener('keydown',function(e){
+    if(!document.getElementById('lightbox').classList.contains('open')) return;
+    if(e.key==='ArrowLeft') navigateLb(-1);
+    if(e.key==='ArrowRight') navigateLb(1);
+    if(e.key==='Escape') closeLb();
+  });
+
+  // ── WhatsApp helper ──
+  function wa(msg){ window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank'); }
+
+  // ── Booking ──
+  function handleReserva(){
+    const fecha = document.getElementById('fecha').value;
+    const hora  = document.getElementById('hora').value;
+    if(!fecha){ showToast('Selecciona una fecha','error'); return; }
+    wa(`Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${fecha}\n🕐 Hora: ${hora}\nQuedo pendiente para confirmar el depósito de $40.000.`);
+    showToast('Abriendo WhatsApp para confirmar tu cita...');
+  }
+  function handleSolicitud(e){
+    e.preventDefault();
+    const estilo      = document.getElementById('estilo').value;
+    const ubicacion   = document.getElementById('ubicacion').value;
+    const descripcion = document.getElementById('descripcion').value;
+    wa(`Hola Julián! Quiero solicitar un diseño 🖤\n🎨 Estilo: ${estilo}\n📍 Ubicación: ${ubicacion}\n💬 Idea: ${descripcion}`);
+    showToast('Abriendo WhatsApp con tu solicitud...');
+    document.getElementById('ubicacion').value='';
+    document.getElementById('descripcion').value='';
+  }
+
+  // ── Toast ──
+  function showToast(msg, type='success'){
+    const t = document.createElement('div');
+    t.className = 'toast'+(type==='error'?' error':'');
+    t.textContent = msg;
+    document.getElementById('toast-container').appendChild(t);
+    setTimeout(()=>{ t.style.animation='toastOut .2s ease forwards'; setTimeout(()=>t.remove(),200); },3000);
+  }
+
+  // ── Scroll spy ──
+  const SECTIONS = ['hero','gallery','pricing','booking','location'];
+  function updateActive(){
+    let cur = SECTIONS[0];
+    SECTIONS.forEach(id=>{
+      const el=document.getElementById(id);
+      if(el && window.scrollY+120>=el.offsetTop) cur=id;
     });
-    function bindGallery(sel){
-        const items=[];
-        document.querySelectorAll(sel).forEach(el=>items.push({src:el.dataset.src||el.querySelector('img')?.src,label:el.dataset.label||''}));
-        document.querySelectorAll(sel).forEach((el,i)=>{el.style.cursor='zoom-in';el.addEventListener('click',()=>openLB(items,i));});
-    }
-    bindGallery('.gallery-item-desktop');
-    // Scroll spy desktop
-    function scrollSpy(navSel,secSel){
-        const navs=document.querySelectorAll(navSel),secs=document.querySelectorAll(secSel);
-        window.addEventListener('scroll',()=>{
-            let idx=secs.length;
-            while(--idx&&window.scrollY+100<secs[idx].offsetTop){}
-            navs.forEach((el,i)=>el.classList.toggle('active',i===idx));
-        },{passive:true});
-    }
-    scrollSpy('.nav-link','.section,.hero-section');
-    scrollSpy('.mobile-nav-item','.mobile-section');
-    // Filtros galería
-    function initFilter(btnsSel,itemsSel){
-        const btns=document.querySelectorAll(btnsSel),items=document.querySelectorAll(itemsSel);
-        btns.forEach(btn=>{
-            btn.addEventListener('click',()=>{
-                btns.forEach(b=>b.classList.remove('active'));
-                btn.classList.add('active');
-                const f=btn.dataset.filter;
-                items.forEach(it=>it.style.display=(f==='all'||it.dataset.category===f)?'':'none');
-            });
-        });
-    }
-    initFilter('.gallery-filter-bar .category-btn','.gallery-item-desktop');
-    initFilter('#galeria .category-btn','#mobile-gallery-grid > div');
-    // Smooth scroll links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click',e=>{
-            const t=document.querySelector(a.getAttribute('href'));
-            if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
-        });
+    SECTIONS.forEach(id=>{
+      const dn=document.getElementById('nav-'+id);
+      const mn=document.getElementById('mnav-'+id);
+      if(dn) dn.classList.toggle('active',id===cur);
+      if(mn) mn.classList.toggle('active',id===cur);
     });
-    // WhatsApp helpers
-    function wa(msg){window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');}
-    window.simularPago=function(){
-        const f=document.getElementById('fecha-cita')?.value;
-        const h=document.getElementById('hora-cita')?.value||'';
-        if(!f){showToast('Selecciona una fecha','error');return;}
-        wa(`Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`);
-        showToast('Abriendo WhatsApp para confirmar tu cita...','success');
-    };
-    window.simularPagoDesktop=function(){
-        const f=document.getElementById('fecha-cita-desktop')?.value;
-        const h=document.getElementById('hora-cita-desktop')?.value||'';
-        if(!f){showToast('Selecciona una fecha','error');return;}
-        wa(`Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`);
-        showToast('Abriendo WhatsApp para confirmar tu cita...','success');
-    };
-    window.enviarSolicitudDesktop=function(){
-        const form=document.getElementById('tattooFormDesktop');
-        const estilo=form.querySelector('select')?.value||'';
-        const ubicacion=form.querySelectorAll('input,textarea')[0]?.value||'';
-        const descripcion=form.querySelector('textarea')?.value||'';
-        wa(`Hola Julián! Quiero solicitar un diseño 🖤\n🎨 Estilo: ${estilo}\n📍 Ubicación: ${ubicacion}\n💬 Idea: ${descripcion}`);
-        showToast('Abriendo WhatsApp con tu solicitud...','success');
-        form.reset();
-    };
-    // Persistencia formulario
-    (function(){
-        const KEY='guerr_booking_form';
-        function save(){
-            localStorage.setItem(KEY,JSON.stringify({
-                desktop:{fecha:document.getElementById('fecha-cita-desktop')?.value||'',hora:document.getElementById('hora-cita-desktop')?.value||''},
-                mobile:{fecha:document.getElementById('fecha-cita')?.value||'',hora:document.getElementById('hora-cita')?.value||''}
-            }));
-        }
-        function load(){
-            try{
-                const d=JSON.parse(localStorage.getItem(KEY)||'{}');
-                if(d.desktop){
-                    const fd=document.getElementById('fecha-cita-desktop');if(fd)fd.value=d.desktop.fecha||'';
-                    const hd=document.getElementById('hora-cita-desktop');if(hd)hd.value=d.desktop.hora||'';
-                }
-                if(d.mobile){
-                    const fm=document.getElementById('fecha-cita');if(fm)fm.value=d.mobile.fecha||'';
-                    const hm=document.getElementById('hora-cita');if(hm)hm.value=d.mobile.hora||'';
-                }
-            }catch(e){}
-        }
-        ['fecha-cita-desktop','hora-cita-desktop','fecha-cita','hora-cita'].forEach(id=>{
-            const el=document.getElementById(id);if(el)el.addEventListener('change',save);
-        });
-        load();
-        const o1=window.simularPago;window.simularPago=function(){save();o1();};
-        const o2=window.simularPagoDesktop;window.simularPagoDesktop=function(){save();o2();};
-    })();
-})();
+  }
+  window.addEventListener('scroll',updateActive,{passive:true});
+
+  // ── Smooth scroll ──
+  function goTo(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
 </script>
 </body>
 </html>
-
-</html>
-
