@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-    <title>Guerr Tattoo · Julián Guerrero · Bogotá</title>
+    <title>Guerr Tattoo Studio · Julián Guerrero · Bogotá</title>
+    <meta name="description" content="Guerr Tattoo Studio - Especialista en blackwork, realismo y minimalismo. Más de 8 años creando arte sobre la piel en Suba, Bogotá.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -13,247 +14,303 @@
             --bg-deep: #050508;
             --bg-primary: #0a0a0f;
             --bg-secondary: #0f0f18;
-            --bg-card: rgba(15, 15, 25, 0.7);
+            --bg-card: rgba(15,15,25,0.7);
             --cyan: #00f0ff;
             --cyan-dim: #00a8b3;
             --magenta: #ff006e;
             --violet: #8b5cf6;
             --gold: #c6a43f;
-            --cyan-glow: rgba(0, 240, 255, 0.3);
-            --magenta-glow: rgba(255, 0, 110, 0.3);
-            --violet-glow: rgba(139, 92, 246, 0.3);
+            --cyan-glow: rgba(0,240,255,0.3);
+            --magenta-glow: rgba(255,0,110,0.3);
+            --violet-glow: rgba(139,92,246,0.3);
             --text-primary: #e8e8f0;
             --text-secondary: #8888a0;
             --text-dim: #55556a;
-            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-subtle: rgba(255,255,255,0.06);
             --transition-fast: 150ms ease;
-            --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow-cyan: 0 0 20px rgba(0, 240, 255, 0.2);
-            --shadow-magenta: 0 0 20px rgba(255, 0, 110, 0.2);
-            --shadow-violet: 0 0 20px rgba(139, 92, 246, 0.2);
+            --transition-base: 200ms cubic-bezier(0.4,0,0.2,1);
+            --shadow-cyan: 0 0 20px rgba(0,240,255,0.2);
+            --shadow-magenta: 0 0 20px rgba(255,0,110,0.2);
+            --shadow-violet: 0 0 20px rgba(139,92,246,0.2);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
-            line-height: 1.5;
-            overflow-x: hidden;
-            position: relative;
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{
+            font-family:'Rajdhani',sans-serif;
+            background-color:var(--bg-deep);
+            color:var(--text-primary);
+            line-height:1.5;
+            overflow-x:hidden;
+            position:relative;
         }
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.025) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            z-index: 0;
-            animation: gridMove 25s linear infinite;
-            will-change: transform;
+        body::before{
+            content:'';
+            position:fixed;inset:0;
+            background-image:
+                linear-gradient(rgba(0,240,255,0.025) 1px,transparent 1px),
+                linear-gradient(90deg,rgba(0,240,255,0.025) 1px,transparent 1px);
+            background-size:60px 60px;
+            pointer-events:none;z-index:0;
+            animation:gridMove 25s linear infinite;
+            will-change:transform;
         }
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.04) 2px, rgba(0, 0, 0, 0.04) 4px);
-            pointer-events: none;
-            z-index: 1;
+        body::after{
+            content:'';position:fixed;inset:0;
+            background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);
+            pointer-events:none;z-index:1;
         }
-        @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(60px); } }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--bg-primary); }
-        ::-webkit-scrollbar-thumb { background: rgba(0, 240, 255, 0.3); border-radius: 2px; }
-        .particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-        .particle {
-            position: absolute; width: 2px; height: 2px; background: var(--cyan);
-            border-radius: 50%; opacity: 0; animation: particleFloat linear infinite; will-change: transform, opacity;
+        @keyframes gridMove{0%{transform:translateY(0);}100%{transform:translateY(60px);}}
+        ::-webkit-scrollbar{width:4px;}
+        ::-webkit-scrollbar-track{background:var(--bg-primary);}
+        ::-webkit-scrollbar-thumb{background:rgba(0,240,255,0.3);border-radius:2px;}
+        .particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+        .particle{
+            position:absolute;width:2px;height:2px;background:var(--cyan);
+            border-radius:50%;opacity:0;animation:particleFloat linear infinite;
+            will-change:transform,opacity;
         }
-        @keyframes particleFloat {
-            0% { opacity: 0; transform: translateY(100vh) scale(0); }
-            10% { opacity: 0.5; } 90% { opacity: 0.5; }
-            100% { opacity: 0; transform: translateY(-100px) scale(1); }
+        @keyframes particleFloat{
+            0%{opacity:0;transform:translateY(100vh) scale(0);}
+            10%{opacity:0.5;}90%{opacity:0.5;}
+            100%{opacity:0;transform:translateY(-100px) scale(1);}
         }
-        .btn {
-            background: linear-gradient(135deg, var(--cyan), #00b8d4);
-            color: var(--bg-deep); border: none; padding: 14px 24px; border-radius: 4px;
-            font-weight: 700; font-size: 13px; font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1.5px; text-transform: uppercase; display: inline-flex;
-            align-items: center; justify-content: center; gap: 8px; cursor: pointer;
-            transition: all var(--transition-base); position: relative; overflow: hidden;
-            -webkit-tap-highlight-color: transparent; text-decoration: none;
+        .btn{
+            background:linear-gradient(135deg,var(--cyan),#00b8d4);
+            color:var(--bg-deep);border:none;padding:14px 24px;border-radius:4px;
+            font-weight:700;font-size:13px;font-family:'Orbitron',sans-serif;
+            letter-spacing:1.5px;text-transform:uppercase;display:inline-flex;
+            align-items:center;justify-content:center;gap:8px;cursor:pointer;
+            transition:all var(--transition-base);position:relative;overflow:hidden;
+            -webkit-tap-highlight-color:transparent;text-decoration:none;
         }
-        .btn::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: translateX(-100%); transition: transform 0.4s ease;
+        .btn::before{
+            content:'';position:absolute;inset:0;
+            background:linear-gradient(135deg,transparent,rgba(255,255,255,0.2),transparent);
+            transform:translateX(-100%);transition:transform 0.4s ease;
         }
-        .btn:hover::before { transform: translateX(100%); }
-        .btn:hover { box-shadow: var(--shadow-cyan), 0 4px 20px rgba(0, 240, 255, 0.3); transform: translateY(-1px); }
-        .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; box-shadow: none; }
-        .btn-outline { background: transparent; border: 1px solid rgba(0, 240, 255, 0.3); color: var(--cyan); }
-        .btn-outline:hover { background: rgba(0, 240, 255, 0.08); border-color: var(--cyan); }
-        .btn-full { width: 100%; }
-        .desktop-nav {
-            display: none; position: fixed; top: 0; left: 0; right: 0; height: 64px;
-            background: rgba(5, 5, 10, 0.95); backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0, 240, 255, 0.08);
-            z-index: 1000; align-items: center; justify-content: space-between; padding: 0 2.5rem;
+        .btn:hover::before{transform:translateX(100%);}
+        .btn:hover{box-shadow:var(--shadow-cyan),0 4px 20px rgba(0,240,255,0.3);transform:translateY(-1px);}
+        .btn:disabled{opacity:0.4;cursor:not-allowed;transform:none!important;box-shadow:none;}
+        .btn-outline{background:transparent;border:1px solid rgba(0,240,255,0.3);color:var(--cyan);}
+        .btn-outline:hover{background:rgba(0,240,255,0.08);border-color:var(--cyan);}
+        /* ── DESKTOP NAV ── */
+        .desktop-nav{
+            display:none;position:fixed;top:0;left:0;right:0;height:64px;
+            background:rgba(5,5,10,0.95);backdrop-filter:blur(24px);
+            -webkit-backdrop-filter:blur(24px);
+            border-bottom:1px solid rgba(0,240,255,0.08);
+            z-index:1000;align-items:center;justify-content:space-between;padding:0 2.5rem;
         }
-        .desktop-nav::after {
-            content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--cyan) 20%, var(--magenta) 50%, var(--violet) 80%, transparent);
-            opacity: 0.3;
+        .desktop-nav::after{
+            content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
+            background:linear-gradient(90deg,transparent,var(--cyan) 20%,var(--magenta) 50%,var(--violet) 80%,transparent);
+            opacity:0.3;
         }
-        /* LOGO */
-        .nav-brand { display: flex; align-items: center; text-decoration: none; }
-        .nav-logo { height: 44px; width: auto; object-fit: contain; filter: drop-shadow(0 0 8px rgba(0,240,255,0.3)); }
-        .nav-links { display: flex; align-items: center; gap: 2px; }
-        .nav-link {
-            display: flex; align-items: center; gap: 6px; padding: 8px 14px;
-            color: var(--text-secondary); text-decoration: none; font-family: 'JetBrains Mono', monospace;
-            font-size: 10px; letter-spacing: 1px; text-transform: uppercase; border-radius: 4px;
-            transition: all var(--transition-base); border: 1px solid transparent; white-space: nowrap;
+        .nav-brand{display:flex;align-items:center;text-decoration:none;}
+        .nav-logo{height:44px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(0,240,255,0.3));}
+        .nav-links{display:flex;align-items:center;gap:2px;}
+        .nav-link{
+            display:flex;align-items:center;gap:6px;padding:8px 14px;
+            color:var(--text-secondary);text-decoration:none;
+            font-family:'JetBrains Mono',monospace;font-size:10px;
+            letter-spacing:1px;text-transform:uppercase;border-radius:4px;
+            transition:all var(--transition-base);border:1px solid transparent;white-space:nowrap;
         }
-        .nav-link:hover { color: var(--text-primary); background: rgba(0, 240, 255, 0.05); border-color: rgba(0, 240, 255, 0.1); }
-        .nav-link.active { color: var(--cyan); background: rgba(0, 240, 255, 0.08); border-color: rgba(0, 240, 255, 0.2); }
-        .nav-cta {
-            padding: 8px 22px; background: linear-gradient(135deg, var(--cyan), #00b8d4);
-            color: var(--bg-deep); border: none; border-radius: 4px; font-family: 'Orbitron', sans-serif;
-            font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-            cursor: pointer; transition: all var(--transition-base); text-decoration: none; margin-left: 12px;
+        .nav-link:hover{color:var(--text-primary);background:rgba(0,240,255,0.05);border-color:rgba(0,240,255,0.1);}
+        .nav-link.active{color:var(--cyan);background:rgba(0,240,255,0.08);border-color:rgba(0,240,255,0.2);}
+        .nav-cta{
+            padding:8px 22px;background:linear-gradient(135deg,var(--cyan),#00b8d4);
+            color:var(--bg-deep);border:none;border-radius:4px;
+            font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;
+            letter-spacing:2px;text-transform:uppercase;cursor:pointer;
+            transition:all var(--transition-base);text-decoration:none;margin-left:12px;
         }
-        .nav-cta:hover { box-shadow: var(--shadow-cyan); transform: translateY(-1px); }
-        .desktop-content { display: none; }
-        .section { padding: 80px 3rem; position: relative; z-index: 2; }
-        .section::before {
-            content: ''; position: absolute; top: 0; left: 5%; right: 5%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.08), transparent);
+        .nav-cta:hover{box-shadow:var(--shadow-cyan);transform:translateY(-1px);}
+        /* ── DESKTOP CONTENT ── */
+        .desktop-content{display:none;}
+        .section{padding:80px 3rem;position:relative;z-index:2;}
+        .section::before{
+            content:'';position:absolute;top:0;left:5%;right:5%;height:1px;
+            background:linear-gradient(90deg,transparent,rgba(0,240,255,0.08),transparent);
         }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cyan); letter-spacing: 4px; text-transform: uppercase; opacity: 0.6; margin-bottom: 0.5rem; }
-        .section-header h2 { font-family: 'Orbitron', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--text-primary); position: relative; display: inline-block; }
-        .section-header h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 50px; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--magenta)); }
-        .section-header p { color: var(--text-secondary); font-size: 1rem; margin-top: 1.25rem; letter-spacing: 0.5px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .hero-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 120px 3rem 80px; }
-        .hero-section::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 20% 50%, rgba(0, 240, 255, 0.07) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 50%, rgba(255, 0, 110, 0.05) 0%, transparent 50%),
-                        radial-gradient(ellipse at 50% 90%, rgba(139, 92, 246, 0.04) 0%, transparent 50%);
+        .container{max-width:1200px;margin:0 auto;}
+        .section-header{text-align:center;margin-bottom:3rem;}
+        .section-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:4px;text-transform:uppercase;opacity:0.6;margin-bottom:0.5rem;}
+        .section-header h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--text-primary);position:relative;display:inline-block;}
+        .section-header h2::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:50px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--magenta));}
+        .section-header p{color:var(--text-secondary);font-size:1rem;margin-top:1.25rem;letter-spacing:0.5px;max-width:600px;margin-left:auto;margin-right:auto;}
+        /* ── HERO ── */
+        .hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:120px 3rem 80px;}
+        .hero-section::before{
+            content:'';position:absolute;inset:0;
+            background:radial-gradient(ellipse at 20% 50%,rgba(0,240,255,0.07) 0%,transparent 50%),
+                        radial-gradient(ellipse at 80% 50%,rgba(255,0,110,0.05) 0%,transparent 50%),
+                        radial-gradient(ellipse at 50% 90%,rgba(139,92,246,0.04) 0%,transparent 50%);
         }
-        .hero-inner { max-width: 1200px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
-        .hero-left { display: flex; flex-direction: column; gap: 1.5rem; }
-        .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cyan); letter-spacing: 4px; text-transform: uppercase; opacity: 0.8; }
-        .hero-title { font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; letter-spacing: 4px; text-transform: uppercase; line-height: 1.1; background: linear-gradient(135deg, var(--text-primary) 0%, var(--cyan) 60%, var(--magenta) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; position: relative; }
-        .hero-title::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 80px; height: 2px; background: linear-gradient(90deg, var(--cyan), transparent); }
-        .hero-desc { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; letter-spacing: 0.5px; max-width: 480px; }
-        .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
-        .hero-stats { display: flex; gap: 2rem; margin-top: 1rem; }
-        .hero-stat { text-align: center; }
-        .hero-stat-num { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--cyan); text-shadow: 0 0 10px var(--cyan-glow); }
-        .hero-stat-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
-        .hero-right { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .hero-card { border-radius: 6px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.08); position: relative; aspect-ratio: 3/4; transition: all var(--transition-base); background: var(--bg-secondary); }
-        .hero-card:nth-child(2) { margin-top: 2rem; }
-        .hero-card:nth-child(3) { margin-top: -1rem; }
-        .hero-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(5, 5, 8, 0.9)); z-index: 1; }
-        .hero-card:hover { border-color: var(--cyan); box-shadow: 0 0 24px rgba(0, 240, 255, 0.15); transform: translateY(-4px); }
-        .hero-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .hero-card:hover img { transform: scale(1.06); }
-        .hero-card-overlay { position: absolute; bottom: 12px; left: 12px; z-index: 2; }
-        .hero-card-overlay h4 { font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: white; }
-        .hero-card-overlay p { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--cyan); letter-spacing: 0.5px; }
-        .gallery-filter-bar { display: flex; justify-content: center; gap: 10px; margin-bottom: 2rem; flex-wrap: wrap; }
-        .category-btn { background: rgba(0, 240, 255, 0.04); border: 1px solid rgba(0, 240, 255, 0.1); color: var(--text-secondary); padding: 8px 18px; border-radius: 4px; font-weight: 500; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; transition: all var(--transition-base); }
-        .category-btn:hover { border-color: rgba(0, 240, 255, 0.3); color: var(--text-primary); }
-        .category-btn.active { background: rgba(0, 240, 255, 0.1); color: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 10px rgba(0, 240, 255, 0.1); }
-        .gallery-grid-desktop { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .gallery-item-desktop { position: relative; aspect-ratio: 1; border-radius: 6px; overflow: hidden; border: 1px solid var(--border-subtle); transition: all var(--transition-base); cursor: zoom-in; }
-        .gallery-item-desktop::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(5, 5, 8, 0.75)); opacity: 0; transition: opacity var(--transition-base); }
-        .gallery-item-desktop:hover { border-color: rgba(0, 240, 255, 0.35); box-shadow: 0 0 20px rgba(0, 240, 255, 0.1); transform: translateY(-3px); }
-        .gallery-item-desktop:hover::after { opacity: 1; }
-        .gallery-item-desktop img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
-        .gallery-item-desktop:hover img { transform: scale(1.07); }
-        .gallery-item-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 12px; z-index: 2; opacity: 0; transition: opacity var(--transition-base); }
-        .gallery-item-desktop:hover .gallery-item-label { opacity: 1; }
-        .gallery-item-label span { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--cyan); letter-spacing: 1px; text-transform: uppercase; }
-        .lightbox { position: fixed; inset: 0; z-index: 9000; background: rgba(3, 3, 10, 0.96); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-        .lightbox.open { opacity: 1; pointer-events: auto; }
-        .lightbox-img { max-width: 90vw; max-height: 88vh; border-radius: 6px; border: 1px solid rgba(0, 240, 255, 0.15); display: block; }
-        .lightbox-close { position: absolute; top: 20px; right: 20px; width: 42px; height: 42px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 50%; color: var(--cyan); font-size: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--transition-base); }
-        .lightbox-close:hover { background: var(--cyan); color: var(--bg-deep); }
-        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 50%; color: var(--cyan); font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--transition-base); }
-        .lightbox-nav:hover { background: rgba(0, 240, 255, 0.2); }
-        .lightbox-prev { left: 20px; }
-        .lightbox-next { right: 20px; }
-        .lightbox-info { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-secondary); letter-spacing: 1px; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
-        .price-card-desktop { background: rgba(0, 240, 255, 0.03); border-radius: 8px; padding: 2.5rem 1.5rem; text-align: center; border: 1px solid var(--border-subtle); transition: all var(--transition-base); position: relative; overflow: hidden; }
-        .price-card-desktop::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); opacity: 0; transition: opacity var(--transition-base); }
-        .price-card-desktop:hover { border-color: rgba(0, 240, 255, 0.2); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); }
-        .price-card-desktop:hover::before { opacity: 1; }
-        .price-card-desktop h3 { font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 1rem; letter-spacing: 2px; text-transform: uppercase; }
-        .price-card-desktop .price { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--cyan); text-shadow: 0 0 15px var(--cyan-glow); margin-bottom: 0.5rem; }
-        .price-card-desktop small { color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.5px; display: block; }
-        .form-group { margin-bottom: 18px; }
-        label { display: block; font-size: 11px; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; text-transform: uppercase; }
-        input[type="date"], input[type="text"], select, textarea { width: 100%; padding: 14px 16px; background: rgba(0, 240, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 4px; color: var(--text-primary); font-family: 'Rajdhani', sans-serif; font-size: 14px; letter-spacing: 0.5px; transition: all var(--transition-base); color-scheme: dark; }
-        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.1); background: rgba(0, 240, 255, 0.05); }
-        textarea { resize: vertical; }
-        .desktop-footer { padding: 2.5rem 3rem; border-top: 1px solid var(--border-subtle); text-align: center; position: relative; z-index: 2; }
-        .desktop-footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; }
-        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 0.75rem; align-items: center; flex-wrap: wrap; }
-        .footer-links a { color: var(--text-dim); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; transition: color var(--transition-base); }
-        .footer-links a:hover { color: var(--cyan); }
-        .social-btn { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 8px; border: 1px solid rgba(0, 240, 255, 0.3); color: var(--cyan); font-size: 17px; background: rgba(0, 240, 255, 0.04); transition: all 0.2s; text-decoration: none; }
-        .social-btn:hover { border-color: var(--cyan); box-shadow: 0 0 12px var(--cyan-glow); color: white; }
-        .mobile-content { display: block; max-width: 480px; width: 100%; margin: 0 auto; background-color: rgba(10, 10, 18, 0.95); min-height: 100vh; position: relative; z-index: 2; border-left: 1px solid rgba(0, 240, 255, 0.05); border-right: 1px solid rgba(0, 240, 255, 0.05); padding-bottom: 70px; }
-        .mobile-header { padding: 20px 18px 14px; background: rgba(10, 10, 18, 0.98); }
-        /* LOGO MOBILE */
-        .mobile-logo { height: 64px; width: auto; object-fit: contain; display: block; margin-bottom: 8px; filter: drop-shadow(0 0 10px rgba(0,240,255,0.35)); }
-        .mobile-header-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--cyan); letter-spacing: 3px; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.4rem; }
-        .mobile-header p { color: var(--text-secondary); font-size: 12px; margin-top: 4px; display: flex; align-items: center; gap: 6px; }
-        .mobile-section { padding: 22px 18px; border-bottom: 1px solid var(--border-subtle); }
-        .mobile-section-title { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; letter-spacing: 2px; text-transform: uppercase; }
-        .mobile-section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(0, 240, 255, 0.15), transparent); }
-        .mobile-section-title i { color: var(--cyan); font-size: 14px; }
-        .mobile-gallery-scroll { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-        .mobile-gallery-scroll::-webkit-scrollbar { display: none; }
-        .mobile-bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10, 10, 18, 0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid rgba(0, 240, 255, 0.08); display: flex; justify-content: space-around; padding: 6px 0 max(10px, env(safe-area-inset-bottom)); z-index: 1000; }
-        .mobile-bottom-nav::before { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.15), transparent); }
-        .mobile-nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-dim); font-size: 10px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; transition: color var(--transition-base); cursor: pointer; text-decoration: none; background: transparent; border: none; padding: 4px 6px; }
-        .mobile-nav-item i { font-size: 17px; margin-bottom: 2px; }
-        .mobile-nav-item.active { color: var(--cyan); }
-        .mobile-nav-item.active i { text-shadow: 0 0 8px var(--cyan-glow); }
-        .mobile-footer-note { text-align: center; padding: 18px; color: var(--text-dim); font-size: 10px; font-family: 'JetBrains Mono', monospace; letter-spacing: 2px; text-transform: uppercase; }
-        .toast-container { position: fixed; top: max(72px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 99999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; width: 90%; max-width: 340px; }
-        .toast { background: rgba(6, 6, 18, 0.96); backdrop-filter: blur(20px); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 11px 16px; display: flex; align-items: center; gap: 10px; font-size: 0.78rem; font-weight: 500; animation: toastIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .toast.success { border-color: rgba(34, 211, 160, 0.35); }
-        .toast.error { border-color: rgba(255, 71, 87, 0.35); }
-        .toast.info { border-color: rgba(0, 240, 255, 0.25); }
-        .toast-icon { font-size: 0.95rem; flex-shrink: 0; }
-        .toast.success .toast-icon { color: #22d3a0; }
-        .toast.error .toast-icon { color: #ff4757; }
-        .toast.info .toast-icon { color: var(--cyan); }
-        @keyframes toastIn { from { opacity: 0; transform: translateY(-8px) scale(0.94); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        @keyframes toastOut { to { opacity: 0; transform: translateY(-8px) scale(0.94); } }
-        .note-text { margin-top: 14px; font-size: 11px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
-        .text-center { text-align: center; }
-        .mt-4 { margin-top: 1rem; }
-        .mt-6 { margin-top: 1.5rem; }
-        @media (min-width: 1024px) { .desktop-nav { display: flex; } .desktop-content { display: block; } .mobile-content, .mobile-bottom-nav { display: none; } }
-        @media (max-width: 1023px) { .desktop-nav, .desktop-content { display: none; } .mobile-content { display: block; } .mobile-bottom-nav { display: flex; } }
-        @media (max-width: 500px) { .mobile-content { max-width: 100%; } }
+        .hero-inner{max-width:1200px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1;}
+        .hero-left{display:flex;flex-direction:column;gap:1.5rem;}
+        .hero-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:4px;text-transform:uppercase;opacity:0.8;}
+        .hero-title{
+            font-family:'Orbitron',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;
+            letter-spacing:4px;text-transform:uppercase;line-height:1.1;
+            background:linear-gradient(135deg,var(--text-primary) 0%,var(--cyan) 60%,var(--magenta) 100%);
+            -webkit-background-clip:text;background-clip:text;color:transparent;position:relative;
+        }
+        .hero-title::after{content:'';position:absolute;bottom:-8px;left:0;width:80px;height:2px;background:linear-gradient(90deg,var(--cyan),transparent);}
+        .hero-desc{color:var(--text-secondary);font-size:1.1rem;line-height:1.8;letter-spacing:0.5px;max-width:480px;}
+        .hero-buttons{display:flex;gap:12px;flex-wrap:wrap;}
+        .hero-stats{display:flex;gap:2rem;margin-top:1rem;}
+        .hero-stat{text-align:center;}
+        .hero-stat-num{font-family:'Orbitron',sans-serif;font-size:1.8rem;font-weight:800;color:var(--cyan);text-shadow:0 0 10px var(--cyan-glow);}
+        .hero-stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+        .hero-right{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+        .hero-card{border-radius:6px;overflow:hidden;border:1px solid rgba(0,240,255,0.08);position:relative;aspect-ratio:3/4;transition:all var(--transition-base);background:var(--bg-secondary);}
+        .hero-card:nth-child(2){margin-top:2rem;}
+        .hero-card:nth-child(3){margin-top:-1rem;}
+        .hero-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(5,5,8,0.9));z-index:1;}
+        .hero-card:hover{border-color:var(--cyan);box-shadow:0 0 24px rgba(0,240,255,0.15);transform:translateY(-4px);}
+        .hero-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
+        .hero-card:hover img{transform:scale(1.06);}
+        .hero-card-overlay{position:absolute;bottom:12px;left:12px;z-index:2;}
+        .hero-card-overlay h4{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;color:white;}
+        .hero-card-overlay p{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:0.5px;}
+        /* ── GALLERY ── */
+        .gallery-filter-bar{display:flex;justify-content:center;gap:10px;margin-bottom:2rem;flex-wrap:wrap;}
+        .category-btn{
+            background:rgba(0,240,255,0.04);border:1px solid rgba(0,240,255,0.1);
+            color:var(--text-secondary);padding:8px 18px;border-radius:4px;font-weight:500;
+            cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;
+            letter-spacing:1px;text-transform:uppercase;transition:all var(--transition-base);
+        }
+        .category-btn:hover{border-color:rgba(0,240,255,0.3);color:var(--text-primary);}
+        .category-btn.active{background:rgba(0,240,255,0.1);color:var(--cyan);border-color:var(--cyan);box-shadow:0 0 10px rgba(0,240,255,0.1);}
+        .gallery-grid-desktop{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+        .gallery-item-desktop{
+            position:relative;aspect-ratio:1;border-radius:6px;overflow:hidden;
+            border:1px solid var(--border-subtle);transition:all var(--transition-base);cursor:zoom-in;
+        }
+        .gallery-item-desktop::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(5,5,8,0.75));opacity:0;transition:opacity var(--transition-base);}
+        .gallery-item-desktop:hover{border-color:rgba(0,240,255,0.35);box-shadow:0 0 20px rgba(0,240,255,0.1);transform:translateY(-3px);}
+        .gallery-item-desktop:hover::after{opacity:1;}
+        .gallery-item-desktop img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;display:block;}
+        .gallery-item-desktop:hover img{transform:scale(1.07);}
+        .gallery-item-label{position:absolute;bottom:0;left:0;right:0;padding:10px 12px;z-index:2;opacity:0;transition:opacity var(--transition-base);}
+        .gallery-item-desktop:hover .gallery-item-label{opacity:1;}
+        .gallery-item-label span{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;}
+        /* ── LIGHTBOX ── */
+        .lightbox{position:fixed;inset:0;z-index:9000;background:rgba(3,3,10,0.96);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s ease;}
+        .lightbox.open{opacity:1;pointer-events:auto;}
+        .lightbox-img{max-width:90vw;max-height:88vh;border-radius:6px;border:1px solid rgba(0,240,255,0.15);display:block;}
+        .lightbox-close{position:absolute;top:20px;right:20px;width:42px;height:42px;background:rgba(0,240,255,0.1);border:1px solid rgba(0,240,255,0.2);border-radius:50%;color:var(--cyan);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--transition-base);}
+        .lightbox-close:hover{background:var(--cyan);color:var(--bg-deep);}
+        .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;background:rgba(0,240,255,0.1);border:1px solid rgba(0,240,255,0.2);border-radius:50%;color:var(--cyan);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--transition-base);}
+        .lightbox-nav:hover{background:rgba(0,240,255,0.2);}
+        .lightbox-prev{left:20px;}
+        .lightbox-next{right:20px;}
+        .lightbox-info{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-secondary);letter-spacing:1px;}
+        /* ── PRICING ── */
+        .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:900px;margin:0 auto;}
+        .price-card-desktop{
+            background:rgba(0,240,255,0.03);border-radius:8px;padding:2.5rem 1.5rem;
+            text-align:center;border:1px solid var(--border-subtle);
+            transition:all var(--transition-base);position:relative;overflow:hidden;
+        }
+        .price-card-desktop::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity var(--transition-base);}
+        .price-card-desktop:hover{border-color:rgba(0,240,255,0.2);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.3);}
+        .price-card-desktop:hover::before{opacity:1;}
+        .price-card-desktop h3{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:600;margin-bottom:1rem;letter-spacing:2px;text-transform:uppercase;}
+        .price-card-desktop .price{font-family:'Orbitron',sans-serif;font-size:2.2rem;font-weight:800;color:var(--cyan);text-shadow:0 0 15px var(--cyan-glow);margin-bottom:0.5rem;}
+        .price-card-desktop small{color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.5px;display:block;}
+        /* ── FORMS ── */
+        .form-group{margin-bottom:18px;}
+        label{display:block;font-size:11px;font-weight:500;margin-bottom:6px;color:var(--text-secondary);font-family:'JetBrains Mono',monospace;letter-spacing:1px;text-transform:uppercase;}
+        input[type="date"],input[type="text"],select,textarea{
+            width:100%;padding:14px 16px;
+            background:rgba(0,240,255,0.03);border:1px solid var(--border-subtle);
+            border-radius:4px;color:var(--text-primary);font-family:'Rajdhani',sans-serif;
+            font-size:14px;letter-spacing:0.5px;transition:all var(--transition-base);color-scheme:dark;
+        }
+        input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 1px rgba(0,240,255,0.1);background:rgba(0,240,255,0.05);}
+        textarea{resize:vertical;}
+        /* ── FOOTER ── */
+        .desktop-footer{padding:2.5rem 3rem;border-top:1px solid var(--border-subtle);text-align:center;position:relative;z-index:2;}
+        .desktop-footer p{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;}
+        .footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:0.75rem;align-items:center;flex-wrap:wrap;}
+        .footer-links a{color:var(--text-dim);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;transition:color var(--transition-base);}
+        .footer-links a:hover{color:var(--cyan);}
+        .social-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid rgba(0,240,255,0.3);color:var(--cyan);font-size:17px;background:rgba(0,240,255,0.04);transition:all 0.2s;text-decoration:none;}
+        .social-btn:hover{border-color:var(--cyan);box-shadow:0 0 12px var(--cyan-glow);color:white;}
+        /* ── MOBILE ── */
+        .mobile-content{
+            display:block;max-width:480px;width:100%;margin:0 auto;
+            background-color:rgba(10,10,18,0.95);min-height:100vh;
+            position:relative;z-index:2;
+            border-left:1px solid rgba(0,240,255,0.05);
+            border-right:1px solid rgba(0,240,255,0.05);
+            padding-bottom:70px;
+        }
+        .mobile-header{padding:20px 18px 14px;background:rgba(10,10,18,0.98);}
+        .mobile-logo{height:64px;width:auto;object-fit:contain;display:block;margin-bottom:8px;filter:drop-shadow(0 0 10px rgba(0,240,255,0.35));}
+        .mobile-header-tag{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;opacity:0.5;margin-bottom:0.4rem;}
+        .mobile-header p{color:var(--text-secondary);font-size:12px;margin-top:4px;display:flex;align-items:center;gap:6px;}
+        .mobile-section{padding:22px 18px;border-bottom:1px solid var(--border-subtle);}
+        .mobile-section-title{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px;letter-spacing:2px;text-transform:uppercase;}
+        .mobile-section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,240,255,0.15),transparent);}
+        .mobile-section-title i{color:var(--cyan);font-size:14px;}
+        .mobile-gallery-scroll{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+        .mobile-gallery-scroll::-webkit-scrollbar{display:none;}
+        .mobile-bottom-nav{
+            position:fixed;bottom:0;left:0;right:0;
+            background:rgba(10,10,18,0.97);backdrop-filter:blur(20px);
+            -webkit-backdrop-filter:blur(20px);
+            border-top:1px solid rgba(0,240,255,0.08);
+            display:flex;justify-content:space-around;
+            padding:6px 0 max(10px,env(safe-area-inset-bottom));z-index:1000;
+        }
+        .mobile-bottom-nav::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,0.15),transparent);}
+        .mobile-nav-item{display:flex;flex-direction:column;align-items:center;color:var(--text-dim);font-size:10px;font-family:'JetBrains Mono',monospace;letter-spacing:0.5px;transition:color var(--transition-base);cursor:pointer;text-decoration:none;background:transparent;border:none;padding:4px 6px;}
+        .mobile-nav-item i{font-size:17px;margin-bottom:2px;}
+        .mobile-nav-item.active{color:var(--cyan);}
+        .mobile-nav-item.active i{text-shadow:0 0 8px var(--cyan-glow);}
+        .mobile-footer-note{text-align:center;padding:18px;color:var(--text-dim);font-size:10px;font-family:'JetBrains Mono',monospace;letter-spacing:2px;text-transform:uppercase;}
+        /* ── TOAST ── */
+        .toast-container{position:fixed;top:max(72px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:99999;display:flex;flex-direction:column;gap:8px;pointer-events:none;width:90%;max-width:340px;}
+        .toast{background:rgba(6,6,18,0.96);backdrop-filter:blur(20px);border:1px solid var(--border-subtle);border-radius:10px;padding:11px 16px;display:flex;align-items:center;gap:10px;font-size:0.78rem;font-weight:500;animation:toastIn 0.28s cubic-bezier(0.34,1.56,0.64,1);}
+        .toast.success{border-color:rgba(34,211,160,0.35);}
+        .toast.error{border-color:rgba(255,71,87,0.35);}
+        .toast.info{border-color:rgba(0,240,255,0.25);}
+        .toast-icon{font-size:0.95rem;flex-shrink:0;}
+        .toast.success .toast-icon{color:#22d3a0;}
+        .toast.error .toast-icon{color:#ff4757;}
+        .toast.info .toast-icon{color:var(--cyan);}
+        @keyframes toastIn{from{opacity:0;transform:translateY(-8px) scale(0.94);}to{opacity:1;transform:translateY(0) scale(1);}}
+        @keyframes toastOut{to{opacity:0;transform:translateY(-8px) scale(0.94);}}
+        .note-text{margin-top:14px;font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;letter-spacing:0.5px;}
+        .text-center{text-align:center;}
+        .mt-4{margin-top:1rem;}
+        .mt-6{margin-top:1.5rem;}
+        /* ── RESPONSIVE ── */
+        @media(min-width:1024px){
+            .desktop-nav{display:flex;}
+            .desktop-content{display:block;}
+            .mobile-content,.mobile-bottom-nav{display:none;}
+        }
+        @media(max-width:1023px){
+            .desktop-nav,.desktop-content{display:none;}
+            .mobile-content{display:block;}
+            .mobile-bottom-nav{display:flex;}
+        }
+        @media(max-width:500px){
+            .mobile-content{max-width:100%;}
+        }
     </style>
 </head>
 <body>
+
 <div class="toast-container" id="toastContainer"></div>
 <div class="particles" id="particles"></div>
+
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
     <div class="lightbox-close" id="lbClose"><i class="fas fa-times"></i></div>
     <button class="lightbox-nav lightbox-prev" id="lbPrev"><i class="fas fa-chevron-left"></i></button>
@@ -262,29 +319,30 @@
     <div class="lightbox-info" id="lbInfo"></div>
 </div>
 
-<!-- NAVEGACIÓN DESKTOP -->
+<!-- ══ DESKTOP NAV ══════════════════════════════════════════════════════════ -->
 <header class="desktop-nav">
     <a href="#hero" class="nav-brand">
-        <img src="https://artistguerr.github.io/guerrtattoostudio/logo%20pagina%20web.webp" alt="Guerr Tattoo" class="nav-logo">
+        <img src="https://artistguerr.github.io/guerrtattoostudio/logo%20pagina%20web.webp" alt="Guerr Tattoo Studio" class="nav-logo">
     </a>
     <nav class="nav-links">
-        <a href="#hero" class="nav-link active" data-section="hero"><i class="fas fa-home"></i> Inicio</a>
-        <a href="#gallery" class="nav-link" data-section="gallery"><i class="fas fa-images"></i> Galería</a>
-        <a href="#pricing" class="nav-link" data-section="pricing"><i class="fas fa-tag"></i> Precios</a>
-        <a href="#booking" class="nav-link" data-section="booking"><i class="fas fa-calendar"></i> Reservas</a>
-        <a href="#location" class="nav-link" data-section="location"><i class="fas fa-map"></i> Ubicación</a>
+        <a href="#hero"     class="nav-link active" data-section="hero">    <i class="fas fa-home"></i>     Inicio</a>
+        <a href="#gallery"  class="nav-link"         data-section="gallery"> <i class="fas fa-images"></i>   Galería</a>
+        <a href="#pricing"  class="nav-link"         data-section="pricing"> <i class="fas fa-tag"></i>      Precios</a>
+        <a href="#booking"  class="nav-link"         data-section="booking"> <i class="fas fa-calendar"></i> Reservas</a>
+        <a href="#location" class="nav-link"         data-section="location"><i class="fas fa-map"></i>      Ubicación</a>
     </nav>
     <a href="#booking" class="nav-cta">Reservar</a>
 </header>
 
-<!-- CONTENIDO DESKTOP -->
+<!-- ══ DESKTOP CONTENT ═════════════════════════════════════════════════════ -->
 <main class="desktop-content">
-    <!-- Hero -->
+
+    <!-- HERO -->
     <section class="hero-section section" id="hero">
         <div class="hero-inner">
             <div class="hero-left">
-                <div class="hero-tag">v2.0 // artist portfolio & booking</div>
-                <h1 class="hero-title">Guerr<br>Tattoo</h1>
+                <div class="hero-tag">v2.0 // artist portfolio &amp; booking</div>
+                <h1 class="hero-title">Guerr<br>Tattoo<br>Studio</h1>
                 <p class="hero-desc">Especialista en blackwork, realismo y minimalismo. Más de 8 años creando arte sobre la piel en Suba, Bogotá. Cada diseño es una pieza única e irrepetible.</p>
                 <div class="hero-buttons">
                     <button class="btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})"><i class="fas fa-calendar-check"></i> Reservar cita</button>
@@ -317,7 +375,7 @@
         </div>
     </section>
 
-    <!-- Galería Desktop -->
+    <!-- GALERÍA DESKTOP -->
     <section class="section" id="gallery">
         <div class="container">
             <header class="section-header">
@@ -338,7 +396,7 @@
                 <div class="gallery-item-desktop" data-category="blackwork" data-src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20QUEEN-darkwork.webp" data-label="Darkwork · Dark Queen"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20QUEEN-darkwork.webp" alt="Dark Queen" loading="lazy"><div class="gallery-item-label"><span>Darkwork</span></div></div>
                 <div class="gallery-item-desktop" data-category="realismo" data-src="https://artistguerr.github.io/guerrtattoostudio/img/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp" data-label="Realismo · Rock Lee"><img src="https://artistguerr.github.io/guerrtattoostudio/img/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp" alt="Rock Lee Anime" loading="lazy"><div class="gallery-item-label"><span>Realismo</span></div></div>
                 <div class="gallery-item-desktop" data-category="realismo" data-src="https://artistguerr.github.io/guerrtattoostudio/img/DRAG%C3%93N%20PROTECTO-Neo%20oriental%20sombras.webp" data-label="Realismo · Dragón Protector"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DRAG%C3%93N%20PROTECTO-Neo%20oriental%20sombras.webp" alt="Dragón Protector" loading="lazy"><div class="gallery-item-label"><span>Neo Oriental</span></div></div>
-                <div class="gallery-item-desktop" data-category="realismo" data-src="https://artistguerr.github.io/guerrtattoostudio/img/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp" data-label="Realismo · Tiger and Flowers"><img src="https://artistguerr.github.io/guerrtattoostudio/img/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp" alt="Tiger and Flowers" loading="lazy"><div class="gallery-item-label"><span>Color</span></div></div>
+                <div class="gallery-item-desktop" data-category="realismo" data-src="https://artistguerr.github.io/guerrtattoostudio/img/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp" data-label="Color · Tiger and Flowers"><img src="https://artistguerr.github.io/guerrtattoostudio/img/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp" alt="Tiger and Flowers" loading="lazy"><div class="gallery-item-label"><span>Color</span></div></div>
                 <div class="gallery-item-desktop" data-category="sombras" data-src="https://artistguerr.github.io/guerrtattoostudio/img/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp" data-label="Sombras · No Veo No Escucho"><img src="https://artistguerr.github.io/guerrtattoostudio/img/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp" alt="No Veo No Escucho No Hablo" loading="lazy"><div class="gallery-item-label"><span>Sombras</span></div></div>
                 <div class="gallery-item-desktop" data-category="sombras" data-src="https://artistguerr.github.io/guerrtattoostudio/img/SUPREME%20EYE-sombras.webp" data-label="Sombras · Supreme Eye"><img src="https://artistguerr.github.io/guerrtattoostudio/img/SUPREME%20EYE-sombras.webp" alt="Supreme Eye" loading="lazy"><div class="gallery-item-label"><span>Sombras</span></div></div>
                 <div class="gallery-item-desktop" data-category="blackwork" data-src="https://artistguerr.github.io/guerrtattoostudio/img/WAR-PIG-sombras.webp" data-label="Blackwork · War Pig"><img src="https://artistguerr.github.io/guerrtattoostudio/img/WAR-PIG-sombras.webp" alt="War Pig" loading="lazy"><div class="gallery-item-label"><span>Blackwork</span></div></div>
@@ -352,7 +410,7 @@
         </div>
     </section>
 
-    <!-- Precios Desktop -->
+    <!-- PRECIOS DESKTOP -->
     <section class="section" id="pricing">
         <div class="container">
             <header class="section-header">
@@ -369,25 +427,32 @@
         </div>
     </section>
 
-    <!-- Reservas Desktop -->
+    <!-- RESERVAS DESKTOP -->
     <section class="section" id="booking">
         <div class="container">
             <header class="section-header">
-                <div class="section-tag">// book & request</div>
-                <h2>Reservas & Diseños</h2>
+                <div class="section-tag">// book &amp; request</div>
+                <h2>Reservas &amp; Diseños</h2>
             </header>
             <div style="max-width:760px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
                 <div style="background:rgba(0,240,255,.02);border:1px solid var(--border-subtle);border-radius:8px;padding:2rem;">
                     <h3 style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;color:var(--text-primary);display:flex;align-items:center;gap:8px;"><i class="fas fa-calendar-alt" style="color:var(--cyan);"></i> Reserva tu cita</h3>
                     <div class="form-group"><label>Fecha</label><input type="date" id="fecha-cita-desktop" min="2025-04-01"></div>
-                    <div class="form-group"><label>Hora</label><select id="hora-cita-desktop"><option>10:00 AM (2h)</option><option>12:00 PM (2h)</option><option>2:00 PM (3h)</option><option>4:00 PM (2h)</option></select></div>
+                    <div class="form-group"><label>Hora</label>
+                        <select id="hora-cita-desktop">
+                            <option>10:00 AM (2h)</option><option>12:00 PM (2h)</option>
+                            <option>2:00 PM (3h)</option><option>4:00 PM (2h)</option>
+                        </select>
+                    </div>
                     <button class="btn" style="width:100%;" onclick="simularPagoDesktop()"><i class="fas fa-lock"></i> Pagar depósito · $40.000</button>
                     <p class="note-text">Depósito no reembolsable. Confirma vía WhatsApp.</p>
                 </div>
                 <div style="background:rgba(0,240,255,.02);border:1px solid var(--border-subtle);border-radius:8px;padding:2rem;">
                     <h3 style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;color:var(--text-primary);display:flex;align-items:center;gap:8px;"><i class="fas fa-pencil-alt" style="color:var(--cyan);"></i> Solicitar diseño</h3>
                     <form id="tattooFormDesktop" onsubmit="event.preventDefault();enviarSolicitudDesktop()">
-                        <div class="form-group"><label>Estilo</label><select required><option>Blackwork</option><option>Realismo</option><option>Minimal</option><option>Geométrico</option></select></div>
+                        <div class="form-group"><label>Estilo</label>
+                            <select><option>Blackwork</option><option>Realismo</option><option>Minimal</option><option>Geométrico</option></select>
+                        </div>
                         <div class="form-group"><label>Ubicación</label><input type="text" placeholder="ej. antebrazo derecho..." required></div>
                         <div class="form-group"><label>Descripción</label><textarea rows="3" placeholder="Cuéntame tu idea..." required></textarea></div>
                         <button type="submit" class="btn" style="width:100%;">Enviar solicitud</button>
@@ -397,7 +462,7 @@
         </div>
     </section>
 
-    <!-- Ubicación Desktop -->
+    <!-- UBICACIÓN DESKTOP -->
     <section class="section" id="location">
         <div class="container">
             <header class="section-header">
@@ -406,20 +471,29 @@
             </header>
             <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;align-items:center;">
                 <div style="width:100%;height:350px;border-radius:8px;overflow:hidden;border:1px solid var(--border-subtle);">
-                    <iframe title="Mapa de ubicación del estudio" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.0!2d-74.0979922!3d4.746891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f85dd8f67dffd%3A0x42241175f1a8bc6!2sGuerr%20Tattoo%20Studio!5e0!3m2!1ses!2sco!4v1" style="width:100%;height:100%;filter:grayscale(1)invert(1)hue-rotate(180deg)saturate(.5)brightness(.7)contrast(1.2);border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe title="Mapa del estudio"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-74.1130%2C4.7600%2C-74.0930%2C4.7800&layer=mapnik&marker=4.7700%2C-74.1030"
+                        style="width:100%;height:100%;filter:grayscale(1)invert(1)hue-rotate(180deg)saturate(.5)brightness(.7)contrast(1.2);border:0;"
+                        allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div style="display:flex;flex-direction:column;gap:1.5rem;">
                     <address style="background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:1.5rem;border-radius:6px;font-style:normal;">
                         <i class="fas fa-location-dot" style="color:var(--cyan);font-size:24px;margin-bottom:12px;display:block;text-shadow:0 0 10px var(--cyan-glow);"></i>
                         <h4 style="font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">Dirección</h4>
                         <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">Cra. 107 #143-22, piso 2<br>Suba, Bogotá, Colombia</p>
-                        <a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:var(--cyan);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:12px;">Cómo llegar <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z" target="_blank" rel="noopener"
+                            style="display:inline-flex;align-items:center;gap:6px;color:var(--cyan);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:12px;">
+                            Cómo llegar <i class="fas fa-arrow-right"></i>
+                        </a>
                     </address>
                     <div style="background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:1.5rem;border-radius:6px;">
                         <i class="fab fa-whatsapp" style="color:#25d366;font-size:24px;margin-bottom:12px;display:block;"></i>
                         <h4 style="font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">Contacto</h4>
                         <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">301 280 2733<br>Lun–Sáb: 10am–7pm</p>
-                        <a href="https://wa.me/573012802733" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#25d366;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:12px;">Escribir por WhatsApp <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://wa.me/573012802733" target="_blank" rel="noopener"
+                            style="display:inline-flex;align-items:center;gap:6px;color:#25d366;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:12px;">
+                            Escribir por WhatsApp <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -429,36 +503,53 @@
     <footer class="desktop-footer">
         <div class="footer-links">
             <a href="#gallery">Galería</a>
-            <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank" rel="noopener" title="Instagram" class="social-btn"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/julian.guerrero.3914?locale=es_LA" target="_blank" rel="noopener" title="Facebook" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank" rel="noopener" title="YouTube" class="social-btn"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank" rel="noopener" title="TikTok" class="social-btn"><i class="fab fa-tiktok"></i></a>
-            <a href="https://wa.me/573012802733" target="_blank" rel="noopener" title="WhatsApp" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/julian.guerrero.3914" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/573012802733" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p>Guerr Tattoo · Julián Guerrero · Suba, Bogotá · © <span id="year"></span></p>
+        <p>Guerr Tattoo Studio · Julián Guerrero · Suba, Bogotá · © <span id="year"></span></p>
     </footer>
 </main>
 
-<!-- CONTENIDO MOBILE -->
+<!-- ══ MOBILE CONTENT ═══════════════════════════════════════════════════════ -->
 <div class="mobile-content">
     <header class="mobile-header">
-        <img src="https://artistguerr.github.io/guerrtattoostudio/logo%20pagina%20web.webp" alt="Guerr Tattoo" class="mobile-logo">
+        <img src="https://artistguerr.github.io/guerrtattoostudio/logo%20pagina%20web.webp" alt="Guerr Tattoo Studio" class="mobile-logo">
         <div class="mobile-header-tag">v2.0 // artist portfolio</div>
-        <p><i class="fas fa-map-pin"></i> Suba, Bogotá · Julián Guerrero</p>
+        <p><i class="fas fa-map-pin" style="color:var(--cyan);"></i> Suba, Bogotá · Julián Guerrero</p>
     </header>
 
     <!-- Inicio mobile -->
     <section class="mobile-section" id="inicio">
         <h2 class="mobile-section-title"><i class="fas fa-home"></i> Inicio</h2>
         <div class="mobile-gallery-scroll" style="margin-bottom:14px;">
-            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;"><h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Blackwork</h3><p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Espalda completa</p></article>
-            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;"><h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Realismo</h3><p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Detalle · Sombras</p></article>
-            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/ANGEL%20GUARDIAN-sombras.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;"><h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Minimal</h3><p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Fine Line</p></article>
-            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/DARK%20QUEEN-darkwork.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;"><h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Blackwork</h3><p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Full sleeve</p></article>
+            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;">
+                <h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Blackwork</h3>
+                <p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Dark Gas Mask</p>
+            </article>
+            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;">
+                <h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Realismo</h3>
+                <p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Detalle · Sombras</p>
+            </article>
+            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/ANGEL%20GUARDIAN-sombras.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;">
+                <h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Darkwork</h3>
+                <p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Ángel Guardián</p>
+            </article>
+            <article style="min-width:135px;height:175px;border-radius:6px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;background:linear-gradient(180deg,transparent 40%,rgba(5,5,8,.95)),url('https://artistguerr.github.io/guerrtattoostudio/img/DARK%20QUEEN-darkwork.webp')center/cover;border:1px solid rgba(0,240,255,.1);overflow:hidden;">
+                <h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:12px;color:white;letter-spacing:1px;">Blackwork</h3>
+                <p style="font-size:10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:2px;">Dark Queen</p>
+            </article>
         </div>
         <div style="display:flex;gap:8px;">
             <button class="btn" style="flex:1;" onclick="document.getElementById('reservas').scrollIntoView({behavior:'smooth'})"><i class="fas fa-calendar-check"></i> Reservar</button>
             <a href="https://wa.me/573012802733" target="_blank" class="btn btn-outline" style="flex:1;text-decoration:none;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+        <div style="display:flex;gap:1.5rem;margin-top:1rem;">
+            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:800;color:var(--cyan);">8+</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">Años</div></div>
+            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:800;color:var(--cyan);">500+</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">Tatuajes</div></div>
+            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:800;color:var(--cyan);">4.9★</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">Rating</div></div>
         </div>
     </section>
 
@@ -466,24 +557,24 @@
     <section class="mobile-section" id="galeria">
         <h2 class="mobile-section-title"><i class="fas fa-images"></i> Galería</h2>
         <div style="display:flex;gap:6px;overflow-x:auto;margin-bottom:12px;scrollbar-width:none;">
-            <button class="category-btn active" data-filter="all" style="font-size:10px;padding:6px 12px;flex-shrink:0;">Todos</button>
-            <button class="category-btn" data-filter="blackwork" style="font-size:10px;padding:6px 12px;flex-shrink:0;">Blackwork</button>
-            <button class="category-btn" data-filter="realismo" style="font-size:10px;padding:6px 12px;flex-shrink:0;">Realismo</button>
-            <button class="category-btn" data-filter="minimal" style="font-size:10px;padding:6px 12px;flex-shrink:0;">Minimal</button>
+            <button class="category-btn active" data-filter="all"       style="font-size:10px;padding:6px 12px;flex-shrink:0;">Todos</button>
+            <button class="category-btn"        data-filter="blackwork" style="font-size:10px;padding:6px 12px;flex-shrink:0;">Blackwork</button>
+            <button class="category-btn"        data-filter="realismo"  style="font-size:10px;padding:6px 12px;flex-shrink:0;">Realismo</button>
+            <button class="category-btn"        data-filter="sombras"   style="font-size:10px;padding:6px 12px;flex-shrink:0;">Sombras</button>
         </div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;" id="mobile-gallery-grid">
             <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="blackwork"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="blackwork"><img src="https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="realismo"><img src="https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
             <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="blackwork"><img src="https://artistguerr.github.io/guerrtattoostudio/img/ANGEL%20GUARDIAN-sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="realismo"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20QUEEN-darkwork.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="blackwork"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20QUEEN-darkwork.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
             <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="realismo"><img src="https://artistguerr.github.io/guerrtattoostudio/img/ROCK%20LEE-%20anime%20blanco%20y%20negro.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
             <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="realismo"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DRAG%C3%93N%20PROTECTO-Neo%20oriental%20sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="minimal"><img src="https://artistguerr.github.io/guerrtattoostudio/img/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="minimal"><img src="https://artistguerr.github.io/guerrtattoostudio/img/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="minimal"><img src="https://artistguerr.github.io/guerrtattoostudio/img/SUPREME%20EYE-sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="realismo"><img src="https://artistguerr.github.io/guerrtattoostudio/img/TIGER%20AND%20FLOWERS-sombras%20y%20color.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="sombras"><img src="https://artistguerr.github.io/guerrtattoostudio/img/NO%20VEO%2C%20NO%20ESCUCHO%2C%20NO%20HABLO-sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="sombras"><img src="https://artistguerr.github.io/guerrtattoostudio/img/SUPREME%20EYE-sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
             <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="blackwork"><img src="https://artistguerr.github.io/guerrtattoostudio/img/WAR-PIG-sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
             <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="realismo"><img src="https://artistguerr.github.io/guerrtattoostudio/img/HADES-realismo%20sombras.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="minimal"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+            <div style="aspect-ratio:1;border-radius:4px;overflow:hidden;border:1px solid var(--border-subtle);" data-category="blackwork"><img src="https://artistguerr.github.io/guerrtattoostudio/img/DARK%20GAS%20MASK-blackwork.webp" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
         </div>
     </section>
 
@@ -491,9 +582,21 @@
     <section class="mobile-section" id="precios">
         <h2 class="mobile-section-title"><i class="fas fa-tag"></i> Precios</h2>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <article style="flex:1 1 100px;background:rgba(0,240,255,.03);border-radius:6px;padding:16px 10px;text-align:center;border:1px solid var(--border-subtle);"><h3 style="font-family:'Orbitron',sans-serif;font-size:11px;font-weight:600;margin-bottom:6px;letter-spacing:1.5px;text-transform:uppercase;">Pequeño</h3><div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:800;color:var(--cyan);">$200k</div><small style="color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:9px;display:block;margin-top:4px;">hasta 10cm</small></article>
-            <article style="flex:1 1 100px;background:rgba(0,240,255,.03);border-radius:6px;padding:16px 10px;text-align:center;border:1px solid var(--border-subtle);"><h3 style="font-family:'Orbitron',sans-serif;font-size:11px;font-weight:600;margin-bottom:6px;letter-spacing:1.5px;text-transform:uppercase;">Mediano</h3><div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:800;color:var(--cyan);">$400k</div><small style="color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:9px;display:block;margin-top:4px;">10-20cm</small></article>
-            <article style="flex:1 1 100px;background:rgba(0,240,255,.03);border-radius:6px;padding:16px 10px;text-align:center;border:1px solid var(--border-subtle);"><h3 style="font-family:'Orbitron',sans-serif;font-size:11px;font-weight:600;margin-bottom:6px;letter-spacing:1.5px;text-transform:uppercase;">Grande</h3><div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:800;color:var(--cyan);">$800k+</div><small style="color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:9px;display:block;margin-top:4px;">+20cm</small></article>
+            <article style="flex:1 1 100px;background:rgba(0,240,255,.03);border-radius:6px;padding:16px 10px;text-align:center;border:1px solid var(--border-subtle);">
+                <h3 style="font-family:'Orbitron',sans-serif;font-size:11px;font-weight:600;margin-bottom:6px;letter-spacing:1.5px;text-transform:uppercase;">Pequeño</h3>
+                <div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:800;color:var(--cyan);">$200k</div>
+                <small style="color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:9px;display:block;margin-top:4px;">hasta 10cm</small>
+            </article>
+            <article style="flex:1 1 100px;background:rgba(0,240,255,.03);border-radius:6px;padding:16px 10px;text-align:center;border:1px solid var(--border-subtle);">
+                <h3 style="font-family:'Orbitron',sans-serif;font-size:11px;font-weight:600;margin-bottom:6px;letter-spacing:1.5px;text-transform:uppercase;">Mediano</h3>
+                <div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:800;color:var(--cyan);">$400k</div>
+                <small style="color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:9px;display:block;margin-top:4px;">10-20cm</small>
+            </article>
+            <article style="flex:1 1 100px;background:rgba(0,240,255,.03);border-radius:6px;padding:16px 10px;text-align:center;border:1px solid var(--border-subtle);">
+                <h3 style="font-family:'Orbitron',sans-serif;font-size:11px;font-weight:600;margin-bottom:6px;letter-spacing:1.5px;text-transform:uppercase;">Grande</h3>
+                <div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:800;color:var(--cyan);">$800k+</div>
+                <small style="color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:9px;display:block;margin-top:4px;">+20cm</small>
+            </article>
         </div>
         <p style="margin-top:14px;font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;">*Precios en COP, incluye asesoría.</p>
     </section>
@@ -502,7 +605,12 @@
     <section class="mobile-section" id="reservas">
         <h2 class="mobile-section-title"><i class="fas fa-calendar-alt"></i> Reserva</h2>
         <div class="form-group"><label>Fecha</label><input type="date" id="fecha-cita" min="2025-04-01"></div>
-        <div class="form-group"><label>Hora</label><select id="hora-cita"><option>10:00 AM (2h)</option><option>12:00 PM (2h)</option><option>2:00 PM (3h)</option><option>4:00 PM (2h)</option></select></div>
+        <div class="form-group"><label>Hora</label>
+            <select id="hora-cita">
+                <option>10:00 AM (2h)</option><option>12:00 PM (2h)</option>
+                <option>2:00 PM (3h)</option><option>4:00 PM (2h)</option>
+            </select>
+        </div>
         <button class="btn" style="width:100%;" onclick="simularPago()"><i class="fas fa-lock"></i> Pagar depósito · $40.000</button>
         <p style="margin-top:12px;font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;">Depósito no reembolsable.</p>
     </section>
@@ -510,154 +618,193 @@
     <!-- Ubicación mobile -->
     <section class="mobile-section" id="ubicacion">
         <h2 class="mobile-section-title"><i class="fas fa-map-marker-alt"></i> Estudio</h2>
-        <div style="width:100%;height:170px;border-radius:6px;overflow:hidden;margin-bottom:12px;border:1px solid var(--border-subtle);"><iframe title="Mapa del estudio" src="https://www.openstreetmap.org/export/embed.html?bbox=-74.1130%2C4.7600%2C-74.0930%2C4.7800&layer=mapnik&marker=4.7700%2C-74.1030" style="width:100%;height:100%;filter:grayscale(1)invert(1)hue-rotate(180deg)saturate(.5)brightness(.7)contrast(1.2);border:0;" allowfullscreen loading="lazy"></iframe></div>
+        <div style="width:100%;height:170px;border-radius:6px;overflow:hidden;margin-bottom:12px;border:1px solid var(--border-subtle);">
+            <iframe title="Mapa del estudio"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-74.1130%2C4.7600%2C-74.0930%2C4.7800&layer=mapnik&marker=4.7700%2C-74.1030"
+                style="width:100%;height:100%;filter:grayscale(1)invert(1)hue-rotate(180deg)saturate(.5)brightness(.7)contrast(1.2);border:0;"
+                allowfullscreen loading="lazy"></iframe>
+        </div>
         <div style="display:flex;gap:10px;margin-bottom:10px;">
-            <address style="flex:1;background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:12px;border-radius:6px;font-style:normal;"><i class="fas fa-location-dot" style="color:var(--cyan);font-size:16px;margin-bottom:8px;display:block;"></i><p style="font-size:12px;color:var(--text-secondary);"><strong style="color:var(--text-primary);">Cra. 107 #143-22</strong><br>Suba, Bogotá</p><a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;display:inline-block;margin-top:6px;">Ver en Maps →</a></address>
-            <div style="flex:1;background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:12px;border-radius:6px;"><i class="fab fa-whatsapp" style="color:#25d366;font-size:16px;margin-bottom:8px;display:block;"></i><p style="font-size:12px;color:var(--text-secondary);"><strong style="color:var(--text-primary);">301 280 2733</strong><br>Lun–Sáb 10am–7pm</p><a href="https://wa.me/573012802733" target="_blank" rel="noopener" style="color:#25d366;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;display:inline-block;margin-top:6px;">Escribir →</a></div>
+            <address style="flex:1;background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:12px;border-radius:6px;font-style:normal;">
+                <i class="fas fa-location-dot" style="color:var(--cyan);font-size:16px;margin-bottom:8px;display:block;"></i>
+                <p style="font-size:12px;color:var(--text-secondary);"><strong style="color:var(--text-primary);">Cra. 107 #143-22</strong><br>Suba, Bogotá</p>
+                <a href="https://www.google.com/maps/place/Guerr+Tattoo+Studio/@4.7468963,-74.1028631,17z" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;display:inline-block;margin-top:6px;">Ver en Maps →</a>
+            </address>
+            <div style="flex:1;background:rgba(0,240,255,.03);border:1px solid var(--border-subtle);padding:12px;border-radius:6px;">
+                <i class="fab fa-whatsapp" style="color:#25d366;font-size:16px;margin-bottom:8px;display:block;"></i>
+                <p style="font-size:12px;color:var(--text-secondary);"><strong style="color:var(--text-primary);">301 280 2733</strong><br>Lun–Sáb 10am–7pm</p>
+                <a href="https://wa.me/573012802733" target="_blank" rel="noopener" style="color:#25d366;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;display:inline-block;margin-top:6px;">Escribir →</a>
+            </div>
         </div>
     </section>
 
     <footer class="mobile-footer-note">
         <div style="display:flex;justify-content:center;gap:14px;margin-bottom:10px;">
             <a href="https://www.instagram.com/julianguerrerotattoo/" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/julian.guerrero.3914?locale=es_LA" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.facebook.com/julian.guerrero.3914" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.youtube.com/@guerrtattoostudio" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-youtube"></i></a>
             <a href="https://www.tiktok.com/@julianguerreroguerr" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-tiktok"></i></a>
             <a href="https://wa.me/573012802733" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-whatsapp"></i></a>
         </div>
-        Guerr Tattoo · © <span class="year-span"></span>
+        Guerr Tattoo Studio · © <span class="year-span"></span>
     </footer>
 </div>
 
-<!-- Navegación inferior mobile -->
+<!-- ══ MOBILE BOTTOM NAV ════════════════════════════════════════════════════ -->
 <nav class="mobile-bottom-nav">
-    <a href="#inicio" class="mobile-nav-item active"><i class="fas fa-home"></i><span>Inicio</span></a>
-    <a href="#galeria" class="mobile-nav-item"><i class="fas fa-images"></i><span>Galería</span></a>
-    <a href="#precios" class="mobile-nav-item"><i class="fas fa-tag"></i><span>Precios</span></a>
-    <a href="#reservas" class="mobile-nav-item"><i class="fas fa-calendar"></i><span>Reservas</span></a>
+    <a href="#inicio"    class="mobile-nav-item active"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="#galeria"   class="mobile-nav-item"><i class="fas fa-images"></i><span>Galería</span></a>
+    <a href="#precios"   class="mobile-nav-item"><i class="fas fa-tag"></i><span>Precios</span></a>
+    <a href="#reservas"  class="mobile-nav-item"><i class="fas fa-calendar"></i><span>Reservas</span></a>
     <a href="#ubicacion" class="mobile-nav-item"><i class="fas fa-map-marker-alt"></i><span>Estudio</span></a>
 </nav>
 
 <script>
+(function(){
+    'use strict';
+    const WA = '573012802733';
+    // Año
+    const yr = new Date().getFullYear();
+    document.getElementById('year').textContent = yr;
+    document.querySelectorAll('.year-span').forEach(el => el.textContent = yr);
+    // Toast
+    function showToast(msg, type='info', ms=3000){
+        const icons={info:'fa-info-circle',success:'fa-check-circle',error:'fa-exclamation-circle'};
+        const el=document.createElement('div');
+        el.className=`toast ${type}`;
+        el.innerHTML=`<i class="fas ${icons[type]||icons.info} toast-icon"></i><span>${msg}</span>`;
+        document.getElementById('toastContainer').appendChild(el);
+        setTimeout(()=>{el.style.animation='toastOut .25s ease forwards';setTimeout(()=>el.remove(),250);},ms);
+    }
+    // Partículas
+    const pc=document.getElementById('particles');
+    for(let i=0;i<22;i++){
+        const p=document.createElement('div');p.className='particle';
+        p.style.left=Math.random()*100+'%';
+        p.style.animationDuration=(10+Math.random()*15)+'s';
+        p.style.animationDelay=Math.random()*12+'s';
+        const s=1+Math.random()*2;p.style.width=s+'px';p.style.height=s+'px';
+        pc.appendChild(p);
+    }
+    // Lightbox
+    const lb=document.getElementById('lightbox');
+    const lbImg=document.getElementById('lbImg');
+    const lbInfo=document.getElementById('lbInfo');
+    let lbItems=[],lbIdx=0;
+    function openLB(items,idx){
+        lbItems=items;lbIdx=idx;
+        lbImg.src=items[idx].src;
+        lbInfo.textContent=(items[idx].label||'')+` · ${idx+1}/${items.length}`;
+        lb.classList.add('open');document.body.style.overflow='hidden';
+    }
+    function closeLB(){lb.classList.remove('open');document.body.style.overflow='';}
+    function lbNav(d){lbIdx=(lbIdx+d+lbItems.length)%lbItems.length;lbImg.src=lbItems[lbIdx].src;lbInfo.textContent=(lbItems[lbIdx].label||'')+` · ${lbIdx+1}/${lbItems.length}`;}
+    document.getElementById('lbClose').addEventListener('click',closeLB);
+    document.getElementById('lbPrev').addEventListener('click',()=>lbNav(-1));
+    document.getElementById('lbNext').addEventListener('click',()=>lbNav(1));
+    lb.addEventListener('click',e=>{if(e.target===lb)closeLB();});
+    document.addEventListener('keydown',e=>{
+        if(!lb.classList.contains('open'))return;
+        if(e.key==='ArrowLeft')lbNav(-1);
+        if(e.key==='ArrowRight')lbNav(1);
+        if(e.key==='Escape')closeLB();
+    });
+    function bindGallery(sel){
+        const items=[];
+        document.querySelectorAll(sel).forEach(el=>items.push({src:el.dataset.src||el.querySelector('img')?.src,label:el.dataset.label||''}));
+        document.querySelectorAll(sel).forEach((el,i)=>{el.style.cursor='zoom-in';el.addEventListener('click',()=>openLB(items,i));});
+    }
+    bindGallery('.gallery-item-desktop');
+    // Scroll spy desktop
+    function scrollSpy(navSel,secSel){
+        const navs=document.querySelectorAll(navSel),secs=document.querySelectorAll(secSel);
+        window.addEventListener('scroll',()=>{
+            let idx=secs.length;
+            while(--idx&&window.scrollY+100<secs[idx].offsetTop){}
+            navs.forEach((el,i)=>el.classList.toggle('active',i===idx));
+        },{passive:true});
+    }
+    scrollSpy('.nav-link','.section,.hero-section');
+    scrollSpy('.mobile-nav-item','.mobile-section');
+    // Filtros galería
+    function initFilter(btnsSel,itemsSel){
+        const btns=document.querySelectorAll(btnsSel),items=document.querySelectorAll(itemsSel);
+        btns.forEach(btn=>{
+            btn.addEventListener('click',()=>{
+                btns.forEach(b=>b.classList.remove('active'));
+                btn.classList.add('active');
+                const f=btn.dataset.filter;
+                items.forEach(it=>it.style.display=(f==='all'||it.dataset.category===f)?'':'none');
+            });
+        });
+    }
+    initFilter('.gallery-filter-bar .category-btn','.gallery-item-desktop');
+    initFilter('#galeria .category-btn','#mobile-gallery-grid > div');
+    // Smooth scroll links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click',e=>{
+            const t=document.querySelector(a.getAttribute('href'));
+            if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+        });
+    });
+    // WhatsApp helpers
+    function wa(msg){window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');}
+    window.simularPago=function(){
+        const f=document.getElementById('fecha-cita')?.value;
+        const h=document.getElementById('hora-cita')?.value||'';
+        if(!f){showToast('Selecciona una fecha','error');return;}
+        wa(`Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`);
+        showToast('Abriendo WhatsApp para confirmar tu cita...','success');
+    };
+    window.simularPagoDesktop=function(){
+        const f=document.getElementById('fecha-cita-desktop')?.value;
+        const h=document.getElementById('hora-cita-desktop')?.value||'';
+        if(!f){showToast('Selecciona una fecha','error');return;}
+        wa(`Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`);
+        showToast('Abriendo WhatsApp para confirmar tu cita...','success');
+    };
+    window.enviarSolicitudDesktop=function(){
+        const form=document.getElementById('tattooFormDesktop');
+        const estilo=form.querySelector('select')?.value||'';
+        const ubicacion=form.querySelectorAll('input,textarea')[0]?.value||'';
+        const descripcion=form.querySelector('textarea')?.value||'';
+        wa(`Hola Julián! Quiero solicitar un diseño 🖤\n🎨 Estilo: ${estilo}\n📍 Ubicación: ${ubicacion}\n💬 Idea: ${descripcion}`);
+        showToast('Abriendo WhatsApp con tu solicitud...','success');
+        form.reset();
+    };
+    // Persistencia formulario
     (function(){
-        'use strict';
-        const year = new Date().getFullYear();
-        document.getElementById('year').textContent = year;
-        document.querySelectorAll('.year-span').forEach(el => el.textContent = year);
-
-        function showToast(msg, type='info', ms=3000){
-            const icons = {info:'fa-info-circle', success:'fa-check-circle', error:'fa-exclamation-circle'};
-            const el = document.createElement('div');
-            el.className = `toast ${type}`;
-            el.innerHTML = `<i class="fas ${icons[type]||icons.info} toast-icon"></i><span>${msg}</span>`;
-            document.getElementById('toastContainer').appendChild(el);
-            setTimeout(()=>{ el.style.animation='toastOut .25s ease forwards'; setTimeout(()=>el.remove(),250); }, ms);
+        const KEY='guerr_booking_form';
+        function save(){
+            localStorage.setItem(KEY,JSON.stringify({
+                desktop:{fecha:document.getElementById('fecha-cita-desktop')?.value||'',hora:document.getElementById('hora-cita-desktop')?.value||''},
+                mobile:{fecha:document.getElementById('fecha-cita')?.value||'',hora:document.getElementById('hora-cita')?.value||''}
+            }));
         }
-
-        const pc = document.getElementById('particles');
-        for(let i=0;i<22;i++){
-            const p = document.createElement('div'); p.className='particle';
-            p.style.left = Math.random()*100+'%';
-            p.style.animationDuration = (10+Math.random()*15)+'s';
-            p.style.animationDelay = Math.random()*12+'s';
-            const s=1+Math.random()*2; p.style.width=s+'px'; p.style.height=s+'px';
-            pc.appendChild(p);
+        function load(){
+            try{
+                const d=JSON.parse(localStorage.getItem(KEY)||'{}');
+                if(d.desktop){
+                    const fd=document.getElementById('fecha-cita-desktop');if(fd)fd.value=d.desktop.fecha||'';
+                    const hd=document.getElementById('hora-cita-desktop');if(hd)hd.value=d.desktop.hora||'';
+                }
+                if(d.mobile){
+                    const fm=document.getElementById('fecha-cita');if(fm)fm.value=d.mobile.fecha||'';
+                    const hm=document.getElementById('hora-cita');if(hm)hm.value=d.mobile.hora||'';
+                }
+            }catch(e){}
         }
-
-        const lightbox = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lbImg');
-        const lbInfo = document.getElementById('lbInfo');
-        let lbItems = [], lbIdx = 0;
-        function openLightbox(items, idx){
-            lbItems = items; lbIdx = idx;
-            lbImg.src = items[idx].src;
-            lbInfo.textContent = (items[idx].label||'') + ` · ${idx+1}/${items.length}`;
-            lightbox.classList.add('open'); document.body.style.overflow='hidden';
-        }
-        function closeLightbox(){ lightbox.classList.remove('open'); document.body.style.overflow=''; }
-        function lbNavigate(dir){ lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length; lbImg.src = lbItems[lbIdx].src; lbInfo.textContent = (lbItems[lbIdx].label||'') + ` · ${lbIdx+1}/${lbItems.length}`; }
-        document.getElementById('lbClose').addEventListener('click', closeLightbox);
-        document.getElementById('lbPrev').addEventListener('click', ()=>lbNavigate(-1));
-        document.getElementById('lbNext').addEventListener('click', ()=>lbNavigate(1));
-        lightbox.addEventListener('click', e=>{ if(e.target===lightbox) closeLightbox(); });
-        document.addEventListener('keydown', e=>{ if(!lightbox.classList.contains('open')) return; if(e.key==='ArrowLeft') lbNavigate(-1); if(e.key==='ArrowRight') lbNavigate(1); if(e.key==='Escape') closeLightbox(); });
-
-        function bindGallery(selector){
-            const items = []; document.querySelectorAll(selector).forEach(el=>{ items.push({ src: el.dataset.src || el.querySelector('img')?.src, label: el.dataset.label||'' }); });
-            document.querySelectorAll(selector).forEach((el,i)=>{ el.style.cursor='zoom-in'; el.addEventListener('click', ()=>openLightbox(items,i)); });
-        }
-        bindGallery('.gallery-item-desktop');
-
-        function makeScrollSpy(navSelector, sectionSelector){
-            const navs = document.querySelectorAll(navSelector), sections = document.querySelectorAll(sectionSelector);
-            window.addEventListener('scroll', ()=>{
-                let idx = sections.length;
-                while(--idx && window.scrollY + 100 < sections[idx].offsetTop){}
-                navs.forEach((el,i)=>el.classList.toggle('active', i===idx));
-            }, {passive:true});
-        }
-        makeScrollSpy('.nav-link', '.section,.hero-section');
-        makeScrollSpy('.mobile-nav-item', '.mobile-section');
-
-        function initFilter(btnsSelector, itemsSelector){
-            const btns = document.querySelectorAll(btnsSelector), items = document.querySelectorAll(itemsSelector);
-            btns.forEach(btn=>{ btn.addEventListener('click', ()=>{ btns.forEach(b=>b.classList.remove('active')); btn.classList.add('active'); const f = btn.dataset.filter; items.forEach(it=>it.style.display=(f==='all'||it.dataset.category===f)?'':'none'); }); });
-        }
-        initFilter('.gallery-filter-bar .category-btn', '.gallery-item-desktop');
-        initFilter('#galeria .category-btn', '#mobile-gallery-grid > div');
-
-        document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click', e=>{ const t=document.querySelector(a.getAttribute('href')); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }); });
-
-        const WA_NUMBER = '573012802733';
-        function abrirWhatsApp(msg){ window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg),'_blank'); }
-
-        window.simularPago = function(){
-            const f=document.getElementById('fecha-cita')?.value;
-            const h=document.getElementById('hora-cita')?.value||'';
-            if(!f){ showToast('Selecciona una fecha','error'); return; }
-            abrirWhatsApp(`Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`);
-            showToast('Abriendo WhatsApp para confirmar tu cita...','success');
-        };
-        window.simularPagoDesktop = function(){
-            const f=document.getElementById('fecha-cita-desktop')?.value;
-            const h=document.getElementById('hora-cita-desktop')?.value||'';
-            if(!f){ showToast('Selecciona una fecha','error'); return; }
-            abrirWhatsApp(`Hola Julián! Quiero reservar una cita 🖤\n📅 Fecha: ${f}\n🕐 Hora: ${h}\nQuedo pendiente para confirmar el depósito de $40.000.`);
-            showToast('Abriendo WhatsApp para confirmar tu cita...','success');
-        };
-        window.enviarSolicitudDesktop = function(){
-            const form = document.getElementById('tattooFormDesktop');
-            const estilo = form.querySelector('select')?.value||'';
-            const ubicacion = form.querySelectorAll('input,textarea')[0]?.value||'';
-            const descripcion = form.querySelector('textarea')?.value||'';
-            abrirWhatsApp(`Hola Julián! Quiero solicitar un diseño 🖤\n🎨 Estilo: ${estilo}\n📍 Ubicación: ${ubicacion}\n💬 Idea: ${descripcion}`);
-            showToast('Abriendo WhatsApp con tu solicitud...','success');
-            form.reset();
-        };
-
-        (function(){
-            const STORAGE_KEY = 'guerr_booking_form';
-            function saveFormState(){
-                const state = {
-                    desktop: { fecha: document.getElementById('fecha-cita-desktop')?.value||'', hora: document.getElementById('hora-cita-desktop')?.value||'' },
-                    mobile: { fecha: document.getElementById('fecha-cita')?.value||'', hora: document.getElementById('hora-cita')?.value||'' }
-                };
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-            }
-            function loadFormState(){
-                try {
-                    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
-                    if(saved.desktop){ const fd=document.getElementById('fecha-cita-desktop'); if(fd)fd.value=saved.desktop.fecha||''; const hd=document.getElementById('hora-cita-desktop'); if(hd)hd.value=saved.desktop.hora||''; }
-                    if(saved.mobile){ const fm=document.getElementById('fecha-cita'); if(fm)fm.value=saved.mobile.fecha||''; const hm=document.getElementById('hora-cita'); if(hm)hm.value=saved.mobile.hora||''; }
-                } catch(e){}
-            }
-            ['fecha-cita-desktop','hora-cita-desktop','fecha-cita','hora-cita'].forEach(id=>{ const el=document.getElementById(id); if(el)el.addEventListener('change',saveFormState); });
-            loadFormState();
-            const orig1=window.simularPago; window.simularPago=function(){saveFormState();orig1();};
-            const orig2=window.simularPagoDesktop; window.simularPagoDesktop=function(){saveFormState();orig2();};
-        })();
+        ['fecha-cita-desktop','hora-cita-desktop','fecha-cita','hora-cita'].forEach(id=>{
+            const el=document.getElementById(id);if(el)el.addEventListener('change',save);
+        });
+        load();
+        const o1=window.simularPago;window.simularPago=function(){save();o1();};
+        const o2=window.simularPagoDesktop;window.simularPagoDesktop=function(){save();o2();};
     })();
+})();
 </script>
 </body>
+</html>
+
 </html>
 
